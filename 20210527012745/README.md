@@ -4,6 +4,7 @@ socket statisitcs/netstat tool:
 
 [checkout](https://computingforgeeks.com/netstat-vs-ss-usage-guide-linux/) for more info
 
+```
 –n, –numeric don’t resolve service names
 -r, –resolve : resolve host hostnames.
 -l, –listening display listening sockets
@@ -22,3 +23,4 @@ socket statisitcs/netstat tool:
 -w, –raw display only RAW sockets
 -x, –unix display only Unix domain sockets
 -f, –family=FAMILY display sockets of type FAMILY
+```
