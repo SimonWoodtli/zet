@@ -3,6 +3,7 @@
 socket statisitcs/netstat tool:
 
 [checkout](https://computingforgeeks.com/netstat-vs-ss-usage-guide-linux/) for more info
+
 –n, –numeric don’t resolve service names
 -r, –resolve : resolve host hostnames.
 -l, –listening display listening sockets
