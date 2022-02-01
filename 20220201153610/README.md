@@ -52,4 +52,5 @@ Relatd:
 * <https://www.howtogeek.com/660517/how-to-find-your-windows-10-product-key-using-the-command-prompt/>
 
 Tags:
+
     #windows #serial #key
