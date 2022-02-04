@@ -2,11 +2,12 @@
 
 1. Where installed?
 `sudo which protonvpn`
-
 1. Create file:
 `sudo touch /etc/systemd/system/protonvpn-autoconnect.service`
-1. Edit file: with this content
+1. Edit file:
 `sudo vi /etc/systemd/system/protonvpn-autoconnect.service`
+
+Content:
 
 ```sh
 [Unit]
@@ -23,7 +24,8 @@ Environment=SUDO_USER=user
 [Install]
 WantedBy=multi-user.target
 ```
-1. replace environment user with current Linux username
+
+//replace environment user with current Linux username
 1. Reload daemon:
 `sudo systemctl daemon-reload`
 1. Connect startup:
