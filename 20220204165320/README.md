@@ -20,3 +20,7 @@ export QT_IM_MODULE=ibus
 # Some fonts to write in Office:
 
 `sudo apt install fonts-wqy-microhei fonts-wqy-zenhei fonts-arphic-ukai fonts-arphic-uming fonts-cns11643-sung`
+
+Tags:
+
+    #linux #chinese #pinyin
