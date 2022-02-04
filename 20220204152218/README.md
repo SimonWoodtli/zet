@@ -1,3 +1,3 @@
 # Cheatsheet Bash
 
-[cheat_sheet_bash.pdf](:/72142336df594f299606a369f40bb893)
+[cheat_sheet_bash.pdf](https://github.com/SimonWoodtli/zet/blob/main/20220204152218/cheat_sheet_bash.pdf)
