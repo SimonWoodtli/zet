@@ -14,7 +14,7 @@ Create a new User and leave pi be or delete it. More information [here]
 `usermod -m -d /home/newname newname`
 1. change startup to boot GUI/desktop
 `sudo raspi-config`
-1.reboot then disable root pw
+1. reboot then disable root pw
 `sudo passwd -l root`
 
 Tags:
