@@ -1,4 +1,4 @@
-# Connect database with specific user
+# Connect Postgres database with specific user
 
 connect to postgres on port 5432 on database postgres as username
 
@@ -13,7 +13,7 @@ hint: the username issue should resolve itself, once you setup postgres to allow
 
 Related:
 
-* []() blabla
+* [20220206195916](/20220206195916/) User management: $ postgres 
 
 Tags:
 
