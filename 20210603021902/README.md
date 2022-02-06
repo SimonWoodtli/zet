@@ -9,3 +9,7 @@ Now, you need to create a configuration file to enable your user account to use 
 # echo "student ALL=(ALL) ALL" > /etc/sudoers.d/student
 Finally, some Linux distributions will complain if you do not also change permissions on the file by doing:
 `$ chmod 440 /etc/sudoers.d/student`
+
+Tags:
+    
+    #linux #sysadmin #terminal #userManagement
