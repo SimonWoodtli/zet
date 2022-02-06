@@ -1,13 +1,13 @@
-# Useful commands to edit pdfs
+# Useful commands to edit PDF files
 
 ## Qpdf command
 
-`qpdf --empty --pages 1.pdf 2.pdf -- 12.pdf`    Merge the two documents 1.pdf and 2.pdf. The output will be saved to 12.pdf.
-`qpdf --empty --pages 1.pdf 1-2 -- new.pdf`   Write only pages 1 and 2 of 1.pdf. The output will be saved to new.pdf.
-`qpdf --rotate=+90:1 1.pdf 1r.pdf`          Rotate page 1 of 1.pdf 90 degrees clockwise and save to 1r.pdf
-`qpdf --rotate=+90:1-z 1.pdf 1r-all.pdf`     Rotate all pages of 1.pdf 90 degrees clockwise and save to 1r-all.pdf
-`qpdf --encrypt mypw mypw 128 -- public.pdf private.pdf`    Encrypt with 128 bits public.pdf using as the passwd mypw with output as private.pdf
-`qpdf --decrypt --password=mypw private.pdf file-decrypted.pdf`   Decrypt private.pdf with output as file-decrypted.pdf.
+`qpdf --empty --pages 1.pdf 2.pdf -- 12.pdf`    Merge the two documents 1.pdf and 2.pdf. The output will be saved to 12.pdf.  
+`qpdf --empty --pages 1.pdf 1-2 -- new.pdf`   Write only pages 1 and 2 of 1.pdf. The output will be saved to new.pdf.  
+`qpdf --rotate=+90:1 1.pdf 1r.pdf`          Rotate page 1 of 1.pdf 90 degrees clockwise and save to 1r.pdf  
+`qpdf --rotate=+90:1-z 1.pdf 1r-all.pdf`     Rotate all pages of 1.pdf 90 degrees clockwise and save to 1r-all.pdf  
+`qpdf --encrypt mypw mypw 128 -- public.pdf private.pdf`    Encrypt with 128 bits public.pdf using as the passwd mypw with output as private.pdf  
+`qpdf --decrypt --password=mypw private.pdf file-decrypted.pdf`   Decrypt private.pdf with output as file-decrypted.pdf.  
 
 ## Pdftk command
 
