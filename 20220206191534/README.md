@@ -1,4 +1,4 @@
-# How to create a custom DNS on your netlify hosted website from namecheap
+# Configure custom DNS on Netlify with Namecheap
 
 on namecheap:
 1. sign up for a domain name on https://www.namecheap.com
