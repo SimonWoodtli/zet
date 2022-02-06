@@ -235,4 +235,5 @@ Unable to allocate IPv6 socket for nameserver communication: Address family not 
 Hopefully, running through some of these commands helped. It actually helps to see what the correct output for your system looks like. Practice using these commands; it is very likely that you will need them someday.
 
 Tags:
+
     #network #linux #troubleshoot
