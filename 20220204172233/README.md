@@ -1,6 +1,6 @@
 # LINUX: Raspian OS looks and optimize
 
-1. Install arc-theme and breeze (for cursor) and go to main menu editor to add theme and appearence settings
+1. `sudo apt install arc-theme breeze-cursor-theme` and go to main menu editor to add 'theme and appearance settings'
 1. `sudo vi /boot/config.txt` change arm_freq=2000 and arm_freq_min=1000 and under_voltage=6
 1. `sudo vi /usr/lib/raspi-config/cmstart.sh` comment the xcompmr line then add xcompmgr -c -r10 -F -f -D5 -C -o0.8
 1. `sudo apt install gnome-software flatpak`
