@@ -5,9 +5,11 @@
 Problem: Wordpress is dynamic and Netlify is static.
 Solution: Install WP locally and run wp2static and copy these files on your Github repo
 
-1. Download and install wordpress locally on one of your machines
-1. Create Github repo where you wanna host your sit
+1. [Install] Wordpress automatically on your local machine. Or choose own stack and install components manually.
+1. Create Github repo where you wanna host your site
 1. Sign into Netlify and select the repo to start hosting it
+1. Configure your website and content to your liking and run wp2static to generate static files
+1. Add static files to your Github repo and push content
 
 ### New Content
 
@@ -23,3 +25,5 @@ Related:
 Tags:
 
     #webdev #wordpress #netlify #
+
+[Install]: <https://localwp.com/>
