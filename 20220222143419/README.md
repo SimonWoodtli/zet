@@ -9,7 +9,7 @@
 without subshell:  
 `foo=/some/bar; echo ${foo##*/}`
 
-with subshell:  
+* with subshell:  
 `foo=/some/bar; basename $foo`
 
 ## Avoid vimscript less plugins is more
@@ -30,7 +30,7 @@ The standard comment cmt uses is \#
 The command can be a bash builtin function, linux command line program, 
 own script, heck even a nodejs script python script or whatever you fancy.
 
-```vim
+```markdown
 !} for current paragraph
 !G for whole document
 !! for current line
