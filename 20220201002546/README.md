@@ -1,6 +1,4 @@
-
 # Arch Install
-
 
 \# set keyboard layout - default is US
 
@@ -52,8 +50,6 @@ $ `mkfs.vfat -F 32 /dev/sda1`
 7. create encrypted root
 
 $ `cryptsetup -y -v luksFormat /dev/sda2`
-
-8. open encrypted root
 
 $ `cryptsetup open /dev/sda2 cryptroot`
 
