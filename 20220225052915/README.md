@@ -20,5 +20,6 @@ restart ibus
 1. integrate it into your system
 1. in settings change what happens after clicking from "typing" to "copy"
 1. launch with ctrl-super-space or ctrl-super-f (search)
+1. launch at startup: `/home/sero/Applications/./emoji-keyboard-3.1.1_f891f234d97b1744bce881ace07c4b65.AppImage %U`
 
 [Appimage]: <https://github.com/OzymandiasTheGreat/emoji-keyboard/releases>
