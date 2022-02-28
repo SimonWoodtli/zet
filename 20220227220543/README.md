@@ -32,9 +32,10 @@ encrypted partition requires the systems device mapper to name the partition.
 
 to get all UUIDs: `lsblk -f /dev/sdX`
 
+
 ```bash
-UUID=92c1cf2c-ae92-41c5-8c93-69fa998f78af /home/sero/mnt/usb auto nosuid,nodev,nofail,x-gvfs-show 0 0
-UUID=E114-8013 /home/sero/mnt/USB auto nosuid,nodev,nofail,x-gvfs-show 0 0
+UUID=92c1cf2c-ae92-41c5-8c93-69fa998f78af /home/sero/mnt/usb ext4 defaults,nls=utf8,umask=000,dmask=027,fmask=137,uid=1000,gid=1000 0 0
+UUID=0C3741977176D897 /home/sero/mnt/USB ntfs-3g defaults,nls=utf8,umask=000,dmask=027,fmask=137,uid=1000,gid=1000 0 0
 ```
 
 1. add this to crypttab: UUID is from the LUKS wrapper/container   
@@ -48,13 +49,13 @@ usb UUID=c0b8c577-95b7-4567-9fce-6e5a1c631a49 none nofail
 1. create a mount point: `mkdir -p ~/mnt/usb ~/mnt/USB`
 1. mount partition: The first mount should be done from GUI so you can
 store the passphrase. 
-1. if you don't mount your partiton in your own home you need to change owner:
-`chown -R myusername.myusername /mnt/usb`
 
 NOTE: `mkfs.foo /dev/foo` for another file system
 NOTE: It's also possible to do all from the CLI but then you need more 
 parameters in /etc/crypttab and create a file in /etc/luks-keys/yourLabelName 
 where you want to store your passphrase.
+NOTE: Normally the ext4 partitions need only a defaults parameter in /etc/fstab
+but for some reason my usb-stick was always getting root dir ownership.
 
 ## Unmount encrypted partition
 
@@ -64,8 +65,8 @@ where you want to store your passphrase.
 
 Related:
 
+* [20220228043945](/20220228043945/) NTFS and Fat partitions on Linux 🐧
 * create another zettel how to label/name your partitions
-* create another zettel how to auto-mount usb stick on a specific place
 * create another zettel how to store encryption passphrase (maybe not needed)
 * <https://www.tecmint.com/change-modify-linux-disk-partition-label-names/>
 
