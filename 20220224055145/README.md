@@ -1,4 +1,4 @@
-# zet commands - cheatsheet
+# zettelkasten zet commands: cheatsheet
 
 * create zet: `zet create "name of title"`
 * list all titles: `zet edit|titles`
@@ -8,3 +8,4 @@
 * get Github search link: `zet query [searchterm]`
 * get last zettel: `zet last`
 * get local path to zettel: `zet get [searchterm]`
+* cd into a searched zettel: `cdz [searchterm]`
