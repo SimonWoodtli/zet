@@ -66,7 +66,7 @@ but for some reason my usb-stick was always getting root dir ownership.
 Related:
 
 * [20220228043945](/20220228043945/) NTFS and Fat partitions on Linux 🐧
-* create another zettel how to label/name your partitions
+* [20220302215119](/20220302215119/) Label/Name your USB-sticks/HDDs partitions
 * create another zettel how to store encryption passphrase (maybe not needed)
 * <https://www.tecmint.com/change-modify-linux-disk-partition-label-names/>
 
