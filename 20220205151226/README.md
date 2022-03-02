@@ -18,6 +18,7 @@ Related:
 * <https://github.com/rwxrob/zet/tree/main/20210813153813>
 * <https://github.com/rwxrob/zet/blob/7809d84680cec0409838f6d3220af81255e94c4c/20210812154738/README.md>
 * [20220205135643](/20220205135643/) Zettelkasten Notes and Hints
+
 [URL]: <https://REFERREDURL>
 [keyword]: <https://github.com/SimonWoodtli/zet/search?q=zettelkasten>
 
