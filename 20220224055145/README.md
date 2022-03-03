@@ -9,3 +9,4 @@
 * get last zettel: `zet last`
 * get local path to zettel: `zet get [searchterm]`
 * cd into a searched zettel: `cdz [searchterm]`
+* cat content of zettel: `zet text [searchterm]`
