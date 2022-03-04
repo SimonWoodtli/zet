@@ -1,5 +1,16 @@
 # Write emojis in your terminal
 
+Here are three ways on how to get emojis to your Linux Machine. I prefer to
+use the terminal script and keyboard option. But to get an overview of all 
+emojis I still like the GUI option as well.
+
+## Terminal emoji script with emojidb
+
+1. Install dependency `install-dmenu` from my dotfiles/bin/install/
+1. Other dependencies: `rofi`, `xclip` and `jq`
+1. Make sure to have the `emoji` and `emojidb` script from my dotfiles/scripts
+too and that they are in you \$PATH
+
 ## Keyboard input to select from written word
 
 1. Install the keyboard input:
