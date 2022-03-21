@@ -10,3 +10,6 @@
 * get local path to zettel: `zet get [searchterm]`
 * cd into a searched zettel: `cdz [searchterm]`
 * cat content of zettel: `zet text [searchterm]`
+* see currently active repo: `zet current`
+* change active repo: `zet use`
+* change config-file: `zet config edit`
