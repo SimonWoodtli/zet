@@ -1,6 +1,7 @@
 # Firefox Privacy Settings 🤓
 
-Change this settings in `about:config`. The settings get stored in the local profile directory as prefs.js.
+* Change this settings in `about:config`. The settings get stored in `about:support` in the profile directory as prefs.js.
+* To create a new profile: `about:profiles`
 
 ```
 # Disable WebRTC:
