@@ -27,6 +27,10 @@ hide timestamp: `/set weechat.look.buffer_time_format ""`
 
 [Small View]: <https://weechat.org/files/doc/devel/weechat_faq.en.html#small_terminal)>
 
+Related:
+
+* <http://www.futurile.net/2020/11/09/weechat-getting-started-for-irc-and-slack/>
+
 Tags:
 
     #weechat #irc #setup
