@@ -1,8 +1,49 @@
-# Customize Weechat
+# Setup and Customize Weechat IRC Client
 
 All settings preconfigured in ~/Private/bin/weechat
+Weechat config dir: ~/.config/weechat
 
 Autojoin channels if connected to server: `/set irc.server.libera.autojoin "#weechat,#weechat-fr"`
+
+## Add servers
+
+* Freenode: `/server add freenode chat.freenode.net/7000 -ssl -password=yourPassword -nicks=yourNickName -username=yourUserName`
+* Twitch: `/server add twitch irc.twitch.tv/6697 -ssl -password=oauth:*** -nicks=TWITCH_NAME -username=TWITCH_NAME`
+* Libera:
+* Spotchat:
+* Slack:
+* Discord:
+
+### Auto join channels
+
+Make sure: `/set irc.server.freenode.autoconnect on` is on
+
+* Freenode: `/set irc.server.freenode.autojoin "#weechat,#ubuntu,#reddit-sysadmin,#puppet,#theforeman,#lopsa,#illumos,#opensolaris,#linux,#r_netsec,#lopsa`
+
+## Some more sane settings:
+
+• See a list of all settings to be changed: `/set`
+• See a list of all buflist settings: `/set buflist`
+
+To change boolean values in there: `/fset -toggle` or Alt-Space
+To change a string value in there: `/fset -setnew` or Alt-Enter
+To Undo the latest change: `/fset -reset` or Alt-r
+To See a list of all changed values: `/set d`
+Save settings: `/save`
+
+Use `/set keyword` to search settings:
+
+* Close window when leaving channel: `irc.look.part_closes_buffer` turn on
+* Have channels be related to the server: `/set irc.look.server_buffer independent`
+* Give nicknames a different color: `/set irc.look.color_nicks_in_nicklist on`
+* Activate mouse: `/set weechat.look.mouse on`
+* Create default username: `/set irc.server_default.username "name you want to use"`
+* Create username fallback list if not available: `/set irc.server_default.nicks "name,name1,name2,name3,name4"`
+* Better readable titlebar `/set weechat.bar.title.size 0`
+* Change channels easy: `/trigger add numberjump modifier "2000|input_text_for_buffer" "${tg_string} =~ ^/[0-9]+$" "=/([0-9]+)=/buffer *${re:1}=" ""` navigate with /1 ... /2 ... /n
+
+
+Don't Forget to save settings: `/save`
 
 ## Some appearance changes
 
@@ -30,6 +71,10 @@ hide timestamp: `/set weechat.look.buffer_time_format ""`
 Related:
 
 * <http://www.futurile.net/2020/11/09/weechat-getting-started-for-irc-and-slack/>
+* <http://www.futurile.net/2020/11/29/weechat-configuration-for-irc-and-slack/>
+* <https://hugo.md/post/the-perfect-weechat-setup-2/>
+* <https://netsplit.de/networks/top10.php>
+* <https://www.bitlbee.org/main.php/news.r.html>
 
 Tags:
 
