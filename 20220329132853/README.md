@@ -23,7 +23,7 @@ DNS: 10.152.152.10
 
 6. Disconnect the Network and reconnect it.
 7. Check your IP: https://check.torproject.org/ 
-8. Use script to turn on/off: `kali` and `kali off`
+8. Use [script] to turn on/off: `kali` and `kali off`
 
 ## Backbox
 
@@ -49,4 +49,10 @@ DNS: 10.152.152.10
 
 6. Disconnect the Network and reconnect it.
 7. Check your IP: https://check.torproject.org/ 
-8. Use script to turn on/off: `backbox` and `backbox off`
+8. Use [script] to turn on/off: `backbox` and `backbox off`
+
+[script]: <https://github.com/SimonWoodtli/dotfiles/tree/main/scripts>
+
+Tags:
+  
+    #tor #privacy #virtualMachine #virtualBox #whonix #anonymous
