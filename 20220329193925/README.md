@@ -41,6 +41,7 @@ Use `/set keyword` to search settings:
 * Create username fallback list if not available: `/set irc.server_default.nicks "name,name1,name2,name3,name4"`
 * Better readable titlebar `/set weechat.bar.title.size 0`
 * Change channels easy: `/trigger add numberjump modifier "2000|input_text_for_buffer" "${tg_string} =~ ^/[0-9]+$" "=/([0-9]+)=/buffer *${re:1}=" ""` navigate with /1 ... /2 ... /n
+* Disable join/leave message from all users: `/set irc.look.smart_filter on` and `/filter add irc_smart * irc_smart_filter *`
 
 
 Don't Forget to save settings: `/save`
