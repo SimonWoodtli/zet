@@ -20,10 +20,31 @@ Make sure: `/set irc.server.freenode.autoconnect on` is on
 
 * Freenode: `/set irc.server.freenode.autojoin "#weechat,#ubuntu,#reddit-sysadmin,#puppet,#theforeman,#lopsa,#illumos,#opensolaris,#linux,#r_netsec,#lopsa`
 
+## Scripts
+
+To see all available scripts: `/script` 
+-> to search scripts: Type in the input bar
+To see some info about script: `/script show <scriptname>`
+To install: `/script install <scriptname>`
+To remove it first: `/script unload <scriptname>` then `/script remove <scriptname>`
+
+* Install autosort: `/script install autosort.py`
+
+## Spell checking
+
+* enable spell checking: `/spell enable`
+* list all dictionaries: `/spell listdict`
+* select dictonary: `/set spell.check.default_dict "en_US,en"`
+
+## Colors
+
+
+
 ## Some more sane settings:
 
 • See a list of all settings to be changed: `/set`
 • See a list of all buflist settings: `/set buflist`
+
 
 To change boolean values in there: `/fset -toggle` or Alt-Space
 To change a string value in there: `/fset -setnew` or Alt-Enter
@@ -33,6 +54,7 @@ Save settings: `/save`
 
 Use `/set keyword` to search settings:
 
+
 * Close window when leaving channel: `irc.look.part_closes_buffer` turn on
 * Have channels be related to the server: `/set irc.look.server_buffer independent`
 * Give nicknames a different color: `/set irc.look.color_nicks_in_nicklist on`
@@ -40,11 +62,57 @@ Use `/set keyword` to search settings:
 * Create default username: `/set irc.server_default.username "name you want to use"`
 * Create username fallback list if not available: `/set irc.server_default.nicks "name,name1,name2,name3,name4"`
 * Better readable titlebar `/set weechat.bar.title.size 0`
-* Change channels easy: `/trigger add numberjump modifier "2000|input_text_for_buffer" "${tg_string} =~ ^/[0-9]+$" "=/([0-9]+)=/buffer *${re:1}=" ""` navigate with /1 ... /2 ... /n
-* Disable join/leave message from all users: `/set irc.look.smart_filter on` and `/filter add irc_smart * irc_smart_filter *`
+* Change channels easy: 
+`/trigger add numberjump modifier "2000|input_text_for_buffer" "${tg_string} =~ ^/[0-9]+$" "=/([0-9]+)=/buffer *${re:1}=" ""` navigate with /1 ... /2 ... /n
+* Disable join/leave message from all users: `/set irc.look.smart_filter on` and 
+`/filter add irc_smart * irc_smart_filter *`
+* Disable join msg: `/set irc.look.display_join_message` and 
+`/filter add irc_join_names * irc_366,irc_332,irc_333,irc_329,irc_324 *`
 
+## Logs
+
+* Don't log the core weechat application: `/set logger.level.core.weechat 0`
+* log all channels and messages from slack: `/set logger.level.python.xxxx.slack.com 1`
+* log channels and messages to me: `/set logger.level.irc 1`
+* Don't log specific channel: `/set logger.level.irc.freenode.##news 0`
+
+store logs each year/server different file:
+
+```
+/set logger.file.path "%h/logs/%Y/"
+/set logger.file.mask "$plugin.$name.log"
+/set logger.file.nick_suffix "]"
+/set logger.file.nick_prefix "["
+```
+
+## Switch off file Transfer
+
+```
+/set irc.ctcp.clientinfo ""
+/set irc.ctcp.finger ""
+/set irc.ctcp.source ""
+/set irc.ctcp.time ""
+/set irc.ctcp.userinfo ""
+/set irc.ctcp.version ""
+/set irc.ctcp.ping ""
+/plugin unload xfer
+```
 
 Don't Forget to save settings: `/save`
+
+## Only load default Plugins that you need (wait until you configured Plugins)
+
+```
+/plugin unload lua
+/plugn unload tcl
+/plugin unload ruby
+/plugin unload javascript
+/plugin unload guile
+/plugin unload relay
+```
+
+* disable exec, fifo, guile, javascript, lua, ruby, tcl, xfer:
+`/set weechat.plugin.autoload "*,!exec,!fifo,!guile,!javascript,!lua,!ruby,!tcl,!xfer"`
 
 ## Some appearance changes
 
