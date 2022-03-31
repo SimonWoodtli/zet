@@ -1,7 +1,8 @@
 # LF Terminal File Explorer Commands
 
-* open files with 'l' or 'o'
-* select files with <spacebar>
-* to move files: 1d' and then paste it with 'p'
-
+* open files with `l` or `o`
+* select files with `spacebar`
+* to move files: cut `d`
+* to copy files: `y`
+* to paste files: `p`
 
