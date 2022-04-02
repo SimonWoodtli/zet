@@ -5,4 +5,7 @@
 * to move files: cut `d`
 * to copy files: `y`
 * to paste files: `p`
-
+* complete rename file: `c`
+* rename file end: `A`
+* rename file beginning: `I`
+* rename file before/after extension: `i` and `a`
