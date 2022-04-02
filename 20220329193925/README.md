@@ -144,6 +144,7 @@ Related:
 * <https://hugo.md/post/the-perfect-weechat-setup-2/>
 * <https://netsplit.de/networks/top10.php>
 * <https://www.bitlbee.org/main.php/news.r.html>
+* https://libera.chat/guides/weechat
 
 Tags:
 
