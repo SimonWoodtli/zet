@@ -9,6 +9,7 @@ Settings -> Appearance => Dark
 3. run Fedora/install-DarkMode
 
 Open Extension Manager and Install:
+
 * Blur my Shell
 * Caffeine
 * Dash to Panel
@@ -16,7 +17,8 @@ Open Extension Manager and Install:
 * User Themes
 
 Open Gnome Tweaks:
--> Window Titlebars -> Activate "Maximize" and "Minimize"
--> Appearance -> Legacy Applications "adw-gtk3-dark" # This will change looks of Geary
+
+* Window Titlebars -> Activate "Maximize" and "Minimize"
+* Appearance -> Legacy Applications "adw-gtk3-dark" # This will change looks of Geary
 
 
