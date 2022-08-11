@@ -15,6 +15,7 @@ Open Extension Manager and Install:
 * Dash to Panel
 * Tray Icons: Reloaded
 * User Themes
+* Allow Locked Remote Desktop
 
 Open Gnome Tweaks:
 
