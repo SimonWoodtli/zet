@@ -6,8 +6,7 @@ emojis I still like the GUI option as well.
 
 ## Terminal emoji script with emojidb
 
-1. Install dependency `install-dmenu` from my dotfiles/bin/install/
-1. Other dependencies: `rofi`, `xclip` and `jq`
+1. Install dependencies: `dmenu`,`rofi`, `xclip` and `jq`
 1. Make sure to have the `emoji` and `emojidb` script from my dotfiles/scripts
 too and that they are in you \$PATH
 
