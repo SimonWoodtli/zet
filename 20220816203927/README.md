@@ -4,7 +4,6 @@ A list of projects to keep an eye on and see if they become a real alternative.
 Most promising is Nyxt with the extensibility via Lisp.
 Least promising is Bad Wolf because of the lack of vim bindings.
 
-
 ## [Nyxt]
 
 TODO: Install and figure out what works and doesn't
@@ -44,6 +43,16 @@ TODO: Ask in IRC if Dark Mode, Ad Block and Extension support exists
 * Regular Browser Bindings -> No Vim Bindings
 * Install: Arch: AUR, Debian: from source, Fedora: official repo
 * WebKitGTK+
+
+## Don't consider list
+
+* qutebrowser
+* surf
+* Min
+* Icecat
+* Waterfox
+* Pale Meme
+* ungoogled-chromium
 
 [Bad Wolf]<https://hacktivis.me/projects/badwolf>
 [Nyxt]<https://nyxt.atlas.engineer/>
