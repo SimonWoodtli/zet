@@ -4,6 +4,8 @@
 * Fileshare App [Snapdrop], [Tutorial Snapdrop]
 * Broswer [Firefox], [Tutorial Firefox]
 * Browser gaming emulator [emulatorjs], [Tutorial emulatorjs]
+* [Adguard] =>
+* [Pihole+VPN] => Local DNS Server
 
 [General Converter]<https://hub.docker.com/r/dwaaan/hrconvert2-docker#!>
 [Snapdrop]<https://hub.docker.com/r/linuxserver/snapdrop>
@@ -12,3 +14,5 @@
 [Tutorial Firefox]<https://yewtu.be/watch?v=TRmnd8HP0mc>
 [emulatorjs]<https://hub.docker.com/r/linuxserver/emulatorjs>
 [Tutorial emulatorjs]<https://yewtu.be/watch?v=Zv1cq0JhZfQ>
+[Pihole+VPN]<https://github.com/chriscrowe/docker-pihole-unbound>
+[Adguard]<https://hub.docker.com/r/adguard/adguardhome>
