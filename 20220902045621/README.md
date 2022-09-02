@@ -6,6 +6,7 @@
 * Browser gaming emulator [emulatorjs], [Tutorial emulatorjs]
 * [Adguard] =>
 * [Pihole+VPN] => Local DNS Server
+* [Vaultwarden]
 
 [General Converter]<https://hub.docker.com/r/dwaaan/hrconvert2-docker#!>
 [Snapdrop]<https://hub.docker.com/r/linuxserver/snapdrop>
@@ -16,3 +17,4 @@
 [Tutorial emulatorjs]<https://yewtu.be/watch?v=Zv1cq0JhZfQ>
 [Pihole+VPN]<https://github.com/chriscrowe/docker-pihole-unbound>
 [Adguard]<https://hub.docker.com/r/adguard/adguardhome>
+[Vaultwarden]<https://hub.docker.com/r/vaultwarden/server>
