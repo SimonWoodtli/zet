@@ -1,4 +1,4 @@
-# Windows Debloat
+# Windows Debloat and Apps
 
 ## Install with all Apps needed+debloat => Create Backup
 
@@ -18,6 +18,11 @@ Go through process
 * [TGF Tuning Pack]
 * [Windows-Tool]
 
+## Apps
+
+* install as many apps as possible with [Chocolatey]
+
+[Chocolatey]<https://chocolatey.org/>
 [Windows-Tool]<https://christitus.com/windows-tool/>
 [TGF Tuning Pack]<https://github.com/MinersWin/TGF-Tuning-Pack-4.0>
 [TGF Mouse Tuning Pack]<https://github.com/MinersWin/TGF-MOUSE-TUNING-PACK-2.0>
