@@ -10,8 +10,5 @@ Webapps: All as Docker containers
 https://github.com/awesome-selfhosted/awesome-selfhosted
 https://github.com/trapexit/mergerfs
  
-## Security
-
-
 
 [Snapraid]<https://www.snapraid.it/>
