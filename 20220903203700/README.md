@@ -73,6 +73,8 @@ lvresize -l -r +100%FREE /dev/pve/root
 
 ## 4. Web Interface: Enable GPU Passthrough on Win11
 
+\#Try: https://github.com/HikariKnight/quickpassthrough
+
 \#TODO download YT Video and safe it on 2ndHDD + make a script out of it to easily deal with that
 
 https://yewtu.be/watch?v=S6jQx4AJlFw
