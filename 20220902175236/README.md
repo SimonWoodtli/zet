@@ -11,6 +11,7 @@ E.g. adguard/pihole in a LXC container => or a docker container inside the ubunt
 
 https://github.com/awesome-selfhosted/awesome-selfhosted
 https://github.com/trapexit/mergerfs
+https://www.dlford.io/memory-tuning-proxmox-zfs/
  
 
 [Snapraid]<https://www.snapraid.it/>
