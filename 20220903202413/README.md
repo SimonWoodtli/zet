@@ -8,6 +8,10 @@
 ## edit the login message
 vi /etc/motd
 
+## setup ssh
+
+https://unix.stackexchange.com/questions/668927/how-to-ssh-on-alphine-linux-with-ish-on-ipad
+
 ## Update system
 apk update
 apk upgrade
