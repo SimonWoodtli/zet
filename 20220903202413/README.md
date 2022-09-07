@@ -11,6 +11,7 @@ vi /etc/motd
 ## setup ssh
 
 https://unix.stackexchange.com/questions/668927/how-to-ssh-on-alphine-linux-with-ish-on-ipad
+https://github.com/ish-app/ish/wiki/Running-an-SSH-server
 
 ## Update system
 apk update
