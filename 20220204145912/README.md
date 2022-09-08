@@ -38,7 +38,7 @@ vimium.github.io = help
 f = open link in current tab
 F = open link in new tab
 t/x = create/close tab
-switch between tabs?
+J/K = switch between tabs
 H/L = Go backward/forward in history
 / = search
 
