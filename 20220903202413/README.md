@@ -5,39 +5,12 @@
 => check if bash is too slow if so stick with busybox
 => add only most essential things, keep it slick
 
-## edit the login message
-vi /etc/motd
-
-## Setup SSH
-
-Don't add user just keep root. -> It already runs in a safe isolated app on iOS.
-Alpine uses openrc as its init program, which will manage the startup of your sshd service for each new iSH session.
-
-* debug: `ssh root@iOSip -vvv`
-
-* enable 'local network' acces from within iOS settings for iSh 
-* add root password `passwd`
-* install software: `apk add openssh openrc`
-* create host keys: `ssh-keygen -A` (this is needed i tried only ed225 but it wouldn't work)
-* allow root login: `echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config`
-* add service: `rc-update add /usr/sbin/sshd default`
-* run service: `rc-service sshd start`
-* check status: `rc-status default`
-
-Now you can login to your iOS device from another computer: `ssh root@iOSip` and enter pw
-
-To make it more secure only allow key-based authentication and disable password login.
-
-1.
-
-To use iSh as a client there is nothing to do. Except if you have a firewall or a router with blocked ports.
-
-https://unix.stackexchange.com/questions/668927/how-to-ssh-on-alphine-linux-with-ish-on-ipad
-https://github.com/ish-app/ish/wiki/Running-an-SSH-server
+* edit the login message: `vi /etc/motd`
 
 ## Update system
-apk update
-apk upgrade
+
+* `apk update`
+* `apk upgrade`
 
 ## Fix repos if necessary
 switch to usable repos - iSH defaults often failed with EOF errors
@@ -51,7 +24,6 @@ wget https://dl-cdn.alpinelinux.org/alpine/v3.11/main/x86/git-2.24.4-r0.apk
 apk add ./git-2.24.4-r0.apk
 git config —global pack.threads “1”
 https://github.com/ish-app/ish/issues/943
-
 
 ## Install programs
 
@@ -83,3 +55,42 @@ source venv/bin/activate
 * lynx
 * dotfiles
 * tmux
+
+## Setup SSH
+
+Don't add user just keep root. -> It already runs in a safe isolated app on iOS.
+Alpine uses openrc as its init program, which will manage the startup of your sshd service for each new iSH session.
+
+* debug: `ssh root@iOSip -vvv`
+
+* enable 'local network' acces from within iOS settings for iSh 
+* add root password `passwd`
+* install software: `apk add openssh openrc`
+* create host keys: `ssh-keygen -A` (this is needed i tried only ed225 but it wouldn't work)
+* allow root login: `echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config`
+* add service: `rc-update add /usr/sbin/sshd default`
+* run service: `rc-service sshd start`
+* check status: `rc-status default`
+
+To make it more secure only allow key-based authentication and disable password login.
+
+1.
+
+### Login SSH
+
+As Server:
+
+Login to your iOS device from another computer: `ssh root@iOSip`
+
+1. Make sure Display is on and App is open. (It only works if display is on and app is open, it does not run in the background either)
+2. I recommend to turn off Auto-Lock so the screen stays on all the time.
+3. Sometimes connections gets refused run. To fix it: `rc-status default`
+
+As Client:
+
+To use iSh as a client there is nothing to do. Except if you have a firewall or a router with blocked ports.
+
+Links:
+
+https://unix.stackexchange.com/questions/668927/how-to-ssh-on-alphine-linux-with-ish-on-ipad
+https://github.com/ish-app/ish/wiki/Running-an-SSH-server
