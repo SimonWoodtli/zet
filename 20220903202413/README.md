@@ -8,7 +8,29 @@
 ## edit the login message
 vi /etc/motd
 
-## setup ssh
+## Setup SSH
+
+Don't add user just keep root. -> It already runs in a safe isolated app on iOS.
+Alpine uses openrc as its init program, which will manage the startup of your sshd service for each new iSH session.
+
+* debug: `ssh root@iOSip -vvv`
+
+* enable 'local network' acces from within iOS settings for iSh 
+* add root password `passwd`
+* install software: `apk add openssh openrc`
+* create host keys: `ssh-keygen -A` (this is needed i tried only ed225 but it wouldn't work)
+* allow root login: `echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config`
+* add service: `rc-update add /usr/sbin/sshd default`
+* run service: `rc-service sshd start`
+* check status: `rc-status default`
+
+Now you can login to your iOS device from another computer: `ssh root@iOSip` and enter pw
+
+To make it more secure only allow key-based authentication and disable password login.
+
+1.
+
+To use iSh as a client there is nothing to do. Except if you have a firewall or a router with blocked ports.
 
 https://unix.stackexchange.com/questions/668927/how-to-ssh-on-alphine-linux-with-ish-on-ipad
 https://github.com/ish-app/ish/wiki/Running-an-SSH-server
