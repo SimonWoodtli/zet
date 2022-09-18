@@ -14,10 +14,14 @@ Open Extension Manager and Install:
 
 * Blur my Shell
 * Caffeine
-* Dash to Panel
+* Hide Panel Lite
 * Tray Icons: Reloaded
 * User Themes
 * Allow Locked Remote Desktop
+
+Alternative: (hide panel lite)
+
+* Dash to Panel
 
 Open Gnome Tweaks:
 
