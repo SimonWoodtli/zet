@@ -13,3 +13,6 @@
 * VirtualBox
 * Qemu
 * VMware Workstation
+* [Weave Ignite]
+
+[Weave Ignite]<https://github.com/weaveworks/ignite>
