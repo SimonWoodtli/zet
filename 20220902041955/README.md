@@ -22,6 +22,7 @@ Go through process
 
 * install as many apps as possible with [Chocolatey]
 * https://github.com/cmderdev/cmder
+* https://github.com/Collective-Software/ClickPaste
 
 [Chocolatey]<https://chocolatey.org/>
 [Windows-Tool]<https://christitus.com/windows-tool/>
