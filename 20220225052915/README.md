@@ -19,7 +19,7 @@ sudo apt install ibus gir1.2-ibus-1.0
 git clone https://github.com/salty-horse/ibus-uniemoji.git
 cd ibus-uniemoji
 sudo make install
-restart ibus
+ibus restart
 ```
 
 2. Now you just have to add the keyboard input (other) called uniemoji
