@@ -14,6 +14,8 @@ too and that they are in you \$PATH
 
 1. Install the keyboard input:
 
+On Fedora I only installed ibus, on Debian I also had to install gir1.2
+
 ```bash
 sudo apt install ibus gir1.2-ibus-1.0
 git clone https://github.com/salty-horse/ibus-uniemoji.git
