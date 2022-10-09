@@ -4,11 +4,10 @@ Here are three ways on how to get emojis to your Linux Machine. I prefer to
 use the terminal script and keyboard option. But to get an overview of all 
 emojis I still like the GUI option as well.
 
-## Terminal emoji script with emojidb
+## My dotfiles emoji script 
 
-1. Install dependencies: `dmenu`,`rofi`, `xclip` and `jq`
-1. Make sure to have the `emoji` and `emojidb` script from my dotfiles/scripts
-too and that they are in you \$PATH
+1. Install dependencies: `fzf`,`curl`, `xclip`
+1. Download the `emoji` script from my dotfiles/scripts. And put it in your \$PATH.
 
 ## Keyboard input to select from written word
 
@@ -27,6 +26,8 @@ ibus restart
 2. Now you just have to add the keyboard input (other) called uniemoji
 
 ## GUI to select from all emojis with mouse
+
+I don't bother installing this as the other two options are all I need.
 
 1. download the latest [Appimage]
 1. integrate it into your system
