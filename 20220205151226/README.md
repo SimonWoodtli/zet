@@ -1,11 +1,78 @@
 # Zettelkasten: Markup Guidelines
 
-## Links
+## Hints and Notes
 
-* This is an example of an [URL] referred to in your text. (Reference Link)
-* This is an example of a Github search with a given [keyword]: "zettelkasten". (Reference link)
-* This is an example of a direct link to a specific zettel which is related to the current zettel. (e.g. "Zettelkasten Notes and Hints")
-* A term is a word that requires a definition. It is marked with tripple asterisk e.g. ***zettelkasten***. Terms can be added to a glossary or simply have additional information.
+If you have a Hint or a Note use "> Hint:" or "> Note:"
+
+example:
+
+```markdown
+> Hint: Don’t forget to create Hints and Notes with a > at the beginning.
+```
+
+output:
+
+> Hint: Don't forget to create Hints and Notes with a > at the beginning.
+
+## Embedded Links
+
+* If it's an external link to another website mentioned inside a text block.
+* If it's a search for a keyword on your githubs zet repo mentioned inside a 
+text block.
+
+> Hint: Never embed internal links
+
+If the link is embedded inside of text you can use `[Foo]`. And then put 
+all the embedded links between `Related:` and `Tags:`
+
+example:
+
+```markdown
+# Title: Mini Example
+
+This is an example of an embedded Link (reference) that is used to refer to a website or a search on your zets github repo.
+
+* external link: If you want to know more about [basic Pandoc Markdown]
+* github search: If you want to see all my [Zettelkasten] related zettels.
+
+Related:
+
+* <https://luhmann.surge.sh>
+* [20220205135643](/20220205135643/) Zettelkasten Notes and Hints
+
+[basic Pandoc Markdown]: <https://rwx.gg/lang/md/>
+[Zettelkasten]: <https://github.com/SimonWoodtli/zet/search?q=zettelkasten>
+
+Tags:
+
+    #exampleTag1 #foo
+```
+
+## Embedded Terms
+
+A term is a word that requires a definition. It is marked with tripple 
+asterisk e.g. ***zettelkasten***. Terms can be added to a glossary or simply 
+have additional information.
+
+## Section: Related 
+
+Links that are related to your current zettel:
+
+* If it's an external link that you don't want to embed in your text.
+* If it's an internal link that refers to another zettel inside your zet repo.
+
+* external links: paste the url
+* internal links: `[timestamp](/timestamp/) Title of Zettel`
+
+> Hint: use the `....` command to get the link for internal zettels easily
+
+## Section: Tags
+
+* Create Tags always at the end of the document.
+* Use camelCase to create multi word tags
+* First letter is #
+* Indentation matters
+* Checkout the markdown example in 'Embedded Links'
 
 Related:
 
@@ -18,9 +85,6 @@ Related:
 * <https://github.com/rwxrob/zet/tree/main/20210813153813>
 * <https://github.com/rwxrob/zet/blob/7809d84680cec0409838f6d3220af81255e94c4c/20210812154738/README.md>
 * [20220205135643](/20220205135643/) Zettelkasten Notes and Hints
-
-[URL]: <https://REFERREDURL>
-[keyword]: <https://github.com/SimonWoodtli/zet/search?q=zettelkasten>
 
 Tags:
 
