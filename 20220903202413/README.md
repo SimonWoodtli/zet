@@ -1,12 +1,11 @@
 # Setup and Configure iSH: Alpine Linux iOS App
 
-=> add only most essential things, keep it slick
-
-Note: Vim is slow to open, so better make sure to have fzf, nerdtree or something alike installed so you don't have to quit out of vim often.
-
-Common APK commands: https://www.cyberciti.biz/faq/10-alpine-linux-apk-command-examples/?utm_source=Linux_Unix_Command&utm_medium=faq&utm_campaign=nixcmd
+> Note: Vim is slow to open, so better make sure to have fzf, nerdtree or 
+something alike installed so you don't have to quit out of vim often.
 
 ## Overview
+
+Overview of some common [APK commands] 
 
 1. Download and install the official Alpine Mini Root [Filesystem] - x86:
 2. Make bash default shell
@@ -57,7 +56,7 @@ To use usermod/groupmod you need the shadow package on Alpine Linux.
 
 ## 3. Install software
 
-Try to keep the installed software to an absolute minimum
+> Hint: Add only most essential things, keep it slick
 
 1. Install essentials
 
@@ -166,10 +165,15 @@ As Client:
 
 To use iSh as a client there is nothing to do. Except if you have a firewall or a router with blocked ports.
 
-Links:
-
-https://unix.stackexchange.com/questions/668927/how-to-ssh-on-alphine-linux-with-ish-on-ipad
-https://github.com/ish-app/ish/wiki/Running-an-SSH-server
-
 [Filesystem]: <https://alpinelinux.org/downloads/>
 [ubuntu nerd font]: <https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Regular/complete>
+[APK commands]: <https://www.cyberciti.biz/faq/10-alpine-linux-apk-command-examples/?utm_source=Linux_Unix_Command&utm_medium=faq&utm_campaign=nixcmd>
+
+Related:
+
+* https://unix.stackexchange.com/questions/668927/how-to-ssh-on-alphine-linux-with-ish-on-ipad
+* https://github.com/ish-app/ish/wiki/Running-an-SSH-server
+
+Tags:
+
+    #iSH #iOS #terminal #linux #unix #terminalEmulator
