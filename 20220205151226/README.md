@@ -1,10 +1,18 @@
-# Zettelkasten: Markup Guidelines
+# Zettelkasten: Markdown Guideline
 
-## Hints and Notes
+## 1. Hints and Notes
 
-If you have a Hint or a Note use "> Hint:" or "> Note:"
+### When
 
-example:
+If you have a Hint or a Note within a section. That relates to the given 
+section but is "additional" info.
+
+### How
+
+* `> Hint:` 
+* `> Note:`
+
+### Example
 
 ```markdown
 > Hint: Don’t forget to create Hints and Notes with a > at the beginning.
@@ -14,7 +22,9 @@ output:
 
 > Hint: Don't forget to create Hints and Notes with a > at the beginning.
 
-## Embedded Links
+## 2. Embedded Links
+
+### When?
 
 * If it's an external link to another website mentioned inside a text block.
 * If it's a search for a keyword on your githubs zet repo mentioned inside a 
@@ -22,10 +32,14 @@ text block.
 
 > Hint: Never embed internal links
 
-If the link is embedded inside of text you can use `[Foo]`. And then put 
-all the embedded links between `Related:` and `Tags:`
+### How
 
-example:
+If the link is embedded inside of text you can use `[Foo]`. And then put 
+all the embedded links between in the Footer `Related:` and `Tags:`
+
+* To get the github search of a keyword within vim: `!!zet query [searchterm]`
+
+### Example
 
 ```markdown
 # Title: Mini Example
@@ -48,30 +62,62 @@ Tags:
     #exampleTag1 #foo
 ```
 
-## Embedded Terms
+## 3. Embedded Terms
+
+### When
 
 A term is a word that requires a definition. It is marked with tripple 
 asterisk e.g. ***zettelkasten***. Terms can be added to a glossary or simply 
 have additional information.
 
-## Section: Related 
+### How
+
+* `***term***`
+
+### Example
+
+```markdown
+And ***Zettelkasten*** can truly empower the way you organize knowledge.
+```
+
+output:
+
+And ***Zettelkasten*** can truly empower the way you organize knowledge.
+
+## 4. Footer: Related 
+
+### When
 
 Links that are related to your current zettel:
 
 * If it's an external link that you don't want to embed in your text.
 * If it's an internal link that refers to another zettel inside your zet repo.
 
-* external links: paste the url
-* internal links: `[timestamp](/timestamp/) Title of Zettel`
+### How
 
-> Hint: use the `....` command to get the link for internal zettels easily
+* To get the internal link of a zettel within vim: `!!zet link [searchterm]`
 
-## Section: Tags
+### Examples
+
+* external links: `* https://foo.com`
+* internal links: `* [timestamp](/timestamp/) Title of Zettel`
+
+## 5. Footer: Tags
+
+### When
+
+* Always add tags to your zettels as they make it easier to find them when your knowledge base grows.
+* Also checkout the zettel about tags.
+
+### How
 
 * Create Tags always at the end of the document.
 * Use camelCase to create multi word tags
 * First letter is #
 * Indentation matters
+
+### Example
+
 * Checkout the markdown example in 'Embedded Links'
 
 Related:
@@ -85,6 +131,7 @@ Related:
 * <https://github.com/rwxrob/zet/tree/main/20210813153813>
 * <https://github.com/rwxrob/zet/blob/7809d84680cec0409838f6d3220af81255e94c4c/20210812154738/README.md>
 * [20220205135643](/20220205135643/) Zettelkasten Notes and Hints
+* [20220404224249](/20220404224249/) Zettelkasten Tags: 3 Rules to create a knowledge repository
 
 Tags:
 
