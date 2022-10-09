@@ -95,14 +95,22 @@ Links that are related to your current zettel:
 
 ### How
 
-* To get the internal link of a zettel within vim: `!!zet link [searchterm]`
+* internal link of a zettel within vim: `!!zet link [searchterm]`
+* external links: `* <https://duckduckgo.com>`
 
 ### Examples
 
-* external links: `* https://foo.com`
-* internal links: `* [timestamp](/timestamp/) Title of Zettel`
+```markdown
+* [20220224055145](/20220224055145/) Zettelkasten `zet` commands: cheatsheet
+* <https://duckduckgo.com>
+```
 
-## 5. Footer: Tags
+output:
+
+* [20220224055145](/20220224055145/) Zettelkasten `zet` commands: cheatsheet
+* <https://duckduckgo.com>
+
+# 5. Footer: Tags
 
 ### When
 
@@ -118,11 +126,12 @@ Links that are related to your current zettel:
 
 ### Example
 
-* Checkout the markdown example in 'Embedded Links'
+* Checkout the markdown example in '2. Embedded Links'
 
 Related:
 
 * <https://luhmann.surge.sh>
+* <https://rwx.gg/lang/md/>
 * <https://raw.githubusercontent.com/rwxrob/zet/815dd6c0039559f130bfa47a5cdac4ef6223a411/20210813154054/README.md>
 * <https://raw.githubusercontent.com/rwxrob/zet/a4458625e1707a62c4a7879141e7a4986bc2b3c6/20210502045853/README.md>
 * <https://raw.githubusercontent.com/rwxrob/zet/25b3b4f54c05124c6f74aae2a692a739372f7e80/20210902115330/README.md>
