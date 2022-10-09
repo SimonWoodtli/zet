@@ -16,9 +16,10 @@ Related:
 
 * [20210525192909](/20210525192909/) Zettelkasten resources and ideas
 * [20220205135643](/20220205135643/) Zettelkasten Notes and Hints
-* [20220205151226](/20220205151226/) Zettelkasten: Markup Guidelines
-* [20220224055145](/20220224055145/) zettelkasten zet commands: cheatsheet
+* [20220205151226](/20220205151226/) Zettelkasten: Markdown Guideline
+* [20220224055145](/20220224055145/) Zettelkasten `zet` commands: cheatsheet
+* [20220404224249](/20220404224249/) Zettelkasten Tags: 3 Rules to create a knowledge repository
 
 Tags:
 
-    #knowledge #knowledgeManagement #zettelkasten #notes #personal #zettel
+    #knowledge #knowledgeManagement #zettelkasten #notes #personal #zettel #knowledgeBase
