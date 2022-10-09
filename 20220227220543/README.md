@@ -50,12 +50,13 @@ usb UUID=c0b8c577-95b7-4567-9fce-6e5a1c631a49 none nofail
 1. mount partition: The first mount should be done from GUI so you can
 store the passphrase. 
 
-> Note: `mkfs.foo /dev/foo` for another file system  
-> Note: It's also possible to do all from the CLI but then you need more 
-parameters in /etc/crypttab and create a file in /etc/luks-keys/yourLabelName 
-where you want to store your passphrase.  
-> Note: Normally the ext4 partitions need only a defaults parameter in /etc/fstab
-but for some reason my usb-stick was always getting root dir ownership.
+> Note: 
+> * `mkfs.foo /dev/foo` for another file system  
+> * It's also possible to do all from the CLI but then you need more 
+> parameters in /etc/crypttab and create a file in /etc/luks-keys/yourLabelName 
+> where you want to store your passphrase.  
+> * Normally the ext4 partitions need only a defaults parameter in /etc/fstab
+> but for some reason my usb-stick was always getting root dir ownership.
 
 ## Unmount encrypted partition
 
