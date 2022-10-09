@@ -84,14 +84,16 @@ PING google.com (216.58.216.238) 56(84) bytes of data.
 rtt min/avg/max/mdev = 21.388/22.331/23.813/1.074 ms
 ```
 
-Note:
-We have used sudo for ping; recent Linux distributions have required this to avoid clueless or malicious users from flooding systems with such queries.
+> Note: We have used sudo for ping; recent Linux distributions have required this to avoid clueless or malicious users from flooding systems with such queries.
 We have used -c 3 to limit to 3 packets; otherwise ping would run forever until forcibly terminated, say with CTRL-C.
 If the result was:
 ping: unknown host google.com
 
-It is likely that something is wrong with your DNS set-up. (Note on some systems you will never see the unknown host message, but you will get a suspicious result like:
+It is likely that something is wrong with your DNS set-up. 
+
+> Note: on some systems you will never see the unknown host message, but you will get a suspicious result like:
 student:/tmp> sudo ping l89xl28vkjs.com
+
 PING l89xl28vkjs.com.site (127.0.53.53) 56(84) bytes of data.
 64 bytes from 127.0.53.53: icmp_seq=1 ttl=64 time=0.016 ms
 ...
@@ -133,7 +135,8 @@ google.com has IPv6 address 2607:f8b0:4009:804::1002
 ```
 
 where we have used the publicly available DNS server provided by Google itself. (Using this or another public server can be a good trick sometimes if your network is up but DNS is ill; in that case you can also enter it in resolv.conf.)
-Note that there is another file, /etc/hosts, where you can associate names with IP addresses, which is used before the DNS server is consulted. This is most useful for specifying nodes on your local network.
+
+> Note: There is another file, /etc/hosts, where you can associate names with IP addresses, which is used before the DNS server is consulted. This is most useful for specifying nodes on your local network.
 
 You could also use the dig utility if you prefer:
 
@@ -207,7 +210,9 @@ efault via 192.168.1.1 dev eno16777736  proto static  metric 1024
 ```
 
 Most likely this is set to your network interface and the IP address of your router, DSL, or Cable Modem. Let's say that it is blank or simply points to your own machine. Here's your problem! At this point, you would need to add a proper default route and run some of the same tests we just did.
-Note, an enhanced version of traceroute is supplied by mtr, which runs continuously (like top). Running it with the --report-cycles option to limit how long it runs:
+
+> Note: An enhanced version of traceroute is supplied by mtr, which runs 
+continuously (like top). Running it with the --report-cycles option to limit how long it runs:
 
 ```sh
 student:/tmp> sudo mtr --report-cycles 3 8.8.8.8
