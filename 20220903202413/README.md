@@ -66,7 +66,7 @@ Alpine uses openrc as its init program, which will manage the startup of your ss
 * enable 'local network' acces from within iOS settings for iSh 
 * add root password `passwd`
 * install software: `apk add openssh openrc`
-* create host keys: `ssh-keygen -A` (this is needed i tried only ed225 but it wouldn't work)
+* create host keys: `sshkey gen` (script in dotfiles, or `ssh-keygen -A`)
 * allow root login: `echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config`
 * add service: `rc-update add /usr/sbin/sshd default`
 * run service: `rc-service sshd start`
