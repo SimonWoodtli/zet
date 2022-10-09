@@ -25,7 +25,7 @@ chage –list newuser
 sudo userdel newuser
 ```
 
-Note: The example solution works in the US. `$ chage -E` uses the default date format for the local keyboard setting.
+> Note: The example solution works in the US. `$ chage -E` uses the default date format for the local keyboard setting.
 
 Tags:
 
