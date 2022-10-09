@@ -6,7 +6,7 @@
 1. Reboot system
 1. Make sure your VM is shutdown and go to Settings to add your USB device
 
-> Heads-up: On Windows Host Machines you also need to install [VBoxWindowsAdditions.exe] 
+> Hint: On Windows Host Machines you also need to install [VBoxWindowsAdditions.exe] 
 which can be done while the VM is running under Devices "Insert Guests Additions Image"
 
 
