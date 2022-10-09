@@ -144,4 +144,4 @@ Related:
 
 Tags:
 
-    #zettelkasten #guideline #markup
+    #zettelkasten #guideLine #markdown #knowledgeBase #zettel #zet
