@@ -99,7 +99,7 @@ I choose option 2 so I don't need to deal with reverse SSH and stuff.
 
 ## Part 3: Configure your freshly installed server VM
 
-NOTE: ~/.ssh/authorized_keys is just a list of public ssh-keys
+> Note: ~/.ssh/authorized_keys is just a list of public ssh-keys
 
 1. login with credentials and update `sudo apt update && upgrade`
 1. check your VMs ip: `ip a` and write it down somewhere can't copy it :(
