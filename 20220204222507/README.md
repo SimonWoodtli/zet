@@ -186,7 +186,7 @@ graph.facebook.com
 
 8. Installing and Configuring DNSCrypt
 
-Note: If you are using the Eero Wi-Fi mesh system, see the bottom of this blog post about DNSCrypt and Eero secure. If you are using Eero secure you won't need DNSCrypt. If you aren't using Eero secure, go ahead and install DNSCrypt. Also, if you want to use NextDNS.io for an additonal layer of DNS security and filtering (highly recommended), go through this section, then follow the instructions later in this section.
+> Note: If you are using the Eero Wi-Fi mesh system, see the bottom of this blog post about DNSCrypt and Eero secure. If you are using Eero secure you won't need DNSCrypt. If you aren't using Eero secure, go ahead and install DNSCrypt. Also, if you want to use NextDNS.io for an additonal layer of DNS security and filtering (highly recommended), go through this section, then follow the instructions later in this section.
 
 1. Enter the following commands to do a base DNSCrypt installation. As this blog post ages, the exact download path WILL change. Check out the latest version listing here and modify the wget and tar commands as needed to use the latest binary.
 
@@ -199,7 +199,9 @@ sudo mv linux-arm dnscrypt-proxy && cd dnscrypt-proxy
 sudo cp example-dnscrypt-proxy.toml dnscrypt-proxy.toml
 sudo nano dnscrypt-proxy.toml
 
-Under Global settings add one or more servers. I like the iOS app DNSCloak to sift through the plethora of servers you can use. For example, you can search for DNS servers that block ads, support doh (DNS over HTTPS), view locations, etc. I like AdGuard DOH. You can also check out the public DNSCrypt server list here and pick one or more that fits your requirements. Note: If you want to use DNSNext.io service, just leave the default servers here and we will configure this later in this section.
+Under Global settings add one or more servers. I like the iOS app DNSCloak to sift through the plethora of servers you can use. For example, you can search for DNS servers that block ads, support doh (DNS over HTTPS), view locations, etc. I like AdGuard DOH. You can also check out the public DNSCrypt server list here and pick one or more that fits your requirements. 
+
+> Note: If you want to use DNSNext.io service, just leave the default servers here and we will configure this later in this section.
 server_names = ['adguard-dns']
 
 Under List of Local addresses change the port number to something you like, above 1024. I'm using 5350 in this example. Pi-Hole will be using port 53 (standard for DNS), so that's why we must use a custom port number for DNSCrypt.
@@ -211,7 +213,9 @@ require_dnssec = true
 require_nofilter = false
 cache = false     (we will use the Pi-Hole cache)
 
-Anyonmized DNS is a new feature in the most recent versions of DNSCrypt. If you want to use this feature, scroll all the way down to the bottom of the TOML file. For server_name add the same server name you used above. For the 'via' servers, review the relay list here, and pick a couple that suite your needs. I used servers in close proximity to my house. You may want to use servers in a different country, or have other unique requirements. Note: If you want to use NextDNS.io service, you don't want to anonymize your queries, so don't configure this section.
+Anyonmized DNS is a new feature in the most recent versions of DNSCrypt. If you want to use this feature, scroll all the way down to the bottom of the TOML file. For server_name add the same server name you used above. For the 'via' servers, review the relay list here, and pick a couple that suite your needs. I used servers in close proximity to my house. You may want to use servers in a different country, or have other unique requirements. 
+
+> Note: If you want to use NextDNS.io service, you don't want to anonymize your queries, so don't configure this section.
 
 routes = [
     { server_name='adguard-dns', via=['anon-cs-usca', 'anon-cs-ca2'] },
@@ -221,7 +225,7 @@ Save and exit the nano editor.
 
 **3. Installing and Configuring DNSCrypt**
 
-Note: If you are using the Eero Wi-Fi mesh system, see the bottom of this blog post about DNSCrypt and Eero secure. If you are using Eero secure you won't need DNSCrypt. If you aren't using Eero secure, go ahead and install DNSCrypt. Also, if you want to use NextDNS.io for an additonal layer of DNS security and filtering (highly recommended), go through this section, then follow the instructions later in this section.
+> Note: If you are using the Eero Wi-Fi mesh system, see the bottom of this blog post about DNSCrypt and Eero secure. If you are using Eero secure you won't need DNSCrypt. If you aren't using Eero secure, go ahead and install DNSCrypt. Also, if you want to use NextDNS.io for an additonal layer of DNS security and filtering (highly recommended), go through this section, then follow the instructions later in this section.
 
 1. Enter the following commands to do a base DNSCrypt installation. As this blog post ages, the exact download path WILL change. Check out the latest version listing here and modify the wget and tar commands as needed to use the latest binary.
 
@@ -234,7 +238,9 @@ sudo mv linux-arm dnscrypt-proxy && cd dnscrypt-proxy
 sudo cp example-dnscrypt-proxy.toml dnscrypt-proxy.toml
 sudo nano dnscrypt-proxy.toml
 
-Under Global settings add one or more servers. I like the iOS app DNSCloak to sift through the plethora of servers you can use. For example, you can search for DNS servers that block ads, support doh (DNS over HTTPS), view locations, etc. I like AdGuard DOH. You can also check out the public DNSCrypt server list here and pick one or more that fits your requirements. Note: If you want to use DNSNext.io service, just leave the default servers here and we will configure this later in this section.
+Under Global settings add one or more servers. I like the iOS app DNSCloak to sift through the plethora of servers you can use. For example, you can search for DNS servers that block ads, support doh (DNS over HTTPS), view locations, etc. I like AdGuard DOH. You can also check out the public DNSCrypt server list here and pick one or more that fits your requirements. 
+
+> Note: If you want to use DNSNext.io service, just leave the default servers here and we will configure this later in this section.
 server_names = ['adguard-dns']
 
 Under List of Local addresses change the port number to something you like, above 1024. I'm using 5350 in this example. Pi-Hole will be using port 53 (standard for DNS), so that's why we must use a custom port number for DNSCrypt.
@@ -246,7 +252,9 @@ require_dnssec = true
 require_nofilter = false
 cache = false     (we will use the Pi-Hole cache)
 
-Anyonmized DNS is a new feature in the most recent versions of DNSCrypt. If you want to use this feature, scroll all the way down to the bottom of the TOML file. For server_name add the same server name you used above. For the 'via' servers, review the relay list here, and pick a couple that suite your needs. I used servers in close proximity to my house. You may want to use servers in a different country, or have other unique requirements. Note: If you want to use NextDNS.io service, you don't want to anonymize your queries, so don't configure this section.
+Anyonmized DNS is a new feature in the most recent versions of DNSCrypt. If you want to use this feature, scroll all the way down to the bottom of the TOML file. For server_name add the same server name you used above. For the 'via' servers, review the relay list here, and pick a couple that suite your needs. I used servers in close proximity to my house. You may want to use servers in a different country, or have other unique requirements. 
+
+> Note: If you want to use NextDNS.io service, you don't want to anonymize your queries, so don't configure this section.
 
 routes = [
     { server_name='adguard-dns', via=['anon-cs-usca', 'anon-cs-ca2'] },
@@ -304,7 +312,7 @@ If permitted lookups work and the blocks work as well, then your device is fully
 
 iOS: wifi settings of current ssid dns set to manual and delete all entries. Add pi hole ip e.g. for me: 192.168.0.17 (it is the static ip you have chosen for pi hole not its 127.0.0.1 DNS!)
 
-Note: PI hole or custom DNS only works on wifi for cellular you gotta use 3rd party app that creates an empty vpn just to change the dns on the go. GOOOGLE IT!!!!
+> Note: PI hole or custom DNS only works on wifi for cellular you gotta use 3rd party app that creates an empty vpn just to change the dns on the go. GOOOGLE IT!!!!
 
 LINUX: #IP FROM PI HOLE
 
