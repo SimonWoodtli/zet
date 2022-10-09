@@ -1,4 +1,4 @@
-# Zettelkasten Tags: 3 steps to create a knowledge repository
+# Zettelkasten Tags: 3 Rules to create a knowledge repository
 
 1. if you read tech related stuff always write notes along with it and if ideas related to what you read come up write them down before you continue on reading and then forget about your idea.
 2. tags that help you remember how to get back to the zettel
