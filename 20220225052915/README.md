@@ -36,3 +36,11 @@ I don't bother installing this as the other two options are all I need.
 1. launch at startup: `/home/sero/Applications/./emoji-keyboard-3.1.1_f891f234d97b1744bce881ace07c4b65.AppImage %U`
 
 [Appimage]: <https://github.com/OzymandiasTheGreat/emoji-keyboard/releases>
+
+Related:
+
+* <https://github.com/SimonWoodtli/fonts>
+
+Tags:
+
+    #linux #keyboard #input #emoji
