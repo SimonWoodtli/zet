@@ -2,7 +2,7 @@
 
 ```bash
 mkdir foo
-cd foo
+cd !$
 git init
 gck dev
 touch README.md
