@@ -1,5 +1,7 @@
 # Welcome to my Notes/Zettelkasten
 
+[![wakatime](https://wakatime.com/badge/github/SimonWoodtli/zet.svg)](https://wakatime.com/badge/github/SimonWoodtli/zet)
+
 This is my personal knowledge base. The idea is to create a minimalist version
 of the of the [Zettelkasten] and bring it into the 21st century in digital form.
 
