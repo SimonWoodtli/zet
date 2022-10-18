@@ -24,6 +24,7 @@ Can do all of the above and more. The text editing language period.
 Related:
 
 * <https://unix.stackexchange.com/questions/303044/when-to-use-grep-less-awk-sed>
+* <http://www.wellho.net/mouth/3902_Shell-Grep-Sed-Awk-Perl-Python-which-to-use-when-.html>
 
 Tags:
 
