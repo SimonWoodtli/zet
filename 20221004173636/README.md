@@ -26,7 +26,12 @@
 
 ### Manage Containers
 
+#### Cloud
+
 * Kubernetes
+
+#### Local
+
 * minikube
 * kind
 
