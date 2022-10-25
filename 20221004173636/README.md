@@ -15,4 +15,22 @@
 * VMware Workstation
 * [Weave Ignite]
 
+### Automate VM creation and management for Type 2 Hypervisors
+
+* Vagrant
+
+## Containers
+
+* Docker
+* Podman
+
+### Manage Containers
+
+* Kubernetes
+* minikube
+
 [Weave Ignite]<https://github.com/weaveworks/ignite>
+
+Tags:
+    
+    #linux #containers #virutalMachines #management #deployment #software
