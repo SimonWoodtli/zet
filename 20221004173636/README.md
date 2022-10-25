@@ -22,13 +22,14 @@
 ## Containers
 
 * Docker
-* Podman
+* Podman (preferred)
 
 ### Manage Containers
 
 #### Cloud
 
-* Kubernetes
+* Kubernetes (preferred)
+* Docker Compose
 
 #### Local
 
@@ -36,6 +37,10 @@
 * kind
 
 [Weave Ignite]<https://github.com/weaveworks/ignite>
+
+Related:
+
+* <https://github.com/rwxrob/zet/blob/2bd126b5279f49f9ce78a90e04f81bc79af3d6eb/20210521172943/README.md>
 
 Tags:
     
