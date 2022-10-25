@@ -28,6 +28,7 @@
 
 * Kubernetes
 * minikube
+* kind
 
 [Weave Ignite]<https://github.com/weaveworks/ignite>
 
