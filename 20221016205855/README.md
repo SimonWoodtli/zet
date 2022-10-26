@@ -5,6 +5,13 @@
 * run docker image with specific port (first num is host, second num is docker container): `docker run -t -d -p 80:80 --name myubuntu ubuntu`
 * get some cpu/memory usage for docker containers: `docker stats`
 
+
+* If you want to login to a workspace container use a login shell: `docker exec -it <container> bash -c "su - <user>"` , sets \$USER
+* If you want to login to a container with a non login shell: `docker exec -it <container> bash`, does not set \$USER
+
+Login Shell: `echo $0` output: -bash
+Non Login Shell: `echo $0` output: bash
+
 ## Get Image, Run it, Login, Stop
 
 1. pull latest alpine image from hub.docker.com registry: `docker pull alpine`
