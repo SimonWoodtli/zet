@@ -7,3 +7,7 @@
 • <https://github.com/rwxrob/zet/blob/4308a127f88901e9cb759d30be9d43aa957faeb5/20211216180607/README.md>
 • <https://github.com/rwxrob/zet/blob/4e83d2bf5bd61f7f0a355c0682be60f5e1cd6fd4/20211024173020/README.md>
 • <https://github.com/rwxrob/zet/blob/d6bb038754f0685a979b9bfe3a3585b7cf4b9699/20211016034645/README.md>
+* <https://github.com/rwxrob/zet/blob/6645ce3c35fa5aaaec1ccb673c7d5b82001cf518/20220901150053/README.md>
+* <https://github.com/rwxrob/zet/blob/e4ec7c044583cba8de15b691eb25670580413203/20211223203439/README.md>
+* <https://github.com/rwxrob/zet/blob/e1eb09da8d4562cf5b919420a92703a816e16892/20210507170233/README.md>
+* <https://github.com/rwxrob/zet/blob/33b19d90812ae13919fbe5d2f6b9181a968fce78/20221021183856/README.md>
