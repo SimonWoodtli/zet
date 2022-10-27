@@ -15,4 +15,14 @@
 * <https://github.com/rwxrob/zet/blob/33b19d90812ae13919fbe5d2f6b9181a968fce78/20221021183856/README.md>
 * <https://github.com/rwxrob/zet/blob/a1bf5ba98d4968e2fd65f666f0b2ce738f536f26/20210503165301/README.md>
 * <https://github.com/rwxrob/zet/blob/b5fc4b7f3d0acfefceb2362a7cbc07f12f7e0293/20210611193033/README.md>
+* <https://github.com/rwxrob/zet/blob/a171b88800b77cbdb37be534f3b7f05d43ade930/20210502213410/README.md>
+* <https://github.com/rwxrob/zet/blob/2709b5376ba4af4737c175557c8f7eb2c587512d/20210716200545/README.md>
+* <https://github.com/rwxrob/zet/blob/0b3bbe95c3e9632dee0847212c7c7e419ac334f1/20211014132137/README.md>
+* <https://github.com/rwxrob/zet/blob/a2a98de08cb296f594f95978522b354c4da9640a/20220118031633/README.md>
+* <https://github.com/rwxrob/zet/blob/32625099d36c044284ad48398d17cbb6e52951f3/20211019060642/README.md>
+* <https://github.com/rwxrob/zet/blob/28cec355912aae94a1fff40173a62264c4053833/20211014151743/README.md>
+
+* <https://github.com/rwxrob/zet/blob/0586b87f3e22321dbd4883d4e944e5c6cfc48356/20210611140045/README.md>
+* <https://github.com/rwxrob/zet/blob/e290bb6ad912cee97239bc8d708eb2fb473c5356/20220120185227/README.md>
+
 
