@@ -1,16 +1,21 @@
 # Zettelkasten: Markdown Guideline
 
-## 1. Hints and Notes
+## 1. Hints, Notes and Important
 
 ### When
 
-If you have a Hint or a Note within a section. That relates to the given 
-section but is "additional" info.
+If you have some 'additional' info in a section/paragraph. Which relates to the section/title/paragraph and can be described briefly.
 
 ### How
 
-* `> Hint:` 
-* `> Note:`
+* Idea: `> 💡` 
+* Note: `> 📝`
+* Hint/Advice: `> 🧐`
+* Thought/Thinking: `> 🤔`
+* Important/Warning: `> ⚠️ `
+* Mistake: `> 🤦`
+* Search/Research: `> 🔎`
+* Book Related, Quotes/Info: `> 📚`
 
 ### Example
 
