@@ -36,7 +36,6 @@ Related:
 * [20221025222121](/20221025222121/) What are Docker Containers?
 * [20221026000728](/20221026000728/) 🖼️  Comparison: Docker and VM
 * [20221109133025](/20221109133025/) Docker Commit
-* [20221109133420](/20221109133420/) Docker Creating Images
 * [20221109135030](/20221109135030/) Docker Running Images
 * [20221109141209](/20221109141209/) Publish an Image to Docker Hub
 
