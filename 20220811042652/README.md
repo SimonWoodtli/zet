@@ -54,6 +54,9 @@ network:
 
 2. apply netplan: `sudo netplan apply`
 3. enable ssh:
+    1. check if really not active/enabled: `sudo systemctl status ssh`
+    1. if not enable service: `sudo systemctl enable --now ssh`
+    1. add 'open port 22' to firewall rules: `sudo ufw allow ssh`
 
 Related:
 
