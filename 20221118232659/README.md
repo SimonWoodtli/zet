@@ -24,6 +24,9 @@ https://news.ycombinator.com/ #work #news #trends #tech
 ... and all your other links
 ```
 
-
 [my open script]: <https://raw.githubusercontent.com/SimonWoodtli/dotfiles/main/scripts/open>
+
+Tags:
+
+    #linux #terminal #browser #cli #web #bookmark #fzf
 
