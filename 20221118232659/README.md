@@ -4,7 +4,7 @@
 
 1. install all dependencies
 2. export your current bookmarks from your browsers into .json or .html
-3. cat the exported file and use grep to put only urls into a new file: `cat bookmarks_11_18_22.html | \grep -Eo 'http[^ ]*' > bookmarksWork`
+3. cat the exported file and use grep to put only urls into a new file: `cat bookmarks_11_18_22.html | \grep -Eo 'http[^ ]*' | sed 's/.$//' > bookmarksWork`
 4. add this `bmw` function to your bashrc:
 
 ```bash
