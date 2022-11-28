@@ -1,4 +1,4 @@
-# Task Spooler `ts` cheatsheet
+# task-spooler cheatsheet
 
 job = task
 
