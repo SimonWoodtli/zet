@@ -1,13 +1,18 @@
 # tmux cheatsheet
 
-* list all sessions and select interactive: `C-a s`
-* list all sessions: `C-a :ls` || `tmux list-sessions` || `tmux ls`
-* switch to previous session: `C-a L` || `tmux switch-client -l`
-* detach current session: `C-a d` ||
-* create new session within running session: `C-a :new`
-
+## Sessions
 
 * create a new sessions with name 'foo', or if session already exist attach 'foo': `tmux new -As foo`
+* create new session within running session: `C-a :new`
 
-
+* list all sessions and windows, select interactive: `C-a w`
+* list all sessions, select interactive: `C-a s`
+* list all sessions: `C-a :ls` || `tmux list-sessions` || `tmux ls`
+* switch between current&previous session: `C-a L` || `tmux switch-client -l`
+* detach current/active session: `C-a d` || `tmux detach`
+* kill current/active session: `C-d`
+* rename window: `C-a ,` || `tmux rename-window`
+* rename session: `C-a $` || `tmux rename-session`
+* move to previous session: `C-a (` || `tmux switch-client -p`
+* move to next session: `C-a )` || `tmux switch-client -n`
 
