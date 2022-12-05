@@ -13,8 +13,8 @@
 * kill current/active window and later session: `C-d`
 * kill current/active session: `C-a k` || `tmux kill-session`
 * kill current/active window: `C-a x` || `tmux kill-window`
+* kill server: `C-a C-x`
 * rename window: `C-a ,` || `tmux rename-window`
 * rename session: `C-a $` || `tmux rename-session`
 * move to previous session: `C-a (` || `tmux switch-client -p`
 * move to next session: `C-a )` || `tmux switch-client -n`
-
