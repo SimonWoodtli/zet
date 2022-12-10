@@ -4,7 +4,8 @@
 
 ## 1. Flash Raspberry Pi OS Lite
 
-1. connect Pi via Ethernet
+1. Startup your OS of choice
+1. Plugin your SSD
 1. open Raspberry Pi Imager choose 'Raspberry Pi OS Lite 64bit'
 1. enable ssh and setup username/pw
 1. flash OS
@@ -13,7 +14,8 @@
 
 > 🧐 Normally Proxmox runs of a lightweight Debian install. However Pimox is running of your Raspberry Pi Lite OS.
 
-1. bootup pi with ssd connected
+1. connect Pi via Ethernet
+1. bootup Pi with SSD connected
 1. ssh into pi: `ssh username@piIP`
 1. install pimox: `sudo su -c "bash <(curl -s https://raw.githubusercontent.com/pimox/pimox7/master/RPiOS64-IA-Install.sh)" root`
 
