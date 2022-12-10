@@ -1,4 +1,4 @@
-# Setup Proxmox on Raspberry Pi 4
+# Setup Proxmox on Raspberry Pi 4 with Pimox
 
 > 🧐 Only do this if you have a 4GB or better yet 8GB model. The other models simply won't have enough ram to deal with the overhead of running Proxmox and a VM.
 
