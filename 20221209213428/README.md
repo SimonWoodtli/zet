@@ -1,4 +1,4 @@
-# Create SD Card Backup of your OS that you use for a Pi or SBC
+# SBC/PI OS Image: Create Backups or Clone your SD-Card
 
 If you want a complete 1:1 backup of an SD Card with a flashed OS like DietPi, Raspian OS, Ubuntu Server etc. You can either create a compressed backup that you need to restore or clone your image on a new storage device.
 
