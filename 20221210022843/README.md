@@ -19,7 +19,7 @@
 1. ssh into pi: `ssh username@piIP`
 1. install pimox: `sudo su -c "bash <(curl -s https://raw.githubusercontent.com/pimox/pimox7/master/RPiOS64-IA-Install.sh)" root`
 
-> 🧐 Pimox needs a static IP. However ssh into it on root@statIP prompts a pw that did not work for me. My guess is that the Raspbery Pi OS doesn't ship with a root pw and the Pimox install script doesn't change that either. However I was able to ssh into Pimox with the regular user that I setup during the flashing Raspberry Pi OS Lite. Then switched to root `su -` and added my public ssh key to /root/.ssh/authorized_keys.
+> ⚠️  Pimox needs a static IP. However ssh into it on root@statIP prompts a pw that did not work for me. My guess is that the Raspbery Pi OS doesn't ship with a root pw and the Pimox install script doesn't change that either. However I was able to ssh into Pimox with the regular user that I setup during the flashing Raspberry Pi OS Lite. Then switched to root `su -` and added my public ssh key to /root/.ssh/authorized_keys.
 
 ## Configure Proxmox with a VM
 
