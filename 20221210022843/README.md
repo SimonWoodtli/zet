@@ -55,7 +55,7 @@
 1. update system: `sudo apt update && apt upgrade`
 1. install guest agent: `sudo apt install qemu-guest-agent`
 1. create a static IP:  (you can also ommit these steps and setup a static IP from your Routers Settings)
-    1. `cat /etc/netplan/00-installer-config.yaml`
+1. `cat /etc/netplan/00-installer-config.yaml`
 
 Change this:
 
@@ -90,13 +90,13 @@ network:
   version: 2
 ```
 
-    1. apply netplan: `sudo netplan apply`
-    1. ssh into VM with again with new IP
-    1. check changes: `ip a` and `ip r s`
-1. turn off VM: `shutdown no`
-1. Go to Proxmox webinterface 'VM id' and 'Options' then 'QEMU Guest Agent' and enable it
-1. Boot up your VM
-1. ssh into Pimox and test if qemu works `qm agent <vmid> ping` if no errors it's working
+7. apply netplan: `sudo netplan apply`
+8. ssh into VM with again with new IP
+9. check changes: `ip a` and `ip r s`
+10. turn off VM: `shutdown now`
+11. Go to Proxmox webinterface 'VM id' and 'Options' then 'QEMU Guest Agent' and enable it
+12. Boot up your VM
+13. ssh into Pimox/Proxmox Host and test if qemu works `qm agent <vmid> ping` if no errors it's working
 
 ### What works
 
