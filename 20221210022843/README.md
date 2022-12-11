@@ -35,20 +35,76 @@
     1. Disks: Keep it as SCSI and set the size to whatever you want
     1. CPU: 'Socket' '1', 'Core' '2'
     1. Memory: depends on a 4GB model I wouldn't go over 2048
-    1. Networks: keep it standard
+    1. Networks: Here the default settings should be fine. Make sure a 'vmbr0' (bridged adapter) is selected so your VM can directly communicate with other devices on your LAN. 
+
+    If you can't see 'vmbr0' you need to manually create a bridge first. Go to 'your-named-lroxmox-node' directly under the 'Datacenter' and then 'Network' 'Create'. Select 'Linux Bridge' your settings shoud be: 'IPV4/CIDR' is the static IP of your Proxmox Server, 'Gateway' is your Routers IP  and 'Bridge ports' is 'eth0' (Ethernet Network Interface (should be created automatically by Proxmox otherwise you need to create that too)
     1. finish up the and create VM
-1. Once the VM is created  click on the 'VM ID' that you gave it before
+1. once the VM is created  click on the 'VM ID' that you gave it before
     1. Hardware 'Remove': delete the CD-ROM. 
     1. Hardware 'Add': add a 'CD-ROM'. Choose 'SCSI' because 'IDE' is not supported by the arm kernel. Then 'storage' 'local' and pick your VM iso that you downloaded in 'ISO Image'.
     1. Options 'Bootorder': put your new SCSI cd-rom to the top
-1. Startup VM and install OS
+1. startup VM and install OS
+1. after install Shutdown machine. And change the Bootorder back again
+
+### First Bootup of VM
+
+> 🧐 Since we used a bridged adapter for the Network settings you should be able to ssh into your VM from any computer on your LAN.
+
+1. boot up your VM 
+1. ssh into it
+1. update system: `sudo apt update && apt upgrade`
+1. install guest agent: `sudo apt install qemu-guest-agent`
+1. create a static IP:  (you can also ommit these steps and setup a static IP from your Routers Settings)
+    1. `cat /etc/netplan/00-installer-config.yaml`
+
+Change this:
+
+```
+network:
+  ethernets:
+    enp0s18:
+      dhcp4: true
+  version: 2
+```
+
+To that:
+
+```
+network:
+  renderer: networkd
+  ethernets:
+    ## leave this name as it was before
+    enp0s18:
+      ## turn off DHCP
+      #dhcp4: true
+      addresses:
+        ## your new static IP:
+        - 192.168.8.49/24
+    ## if you don't have a DNS use a public DNS. E.g. Cloudflare
+      #nameservers:
+        #addresses: [1.1.1.1 1.0.0.1]
+      routes:
+        - to: default
+          # your router IP address:
+          via: 192.168.8.1
+  version: 2
+```
+
+    1. apply netplan: `sudo netplan apply`
+    1. ssh into VM with again with new IP
+    1. check changes: `ip a` and `ip r s`
+1. turn off VM: `shutdown no`
+1. Go to Proxmox webinterface 'VM id' and 'Options' then 'QEMU Guest Agent' and enable it
+1. Boot up your VM
+1. ssh into Pimox and test if qemu works `qm agent <vmid> ping` if no errors it's working
 
 ### What works
 
 * USB passthrough but set it to USB2, USB3 will crash
 * QEMU Guest Agent
 * Backup
-* ssh into Proxmox
+* ssh into Proxmox/Pimox Host
+* ssh into VMs
 
 > 🧐 Pimox works with other SBCs that are based on arm too.
 
@@ -56,16 +112,13 @@
 
 * Snapshots
 
-### TODO
-
-* figure out how to directly ssh into a VM
-
 [Pimox]: <https://github.com/pimox/pimox7>
 [ubuntu server]: <https://ubuntu.com/download/server/arm>
 
 Related:
 
 * <https://networkchuck.com/vmware-raspberrypi/>
+* <https://pve.proxmox.com/wiki/Qemu-guest-agent>
 
 Tags:
 
