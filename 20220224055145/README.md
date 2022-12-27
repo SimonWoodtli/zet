@@ -19,3 +19,7 @@ either delete or create functions that have this functionality:
 * search tags: `zet edit|find [#tagname]`
 * cd into a searched zettel: `cdz [searchterm]`
 * change config-file: `zet config edit`
+
+Tags:
+
+    #linux #vim #zettelkasten #zet #cheatsheet
