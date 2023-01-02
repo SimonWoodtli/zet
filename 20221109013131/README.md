@@ -14,9 +14,12 @@ commit SHA1 hash. So basically tags just give a commit ID a name.
 
 So to tag you have these options:
 
-* signed tag (public,prefer): `git tag -s -m"Here goes description of Tag" v0.1`
+* signed tag (public,prefer): `git tag -s v0.01`
 * tag with msg, annotated (public): `git tag -a -m"Here goes description of Tag" v0.1`
 * lightweight tag (private): `git tag v0.1`
+
+> 🧐 If you use `git tag -a|-s` and omit -m it will redirect you to your editor
+just like `git commit` does.
 
 > 🧐 A signed tag also requires some setup like gpg key and .gitconfig settings, see signed commit Zettel
 
@@ -43,7 +46,7 @@ TODO: With pull request?
 Related:
 
 * [20230101162943](/20230101162943/) Create signed commits on Git Repos
-* [20230101142814](/20230101142814/) gh cli: Create and manage git releases on github.com
+* [20230101142814](/20230101142814/) Create and manage Git releases on GitHub.com with gh cli
 * manage releases
 * create signed commits
 * <https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-tags>
