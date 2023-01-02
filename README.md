@@ -1,17 +1,17 @@
-# Welcome to my Notes/Zettelkasten
+# My Zettelkasten - Notebox
 
 [![wakatime](https://wakatime.com/badge/user/173067c8-7ded-4cfb-8605-b3032659c00c/project/57527f27-dd9d-4d9d-bd7b-77c2798035bd.svg)](https://wakatime.com/badge/user/173067c8-7ded-4cfb-8605-b3032659c00c/project/57527f27-dd9d-4d9d-bd7b-77c2798035bd)
 
 This is my personal knowledge base. The idea is to create a minimalist version
-of the of the [Zettelkasten] and bring it into the 21st century in digital form.
+of the of the [Zettelkasten] and bring it into the 21st century in digital
+form.
 
-All notes are created with the [zet] script from rwxrob. At some point I will
-create my own version of it and delete all functions I don't need and add my own.
+These Zettels (notes) have been created with my [zet] command line utility.
 
-* The folders are created with a unique ID, which is just the current UTC second 
-created with `date -u +%Y%m%d%H%M%S`.
+> 📝 Folders are created with `date -u +%Y%m%d%H%M%S` to create a unique ID.
+Which is just a current time stamp in Coordinated Universal Time (UTC).
 
-[zet]: <https://github.com/rwxrob/cmd-zet>
+[zet]: <https://github.com/SimonWoodtli/cmd-zet>
 [Zettelkasten]: <https://luhmann.surge.sh/>
 
 Related:
@@ -24,4 +24,4 @@ Related:
 
 Tags:
 
-    #knowledge #knowledgeManagement #zettelkasten #notes #personal #zettel #knowledgeBase
+    #knowledgeManagement #zettelkasten #notes #knowledgeBase
