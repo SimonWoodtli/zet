@@ -1,13 +1,41 @@
 # Zettelkasten: Markdown Guideline
 
-## 1. Hints, Notes and Important
+## General Rules
+
+Generally speaking use the CommonMark guideline but extent it with these rules.
+
+* Title max. 50 characters wide (so git commit message works too)
+* Wrap everything but references block to 79 columns
+* Substantial code, raw, and images should be in separate files
+* All reference links must be explicit and visible
+* Begin block quotes with a semantic emoji (> 🧐)
+* Try not too use too many embedded links but prefer to put them in 'Related'
+  section at the end
+* Only use screenshots when necessary, if you can describe something with words
+  you should. Otherwise it will bloat your zet repo over time.
+* No HTML allowed in any way
+* No spaces between opening fence token and keyword
+* Use three backticks for fenced content
+* Only use three tildes if fenced content contains three backticks
+* Only use four tildes if fenced content contains three tildes
+* Use two or more trailing spaces for hard breaks
+* Avoid horizontal rule like these: `----`
+* Only `*`,`**`,`***` for italic, bold, bold italic
+* Only `1.` for ordered lists
+* Only `* ` for unordered lists
+* Table block must begin with `|`
+* If a block begins with `|` it *must* be a table.
+
+## 1. Quote Blocks: Hints, Notes, Important etc.
 
 ### When
 
-If you have some 'additional' info in a section/paragraph. Which relates to the section/title/paragraph and can be described briefly.
+If you have some 'additional' info in a section/paragraph. Which relates to the
+section/title/paragraph and can be described briefly.
 
 ### How
 
+* Quoted blocks start with a angle bracket at the beginning
 * Idea: `> 💡` 
 * Note: `> 📝`
 * Hint/Advice: `> 🧐`
@@ -20,14 +48,14 @@ If you have some 'additional' info in a section/paragraph. Which relates to the 
 ### Example
 
 ```markdown
-> Hint: Don’t forget to create Hints and Notes with a > at the beginning.
+> 🧐 Don’t forget to create Hints and Notes with a > at the beginning.
 ```
 
 output:
 
 > Hint: Don't forget to create Hints and Notes with a > at the beginning.
 
-## 2. Embedded Links
+## 2. Embedded Links - Reference Links
 
 ### When?
 
@@ -89,7 +117,30 @@ output:
 
 And ***Zettelkasten*** can truly empower the way you organize knowledge.
 
-## 4. Footer: Related 
+## 4. Tables
+
+### When
+
+I try not to use tables too often but sometimes they are great. Especially if
+you can no longer easily describe content with a list.
+
+### How
+
+> 📝 Use the table format that is supported by GitHub and (if and when added)
+eventually CommonMark. 
+
+* Only use `|` for table blocks
+
+### Example
+
+```markdown
+|Name|Description|
+-|-
+Foo|The foo of it all
+Bar|The bar as well
+```
+
+## 5. Footer: Related - Reference Links
 
 ### When
 
@@ -115,19 +166,25 @@ output:
 * [20220224055145](/20220224055145/) Zettelkasten `zet` commands: cheatsheet
 * <https://duckduckgo.com>
 
-# 5. Footer: Tags
+# 6. Footer: Tags
 
 ### When
 
-* Always add tags to your zettels as they make it easier to find them when your knowledge base grows.
+* Always add tags to your zettels as they make it easier to find them when your
+  knowledge base grows.
 * Also checkout the zettel about tags.
 
 ### How
 
-* Create Tags always at the end of the document.
-* Use camelCase to create multi word tags
-* First letter is #
-* Indentation matters
+* Use camelCase to create multi word tags, no whitespace
+* Use hastag
+* End of document at the very last line
+* Indented with 4 spaces
+* Tagline max. 79 characters 
+
+> 📝 Don't go overboard with too many tags keep it short and simple. Limiting
+the tag length has the benefit of choosing tags more carefully and avoids
+redundant tags or duplicants.
 
 ### Example
 
@@ -149,4 +206,4 @@ Related:
 
 Tags:
 
-    #zettelkasten #guideLine #markdown #knowledgeBase #zettel #zet
+    #zettelkasten #guideLine #markdown #knowledgeBase #notes
