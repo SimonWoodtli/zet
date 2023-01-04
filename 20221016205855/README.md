@@ -31,7 +31,10 @@
 
 ## Basics
 
-* remove image: `docker rmi <id>|<imageName>`
+* list all images: `docker images`
+* remove image: `docker rmi <image-id>|<imageName>`
+* list all containers: `docker ps -a`
+* remove container: `docker rm <container-id>|<containerName>`
 
 Related:
 
