@@ -20,13 +20,15 @@ Go through process
 
 ## Apps
 
-* install as many apps as possible with [Chocolatey]
+* install as many apps as possible with [Chocolatey], even better yet seems to
+  be the new Microsoft tool [winget]
 * https://github.com/cmderdev/cmder
 * https://github.com/Collective-Software/ClickPaste
 
-[Chocolatey]<https://chocolatey.org/>
-[Windows-Tool]<https://christitus.com/windows-tool/>
-[TGF Tuning Pack]<https://github.com/MinersWin/TGF-Tuning-Pack-4.0>
-[TGF Mouse Tuning Pack]<https://github.com/MinersWin/TGF-MOUSE-TUNING-PACK-2.0>
-[Windows ISOs]<https://thegeekfreaks.de/downloads/windows-10-tgf-edition/>
-[Create ISO Tutorial]<https://yewtu.be/watch?v=aNS9Gqxasbk>
+[winget]: <https://learn.microsoft.com/en-us/windows/package-manager/winget/>
+[Chocolatey]: <https://chocolatey.org/>
+[Windows-Tool]: <https://christitus.com/windows-tool/>
+[TGF Tuning Pack]: <https://github.com/MinersWin/TGF-Tuning-Pack-4.0>
+[TGF Mouse Tuning Pack]: <https://github.com/MinersWin/TGF-MOUSE-TUNING-PACK-2.0>
+[Windows ISOs]: <https://thegeekfreaks.de/downloads/windows-10-tgf-edition/>
+[Create ISO Tutorial]: <https://yewtu.be/watch?v=aNS9Gqxasbk>
