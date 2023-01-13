@@ -16,12 +16,14 @@ Open Extension Manager and Install:
 * Hide Panel Lite
 * Tray Icons: Reloaded
 * User Themes
+* Just Perfection
 * Allow Locked Remote Desktop
 * Desktop Cube, get background [Panorama]
 * Rounded Window Corners
 * Auto Move Windows
 * Sound Input & Output Device Chooser
 * Show External IP
+* Vitals
 
 Stuff that i find just OK:
 
