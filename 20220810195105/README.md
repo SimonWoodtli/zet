@@ -19,6 +19,9 @@ Open Extension Manager and Install:
 * Allow Locked Remote Desktop
 * Desktop Cube, get background [Panorama]
 * Rounded Window Corners
+* Auto Move Windows
+* Sound Input & Output Device Chooser
+* Show External IP
 
 Stuff that i find just OK:
 
