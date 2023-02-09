@@ -41,6 +41,13 @@ The input-file are simplified but I threw some pretty hard stuff at it and perl
 handles it like a charm. Look at my readme-scraper/readme-writer project for
 a better understanding of what perl can do.
 
+
+Important: Use capturing groups, if you want to allow html comments be placed anywhere on and be be replaced at the same position
+
+* remove content foo but keep html comments at same position: `perl -i -0777pe "s@(<!--languages--start-->)(\s*).*?(\s*)(<!--languages-end-->)@\1\3\4@s" input-file`
+  in this one liner group 2 (\2) is not used because it would just create an extra empty line between comments
+* add content but keep html comments at same position: `perl -i -0777pe "s@(<!--languages--start-->)(\s*)(<!--languages-end-->)@\1\n${foo}\2\3@s" input-file`
+
 input-file1:
 
 ```bash
