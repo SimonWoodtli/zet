@@ -17,6 +17,8 @@ CMD ["date"]
 3. create image: `docker build -t example_image .`
 4. run image: `docker run -it --name example_app example_image`
 
+> 🧐 If you already build an image and need to rebuild it with updated data, but the Dockerfile is still the same, Docker will use a cached data which in some cases can be useful. However if you want to force Docker to rebuild everything from scratch: `docker build --no-cache -t example_image .`
+
 ## From existing Container
 
 Use the `docker commit` command to create an image from the current docker apps state.
