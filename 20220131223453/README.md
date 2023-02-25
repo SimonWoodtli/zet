@@ -16,6 +16,7 @@ password: OAuth token
 ## Weechat
 
 1. start weechat: (replace TWITCH_NAME to your lowercase Twitch Name)
+`/server add twitch irc.twitch.tv/6667 -password=oauth:*** -nicks=TWITCH_NAME -username=TWITCH_NAME`
 `/server add twitch irc.twitch.tv/6697 -password=oauth:*** -nicks=TWITCH_NAME -username=TWITCH_NAME`
 
 2. /connect twitch
