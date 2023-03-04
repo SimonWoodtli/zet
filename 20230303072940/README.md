@@ -58,6 +58,8 @@ Main hotkeys:
 
 ### 1.3 Encrypt primary/secondary Partitions:
 
+> 🧐 If you use the same luks password for multiple disks, partitions and want them to autostart at boot time, you only need to enter it for one disk/partition
+
 1. encrypt primary: `cryptsetup -y -v luksFormat --label crypto-nixos /dev/sdXX2`
 1. encrypt secondary: `cryptsetup -y -v luksFormat --label crypto-data /dev/sdXX3`
 1. decrypt primary: `cryptsetup open /dev/sdXX2 primary`, primary is just the name to mount the container later
@@ -80,7 +82,7 @@ Main hotkeys:
 
 ## 4. Install OS
 
-> 🧐 If you want to make changes to your config files after the first install don't use `nixos-install` instead use `nixos-rebuild switch`
+> 🧐 If you want to make changes to your config files after the first install don't use `nixos-install` instead use `nixos-rebuild switch` or `nixos-rebuild build`
 
-1. `nixos-install --no-root-passwd`
+1. `nixos-install`, give a root pw at the end of install
 2. reboot into your new OS 🎉
