@@ -94,11 +94,10 @@ Main hotkeys:
 
 ## 6. Install Home Manager (skip this if you use Flakes)
 
-> if you plan to use flakes you don't add the home-manager channel, also you don't add home-manager to the /etc/nixos/configuration.nix file 
+> ⚠️ If you plan to use flakes skip these steps.
 
 1. if you add home-manager as a NixOS Module into your configuration.nix file, add packages for home manager: `sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz home-manager`
-
-Example of /etc/nixos/configuration.nix:
+1. Add to /etc/nixos/configuration.nix:
 
 ```
   imports =
@@ -113,7 +112,117 @@ Example of /etc/nixos/configuration.nix:
   };
 ```
 
+You can also add home-manager as a standalone but I wouldn't recommend it.   
 More Install Information: https://github.com/nix-community/home-manager#installation
 
 ## 7. Install Flakes
+
+1. Add to /etc/nixos/configuration.nix:
+
+```
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
+  };
+```
+
+
+2. Create and init flake dir: `mkdir flake && cd $_ && nix flake init`
+3. Add to flake/flake.nix:
+
+```
+{
+  description = "A very basic flake";
+
+  inputs = {
+  # if you want unstable change nixos-22.11 with nixos-unstable
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+  };
+
+  outputs = { self, nixpkgs }:
+    let
+    ## change system to your architecture
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      lib = nixpkgs.lib;
+    in {
+      nixosConfigurations = {
+      ## here xnasero is the name of the NixOS System Configuration. You can
+      have multiple system configurations stored in the same flake.nix. But
+      then you need to specify the one you want to use like so: 
+      ## `sudo nixos-rebuild switch --flake .#xnasero`
+      ## `sudo nixos-rebuild switch --flake .#anotherSysConfig`
+        xnasero = lib.nixosSystem {
+          inherit system;
+          modules = [ ./configuration.nix ];
+        };
+        #anotherSysConfig = lib.nixosSystem {
+        #  inherit system;
+        #  modules = [ ./configurationForTheNewSysConfig.nix ];
+        };
+      };
+    };
+}
+```
+
+4. copy config files from /etc: `cp /etc/nixos/* .`
+    1. Now you no longer need to change the /etc/nixos/config files instead you change them directly in your flake
+5. update: `sudo nixos-rebuild switch --flake .#` (if you only have one nixos sys configuration in flake.nix)
+
+## 8. Home Manager with Flakes
+
+You have two options, either you make separately or within your NixOS System Configuration (./configuration.nix)  
+Option 1: Seperate
+
+* add home-manager to your inputs/outputs in flakes.nix: `vim flakes.nix`
+
+```
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = { self, nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      lib = nixpkgs.lib;
+      user = "xnasero"; in {
+      nixosConfigurations = {
+        xnasero = lib.nixosSystem {
+          inherit system;
+          modules = [ ./configuration.nix ];
+        };
+        hmConfig = {
+        ## xnasero is just the name for your NixOS System Configuration. Same as before.
+          xnasero = home-manager.lib.homeManagerConfiguration {;
+            inherit system pkgs;
+            username = "${user}";
+            homeDirectory = "/home/{user}";
+            configuration = {
+              imports = {
+              # if you don't host your flake in a git repo
+                /home/${user}/.config/home/home.nix
+              # if you host your flake in a git repo
+                ./home.nix
+              };
+            };
+          };
+        };
+      };
+    };
+```
+
+Option 2:
+
+    
 
