@@ -86,3 +86,34 @@ Main hotkeys:
 
 1. `nixos-install`, give a root pw at the end of install
 2. reboot into your new OS 🎉
+
+## 5. First Boot
+
+1. add current stable package list (update version, if newer exist): `sudo nix-channel --add https://nixos.org/channels/nixos-22.11`
+1. update channels: `sudo nix-channel --update`
+
+## 6. Install Home Manager (skip this if you use Flakes)
+
+> if you plan to use flakes you don't add the home-manager channel, also you don't add home-manager to the /etc/nixos/configuration.nix file 
+
+1. if you add home-manager as a NixOS Module into your configuration.nix file, add packages for home manager: `sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz home-manager`
+
+Example of /etc/nixos/configuration.nix:
+
+```
+  imports =
+    [
+      ./hardware-configuration.nix
+      <home-manager/nixos>
+    ];
+
+  home-manager.users.${user} = { pkgs, ... }: {
+    home.stateVersion = "22.11";
+    home.packages = with pkgs; [ btop ];
+  };
+```
+
+More Install Information: https://github.com/nix-community/home-manager#installation
+
+## 7. Install Flakes
+
