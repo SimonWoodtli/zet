@@ -354,11 +354,18 @@ Why shouldn't you use this method? To update you now have to do 3 things:
 
 Related:
 
+* <https://nixos.org/manual/nixos/stable/>
+* <https://search.nixos.org/packages>
+* <https://zero-to-nix.com/>
+* <https://nix-community.github.io/home-manager/index.html>
+* <https://nix-community.github.io/home-manager/options.html>
+
 * <https://github.com/SimonWoodtli/nixos-config>
 * <https://jdisaacs.com/blog/nixos-config/>
 * <https://github.com/wiltaylor/dotfiles>
 * <https://serokell.io/blog/practical-nix-flakes>
 * <https://lantian.pub/en/article/modify-website/nixos-why.lantian/>
+* <https://xeiaso.net/blog/nix-flakes-1-2022-02-21>
 * <https://github.com/MatthiasBenaets/nixos-config>
 * <https://www.youtube.com/watch?v=AGVXJ-TIv3Y>
 * <https://www.youtube.com/playlist?list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq->
