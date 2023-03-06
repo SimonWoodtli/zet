@@ -19,21 +19,27 @@ We will format with 4 partitions:
 
 > 🧐 Here we use UEFI so the first nixos partition starts from 512MiB, If legacy BIOS: 1MiB
 
-cmd explained: `parted -- mkpart partition-label partition-type startpoint[MiB|%] endpoint[MiB|%]`
-The Order of executing parted mkpart cmds matters, as the partition number starts with 1 and goes to 4 in this case.
+cmd explained: `parted -- mkpart partition-label partition-type
+startpoint[MiB|%] endpoint[MiB|%]`  
+The Order of executing parted mkpart cmds matters, as the partition number
+starts with 1 and goes to 4 in this case.
 
 1. create partition table: `parted /dev/sdXX -- mklabel gpt`
 1. If UEFI, create boot partition: `parted /dev/sdXX -- mkpart ESP fat32 1MiB 512MiB`
-1. create NixOS partition: `parted /dev/sdXX -- mkpart primary ext4 512MiB 27%` , if legacy BIOS it'd be 1MiB instead of 512MiB
+1. create NixOS partition: `parted /dev/sdXX -- mkpart primary ext4 512MiB 27%`
+   , if legacy BIOS it'd be 1MiB instead of 512MiB
 1. create Document/Data partition: `parted /dev/sdXX -- mkpart secondary ext4 27% 99%`
 1. create Swap partition: `parted /dev/sdXX -- mkpart swap linux-swap 99% 100%`
 
-If UEFI, set esp flag to on : `parted /dev/sdXX -- set 1 esp on`, 1 refers to first partition
+If UEFI, set esp flag to on : `parted /dev/sdXX -- set 1 esp on`, 1 refers to
+first partition
 If BIOS, set boot flag to on: `parted /dev/sdXX -- set 1 boot on`
 
 **Gdisk:**
 
-I prefer `parted` as fdisk/gdisk is a TUI and writing documentation for instructions is annoying. But those main hotkeys are only needed to get the same result as with `parted`.
+I prefer `parted` as fdisk/gdisk is a TUI and writing documentation for
+instructions is annoying. But those main hotkeys are only needed to get the
+same result as with `parted`.
 
 * to start TUI: `gdisk /dev/sdXX`
 
@@ -52,7 +58,8 @@ Main hotkeys:
 1. If UEFI, boot partition: `mkfs.fat -F 32 -n boot /dev/sdXX1`
 1. swap partition: `mkswap -L swap /dev/sdXX4`
 
-**Optional:** Only run the next commands to create a file system for your primary/secondary partitions if you do not want to encrypt them.
+**Optional:** Only run the next commands to create a file system for your
+primary/secondary partitions if you do not want to encrypt them.
 
 1. primary partition: `mkfs.ext4 -L nixos /dev/sdXX2`
 1. secondary partition: `mkfs.ext4 -L data /dev/sdXX3`
@@ -63,7 +70,8 @@ Main hotkeys:
 
 1. encrypt primary: `cryptsetup -y -v luksFormat --label crypto-nixos /dev/sdXX2`
 1. encrypt secondary: `cryptsetup -y -v luksFormat --label crypto-data /dev/sdXX3`
-1. decrypt primary: `cryptsetup open /dev/sdXX2 primary`, primary is just the name to mount the container later
+1. decrypt primary: `cryptsetup open /dev/sdXX2 primary`, primary is just the
+   name to mount the container later
 1. decrypt secondary: `cryptsetup open /dev/sdXX3 secondary`
 1. create fs primary: `mkfs.ext4 -L nixos /dev/mapper/primary`
 1. create fs secondary: `mkfs.ext4 -L data /dev/mapper/secondary`
@@ -83,21 +91,27 @@ Main hotkeys:
 
 ## 4. Install OS
 
-> 🧐 If you want to make changes to your config files after the first install don't use `nixos-install` instead use `nixos-rebuild switch` or `nixos-rebuild build`
+> 🧐 If you want to make changes to your config files after the first install
+don't use `nixos-install` instead use `nixos-rebuild switch` or `nixos-rebuild
+build`
 
 1. `nixos-install`, give a root pw at the end of install
 2. reboot into your new OS 🎉
 
 ## 5. First Boot
 
-1. add current stable package list (update version, if newer exist): `sudo nix-channel --add https://nixos.org/channels/nixos-22.11`
+1. add current stable package list (update version, if newer exist): `sudo
+   nix-channel --add https://nixos.org/channels/nixos-22.11`
 1. update channels: `sudo nix-channel --update`
 
 ## 6. Install Home Manager (skip this if you use Flakes)
 
 > ⚠️ If you plan to use flakes skip these steps.
 
-1. if you add home-manager as a NixOS Module into your configuration.nix file, add packages for home manager: `sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz home-manager`
+1. if you add home-manager as a NixOS Module into your configuration.nix file,
+   add packages for home manager: `sudo nix-channel --add
+   https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz
+   home-manager`
 1. Add to /etc/nixos/configuration.nix:
 
 ```
@@ -113,8 +127,8 @@ Main hotkeys:
   };
 ```
 
-You can also add home-manager as a standalone but I wouldn't recommend it.
-More Install Information: https://github.com/nix-community/home-manager#installation
+You can also add home-manager as a standalone but I wouldn't recommend it.  
+For more details: See [home manager install][home-manager]
 
 ## 7. Install Flakes
 
@@ -313,8 +327,8 @@ Why shouldn't you use this method? To update you now have to do 3 things:
 
 1. Boot into live NixOS CD
 1. `sudo su`
-1. Partition your drive, see [cha. 1.]
-1. Mount the required partitions, see [cha. 2.]
+1. Partition your drive, see [cha. 1.][1.]
+1. Mount the required partitions, see [cha. 2.][2.]
 1. get git: `nix-env -iA nixos.git`
 1. clone flake: `git clone https://github.com/SimonWoodtli/nixos-config.git /mnt/etc/nixos`
 1. install it: `cd` into repo and `nixos-install --flake .#<NixOSSysConfig`
@@ -323,8 +337,9 @@ Why shouldn't you use this method? To update you now have to do 3 things:
 1. move your flake repo to a place in your /home/<user> dir, change owner too. Or just simply reclone it
 1. Congratulations you are all setup! 🎉
 
-[cha 1.]: <#1-format-disk>
-[cha 2.]: <#2-mount-partitions>
+[1.]: <#1-format-disk>
+[2.]: <#2-mount-partitions>
+[home-manager]: <https://github.com/nix-community/home-manager#installation>
 
 Related:
 
