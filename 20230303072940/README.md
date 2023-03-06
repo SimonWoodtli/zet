@@ -1,4 +1,6 @@
-# NixOS install
+# NixOS install with LUKS encryption
+
+> 🧐 Checkout end of document for a quick install.
 
 ## 1. Format Disk
 
@@ -6,19 +8,18 @@ We will format with 4 partitions:
 
 1. boot
 2. OS
-3. documents/data 
+3. documents/data
 4. swap
 
-If your HDD is > 2TB use gdisk/parted with GPT. If less use MBR with fdisk
-
+> 🧐 If your HDD is > 2TB use gdisk/parted with GPT. If less use MBR with fdisk
 
 ### 1.1 Create Partition Table and Partitions
 
-Parted:
+**Parted:**
 
 > 🧐 Here we use UEFI so the first nixos partition starts from 512MiB, If legacy BIOS: 1MiB
 
-cmd explained: `parted -- mkpart partition-label partition-type startpoint[MiB|%] endpoint[MiB|%]`  
+cmd explained: `parted -- mkpart partition-label partition-type startpoint[MiB|%] endpoint[MiB|%]`
 The Order of executing parted mkpart cmds matters, as the partition number starts with 1 and goes to 4 in this case.
 
 1. create partition table: `parted /dev/sdXX -- mklabel gpt`
@@ -30,7 +31,7 @@ The Order of executing parted mkpart cmds matters, as the partition number start
 If UEFI, set esp flag to on : `parted /dev/sdXX -- set 1 esp on`, 1 refers to first partition
 If BIOS, set boot flag to on: `parted /dev/sdXX -- set 1 boot on`
 
-Gdisk:
+**Gdisk:**
 
 I prefer `parted` as fdisk/gdisk is a TUI and writing documentation for instructions is annoying. But those main hotkeys are only needed to get the same result as with `parted`.
 
@@ -51,7 +52,7 @@ Main hotkeys:
 1. If UEFI, boot partition: `mkfs.fat -F 32 -n boot /dev/sdXX1`
 1. swap partition: `mkswap -L swap /dev/sdXX4`
 
-**Optional**: Only run the next commands to create a file system for your primary/secondary partitions if you do not want to encrypt them.
+**Optional:** Only run the next commands to create a file system for your primary/secondary partitions if you do not want to encrypt them.
 
 1. primary partition: `mkfs.ext4 -L nixos /dev/sdXX2`
 1. secondary partition: `mkfs.ext4 -L data /dev/sdXX3`
@@ -112,7 +113,7 @@ Main hotkeys:
   };
 ```
 
-You can also add home-manager as a standalone but I wouldn't recommend it.   
+You can also add home-manager as a standalone but I wouldn't recommend it.
 More Install Information: https://github.com/nix-community/home-manager#installation
 
 ## 7. Install Flakes
@@ -152,7 +153,7 @@ More Install Information: https://github.com/nix-community/home-manager#installa
       nixosConfigurations = {
       ## here xnasero is the name of the NixOS System Configuration. You can
       have multiple system configurations stored in the same flake.nix. But
-      then you need to specify the one you want to use like so: 
+      then you need to specify the one you want to use like so:
       ## `sudo nixos-rebuild switch --flake .#xnasero`
       ## `sudo nixos-rebuild switch --flake .#anotherSysConfig`
         xnasero = lib.nixosSystem {
@@ -168,16 +169,67 @@ More Install Information: https://github.com/nix-community/home-manager#installa
 }
 ```
 
+> 🧐 If you only have one NixOS system configuration defined in flake.nix you can use .# like so: `nixos-rebuild switch --flake .#`
+
 4. copy config files from /etc: `cp /etc/nixos/* .`
     1. Now you no longer need to change the /etc/nixos/config files instead you change them directly in your flake
-5. update: `sudo nixos-rebuild switch --flake .#` (if you only have one nixos sys configuration in flake.nix)
+5. generate flake.lock file: `nix flake lock`
+6. update configuration: `sudo nixos-rebuild switch --flake .#` (This will only read programs from flake.lock and update them according to the version that is mentioned in flake.lock)
+7. update flake: `nix flake update` (This will check programs in flake.lock and check if there is newer versions available, if so flake.lock gets overwritten with new versions.)
 
 ## 8. Home Manager with Flakes
 
-You have two options, either you make separately or within your NixOS System Configuration (./configuration.nix)  
-Option 1: Seperate
+You have two options, either you add home-manager separately or within your NixOS System Configuration (./configuration.nix)
+Option 1: NixOS Config Module
 
-* add home-manager to your inputs/outputs in flakes.nix: `vim flakes.nix`
+1. add home-manager to your inputs/outputs within the same NixOS System Configuration "xnasero": `vim flakes.nix`
+
+```
+{
+  description = "A very basic flake";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    home-manager = {
+      url = github:nix-community/home-manager;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = { self, nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      lib = nixpkgs.lib;
+      user = "xnasero";
+    in {
+      nixosConfigurations = {
+        xnasero = lib.nixosSystem {
+          inherit system;
+          modules = [ 
+            ./configuration.nix 
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${user} = {
+                imports = [ ./home.nix ];
+              };
+          }
+          ];
+        };
+      };
+    };
+}
+```
+
+2. To update everything home-manager and all configs: `sudo nixos-rebuild switch --flake .#xnasero`
+
+**Option 2:** Separate (don't recommend)
+
+1. add home-manager to your inputs/outputs with new NixOS System Configuration: `vim flakes.nix`
 
 ```
   inputs = {
@@ -211,7 +263,7 @@ Option 1: Seperate
             configuration = {
               imports = {
               # if you don't host your flake in a git repo
-                /home/${user}/.config/home/home.nix
+              #  /home/${user}/.config/nixpkgs/home.nix
               # if you host your flake in a git repo
                 ./home.nix
               };
@@ -222,7 +274,69 @@ Option 1: Seperate
     };
 ```
 
-Option 2:
+2. touch file: `touch home.nix` and add content:
 
-    
+```
+{ config, pkgs, ... }:
 
+{
+  # Home Manager needs a bit of information about you and the
+  # paths it should manage.
+  home.username = "xnasero";
+  home.homeDirectory = "/home/xnasero";
+
+  # This value determines the Home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new Home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update Home Manager without changing this value. See
+  # the Home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "22.11";
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+}
+```
+
+3. Build it: `nix build .#hmConfig.xnasero.activationPackage`
+4. Activate it: `cd result && ./activate`
+
+Why shouldn't you use this method? To update you now have to do 3 things:
+
+1. `sudo nixos-rebuild switch --flake .#xnasero`
+1. `nix build .#hmConfig.xnasero.activationPackage`
+1. `cd result && ./activate`
+
+## 9. Auto Install with GitHub hosted Flake on a new Machine
+
+1. Boot into live CD
+1. `sudo su`
+1. Partition your drive like, see [1.]
+1. Mount the required partitions, see [2.]
+1. get git: `nix-env -iA nixos.git`
+1. clone flake: `git clone https://github.com/SimonWoodtli/nixos-config.git /mnt/etc/nixos`
+1. install it: `cd` into repo and `nixos-install --flake .#<NixOSSysConfig`
+1. reboot
+1. bug, need to rm config: `sudo rm -r /etc/nixos/configuration.nix`
+1. move your flake repo to a place in your /home/<user> dir, change owner too. Or just simply reclone it
+1. Congratulations you are all setup! 🎉
+
+[1.]: <#1.%20Format%20Disk>
+[2.]: <#2.%20Mount%20partitions>
+
+Related:
+
+* <https://github.com/SimonWoodtli/nixos-config>
+* <https://jdisaacs.com/blog/nixos-config/>
+* <https://github.com/wiltaylor/dotfiles>
+* <https://serokell.io/blog/practical-nix-flakes>
+* <https://lantian.pub/en/article/modify-website/nixos-why.lantian/>
+* <https://github.com/MatthiasBenaets/nixos-config>
+* <https://www.youtube.com/watch?v=AGVXJ-TIv3Y>
+* <https://www.youtube.com/playlist?list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq->
+
+Tags:
+
+    #linux #nixos #tutorial
