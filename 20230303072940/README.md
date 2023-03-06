@@ -104,9 +104,9 @@ build`
    nix-channel --add https://nixos.org/channels/nixos-22.11`
 1. update channels: `sudo nix-channel --update`
 
-## 6. Install Home Manager (skip this if you use Flakes)
+## 6. Install Home Manager
 
-> ⚠️ If you plan to use flakes skip these steps.
+> ⚠️ If you plan to use flakes skip the steps described in cha. 6.
 
 1. if you add home-manager as a NixOS Module into your configuration.nix file,
    add packages for home manager: `sudo nix-channel --add
@@ -186,17 +186,25 @@ For more details: See [home manager install][home-manager]
 > 🧐 If you only have one NixOS system configuration defined in flake.nix you can use .# like so: `nixos-rebuild switch --flake .#`
 
 4. copy config files from /etc: `cp /etc/nixos/* .`
-    1. Now you no longer need to change the /etc/nixos/config files instead you change them directly in your flake
+    1. Now you no longer need to change the /etc/nixos/config files instead you
+       change them directly in your flake
 5. generate flake.lock file: `nix flake lock`
-6. update configuration: `sudo nixos-rebuild switch --flake .#` (This will only read programs from flake.lock and update them according to the version that is mentioned in flake.lock)
-7. update flake: `nix flake update` (This will check programs in flake.lock and check if there is newer versions available, if so flake.lock gets overwritten with new versions.)
+6. update configuration: `sudo nixos-rebuild switch --flake .#` (This will only
+   read programs from flake.lock and update them according to the version that
+   is mentioned in flake.lock)
+7. update flake: `nix flake update` (This will check programs in flake.lock and
+   check if there is newer versions available, if so flake.lock gets
+   overwritten with new versions.)
 
 ## 8. Home Manager with Flakes
 
-You have two options, either you add home-manager separately or within your NixOS System Configuration (./configuration.nix)
-Option 1: NixOS Config Module
+You have two options, either you add home-manager separately or within your
+NixOS System Configuration (./configuration.nix)
 
-1. add home-manager to your inputs/outputs within the same NixOS System Configuration "xnasero": `vim flakes.nix`
+**Option 1:** NixOS Config Module
+
+1. add home-manager to your inputs/outputs within the same NixOS System
+   Configuration "xnasero": `vim flakes.nix`
 
 ```
 {
@@ -239,11 +247,13 @@ Option 1: NixOS Config Module
 }
 ```
 
-2. To update everything home-manager and all configs: `sudo nixos-rebuild switch --flake .#xnasero`
+2. To update everything home-manager and all configs: `sudo nixos-rebuild
+   switch --flake .#xnasero`
 
 **Option 2:** Separate (don't recommend)
 
-1. add home-manager to your inputs/outputs with new NixOS System Configuration: `vim flakes.nix`
+1. add home-manager to your inputs/outputs with new NixOS System Configuration:
+   `vim flakes.nix`
 
 ```
   inputs = {
@@ -329,12 +339,13 @@ Why shouldn't you use this method? To update you now have to do 3 things:
 1. `sudo su`
 1. Partition your drive, see [cha. 1.][1.]
 1. Mount the required partitions, see [cha. 2.][2.]
-1. get git: `nix-env -iA nixos.git`
-1. clone flake: `git clone https://github.com/SimonWoodtli/nixos-config.git /mnt/etc/nixos`
-1. install it: `cd` into repo and `nixos-install --flake .#<NixOSSysConfig`
-1. reboot
-1. bug, need to rm config: `sudo rm -r /etc/nixos/configuration.nix`
-1. move your flake repo to a place in your /home/<user> dir, change owner too. Or just simply reclone it
+1. Get git: `nix-env -iA nixos.git`
+1. Clone flake: `git clone https://github.com/SimonWoodtli/nixos-config.git /mnt/etc/nixos`
+1. Install it: `cd` into repo and `nixos-install --flake .#<NixOSSysConfig`
+1. Reboot
+1. Bug, need to rm config: `sudo rm -r /etc/nixos/configuration.nix`
+1. Move your flake repo to a place in your /home/<user> dir, change owner too.
+   Or just simply reclone it
 1. Congratulations you are all setup! 🎉
 
 [1.]: <#1-format-disk>
