@@ -311,10 +311,10 @@ Why shouldn't you use this method? To update you now have to do 3 things:
 
 ## 9. Auto Install with GitHub hosted Flake on a new Machine
 
-1. Boot into live CD
+1. Boot into live NixOS CD
 1. `sudo su`
-1. Partition your drive like, see [1.]
-1. Mount the required partitions, see [2.]
+1. Partition your drive, see [cha. 1.]
+1. Mount the required partitions, see [cha. 2.]
 1. get git: `nix-env -iA nixos.git`
 1. clone flake: `git clone https://github.com/SimonWoodtli/nixos-config.git /mnt/etc/nixos`
 1. install it: `cd` into repo and `nixos-install --flake .#<NixOSSysConfig`
@@ -323,8 +323,8 @@ Why shouldn't you use this method? To update you now have to do 3 things:
 1. move your flake repo to a place in your /home/<user> dir, change owner too. Or just simply reclone it
 1. Congratulations you are all setup! 🎉
 
-[1.]: <#1.%20Format%20Disk>
-[2.]: <#2.%20Mount%20partitions>
+[cha 1.]: <#1-format-disk>
+[cha 2.]: <#2-mount-partitions>
 
 Related:
 
