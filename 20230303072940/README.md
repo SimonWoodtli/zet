@@ -1,6 +1,6 @@
 # NixOS install with LUKS encryption
 
-> 🧐 Checkout end of document for a quick install.
+> 🧐 Checkout [cha 9.][9.] for a quick install.
 
 ## 1. Format Disk
 
@@ -350,6 +350,7 @@ Why shouldn't you use this method? To update you now have to do 3 things:
 
 [1.]: <#1-format-disk>
 [2.]: <#2-mount-partitions>
+[9.]: <#9-auto-install-with-github-hosted-flake-on-a-new-machine>
 [home-manager]: <https://github.com/nix-community/home-manager#installation>
 
 Related:
