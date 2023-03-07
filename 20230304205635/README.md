@@ -7,6 +7,8 @@
 
 ## nix-env
 
+I prefer setting up flakes and use `nix profile` instead of `nix-env`.
+
 > ⚠️  Using `nix-env` permanently modifies a local profile of installed packages. This must be updated and maintained by the user in the same way as with a traditional package manager, foregoing many of the benefits that make Nix uniquely powerful. Using `nix-shell` or a NixOS configuration is recommended instead.
 
 * list all programs installed with nix-env: `nix-env -q`
