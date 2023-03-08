@@ -201,7 +201,7 @@ For more details: See [home manager install][home-manager]
 You have two options, either you add home-manager separately or within your
 NixOS System Configuration (./configuration.nix)
 
-**Option 1:** NixOS Config Module
+**Option 1:** NixOS Configuration Module
 
 1. add home-manager to your inputs/outputs within the same NixOS System
    Configuration "xnasero": `vim flakes.nix`
