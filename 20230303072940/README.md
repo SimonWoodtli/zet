@@ -1,4 +1,4 @@
-# NixOS install with LUKS encryption
+# NixOS install with LUKS encryption and multiple partitions/disks
 
 > 🧐 Checkout [cha 9.][9.] for a quick install.
 
