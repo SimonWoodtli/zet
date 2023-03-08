@@ -27,4 +27,5 @@ I prefer setting up flakes and use `nix profile` instead of `nix-env`.
 * rm old unused packages: `sudo nix-collect-garbage -d`
 * list all generations: `nix-env --list-generations`
 * switch generation: `nix-env --switch-generation`
+* search: `nix search <query>`
 
