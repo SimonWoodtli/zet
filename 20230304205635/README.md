@@ -1,11 +1,11 @@
 # NixOS cheatsheet
 
-## install
+## Install
 
 * rebuild system: `nixos-rebuild build`
 * rebuild system and switch: `nixos-rebuild switch` 
 
-## nix-env
+## Nix-env
 
 I prefer setting up flakes and use `nix profile` instead of `nix-env`.
 
@@ -15,11 +15,11 @@ I prefer setting up flakes and use `nix profile` instead of `nix-env`.
 * install with nix-env: `nix-env -iA nixos.XX`
 * uninstall with nix-env: `nix-env --uninstall XX`
 
-## nix-shell
+## Nix-shell
 
 > 🧐 A `nix-shell` will temporarily modify your \$PATH environment variable. This can be used to try a piece of software before deciding to permanently install it.
 
-## general
+## General
 
 * update system: `nix-channel --update && sudo nixos-rebuild switch --upgrade`
 * checkout config man: `man configuration.nix`
