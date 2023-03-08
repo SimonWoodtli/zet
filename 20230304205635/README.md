@@ -5,7 +5,18 @@
 * rebuild system: `nixos-rebuild build`
 * rebuild system and switch: `nixos-rebuild switch` 
 
-## Nix-env
+## nix profile
+
+* `nix profile diff-closures` - show the closure difference between each version of a profile
+* `nix profile history` - show all versions of a profile
+* `nix profile install` - install a package into a profile
+* `nix profile list` - list installed packages
+* `nix profile remove` - remove packages from a profile
+* `nix profile rollback` - roll back to the previous version or a specified version of a profile
+* `nix profile upgrade` - upgrade packages using their most recent flake
+* `nix profile wipe-history` - delete non-current versions of a profile
+
+## nix-env
 
 I prefer setting up flakes and use `nix profile` instead of `nix-env`.
 
@@ -15,7 +26,7 @@ I prefer setting up flakes and use `nix profile` instead of `nix-env`.
 * install with nix-env: `nix-env -iA nixos.XX`
 * uninstall with nix-env: `nix-env --uninstall XX`
 
-## Nix-shell
+## nix-shell
 
 > 🧐 A `nix-shell` will temporarily modify your \$PATH environment variable. This can be used to try a piece of software before deciding to permanently install it.
 
@@ -28,4 +39,4 @@ I prefer setting up flakes and use `nix profile` instead of `nix-env`.
 * list all generations: `nix-env --list-generations`
 * switch generation: `nix-env --switch-generation`
 * search: `nix search <query>`
-
+* 
