@@ -7,9 +7,9 @@
 We will format with 4 partitions:
 
 1. boot
-2. OS
-3. documents/data
-4. swap
+1. OS
+1. documents/data
+1. swap
 
 > 🧐 If your HDD is > 2TB use gdisk/parted with GPT. If less use MBR with fdisk
 
@@ -61,8 +61,8 @@ Main hotkeys:
 **Optional:** Only run the next commands to create a file system for your
 primary/secondary partitions if you do not want to encrypt them.
 
-1. primary partition: `mkfs.ext4 -L nixos /dev/sdXX2`
-1. secondary partition: `mkfs.ext4 -L data /dev/sdXX3`
+3. primary partition: `mkfs.ext4 -L nixos /dev/sdXX2`
+4. secondary partition: `mkfs.ext4 -L data /dev/sdXX3`
 
 ### 1.3 Encrypt primary/secondary Partitions:
 
@@ -96,7 +96,7 @@ don't use `nixos-install` instead use `nixos-rebuild switch` or `nixos-rebuild
 build`
 
 1. `nixos-install`, give a root pw at the end of install
-2. reboot into your new OS 🎉
+1. reboot into your new OS 🎉
 
 ## 5. First Boot
 
@@ -140,7 +140,6 @@ For more details: See [home manager install][home-manager]
     extraOptions = "experimental-features = nix-command flakes";
   };
 ```
-
 
 2. Create and init flake dir: `mkdir flake && cd $_ && nix flake init`
 3. Add to flake/flake.nix:
