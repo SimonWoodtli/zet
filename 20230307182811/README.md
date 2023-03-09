@@ -14,6 +14,8 @@
 * uninstall software:
     * `rpm-ostree uninstall <pkg>`
 
+* see all installed/layered packages `rpm-ostree status -v`
+
 apply installed software without reboot: `rpm-ostree ex apply-live`
 
 Related:
