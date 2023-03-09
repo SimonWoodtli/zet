@@ -15,6 +15,7 @@
     * `rpm-ostree uninstall <pkg>`
 
 * see all installed/layered packages `rpm-ostree status -v`
+* see all hardened root packages: `rpm -qa`
 
 apply installed software without reboot: `rpm-ostree ex apply-live`
 
