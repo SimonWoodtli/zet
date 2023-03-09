@@ -19,6 +19,11 @@ I prefer setting up flakes and use `nix profile` instead of `nix-env`.
 
 > 🧐 A `nix-shell` will temporarily modify your \$PATH environment variable. This can be used to try a piece of software before deciding to permanently install it.
 
+* start session with a specific package installed: `nix-shell -p <pkg>`
+* start session with dependencies from ./shell.nix: `nix-shell`
+* start session and run specific command in that session: `nix-shell --command "<command>"`
+* start session with no env. var. set, except the ones specified in shell.nix file: `nix-shell --pure`
+
 ## general
 
 * update system: `nix-channel --update && sudo nixos-rebuild switch --upgrade`
@@ -27,4 +32,4 @@ I prefer setting up flakes and use `nix profile` instead of `nix-env`.
 * rm old unused packages: `sudo nix-collect-garbage -d`
 * list all generations: `nix-env --list-generations`
 * switch generation: `nix-env --switch-generation`
-
+* rm unused pkgs+dependencies from Nix store: `nix-collect-garbage`
