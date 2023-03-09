@@ -1,4 +1,4 @@
-# Split variable/string into array in Bash
+# Bash: Split variable|string into array
 
 ## Method 1: Split string with parenthesis
 
