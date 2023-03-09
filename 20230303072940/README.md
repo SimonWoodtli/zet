@@ -52,7 +52,6 @@ Main hotkeys:
 * write: `w`
 * name/label partition: `c`
 
-
 ### 1.2 Create Filesystems for each Partition:
 
 1. If UEFI, boot partition: `mkfs.fat -F 32 -n boot /dev/sdXX1`
@@ -106,7 +105,7 @@ build`
 
 ## 6. Install Home Manager
 
-> ⚠️ If you plan to use flakes skip the steps described in cha. 6.
+> ⚠️ If you plan to use flakes skip the steps described and go to [cha. 7][7.]
 
 1. if you add home-manager as a NixOS Module into your configuration.nix file,
    add packages for home manager: `sudo nix-channel --add
@@ -201,7 +200,7 @@ For more details: See [home manager install][home-manager]
 You have two options, either you add home-manager separately or within your
 NixOS System Configuration (./configuration.nix)
 
-**Option 1:** NixOS Config Module
+**Option 1:** NixOS Configuration Module
 
 1. add home-manager to your inputs/outputs within the same NixOS System
    Configuration "xnasero": `vim flakes.nix`
@@ -350,6 +349,7 @@ Why shouldn't you use this method? To update you now have to do 3 things:
 
 [1.]: <#1-format-disk>
 [2.]: <#2-mount-partitions>
+[7.]: <#7-install-flakes>
 [9.]: <#9-auto-install-with-github-hosted-flake-on-a-new-machine>
 [home-manager]: <https://github.com/nix-community/home-manager#installation>
 
