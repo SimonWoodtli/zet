@@ -20,3 +20,6 @@ Related:
 
 * <https://docs.fedoraproject.org/en-US/fedora-silverblue/>
 
+Tags:
+
+    #linux #fedora #silverblue #immutable
