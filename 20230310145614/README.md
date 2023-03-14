@@ -68,6 +68,9 @@ Not sure if `chezmoi init --apply SimonWoodtli` will use https git remote or ssh
 1. Init: `chezmoi init --apply SimonWoodtli`
 
 
+`chezmoi execute-template --init --promptString email=xnasero@posteo.net < $(chezmoi source-path)/.chezmoi.yaml.tmpl`
+`chezmoi execute-template '{{ .chezmoi.sourceDir }}'`
+
 
 
 Related:
