@@ -55,6 +55,7 @@ https://dev.to/jmc265/using-bitwarden-and-chezmoi-to-manage-ssh-keys-5hfm
 
 `chezmoi add --encrypt  foo`
 `chezmoi add --template foo`
+File in sourceDir, change regular file into template: `chezmoi chattr +template foo` (easier for me: `mv foo foo.tmpl`)
 
 
 ## Setup any New Machine
@@ -72,3 +73,6 @@ Not sure if `chezmoi init --apply SimonWoodtli` will use https git remote or ssh
 Related:
 
 * <https://www.jacobbolda.com/chezmoi-dotfile-management>
+* <https://pbs.bartificer.net/pbs123.html>
+* <https://pbs.bartificer.net/pbs124.html>
+* <https://pbs.bartificer.net/pbs125.html>
