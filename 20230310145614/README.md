@@ -88,6 +88,7 @@ IMPORTANT: 1. need to test this again but with custom location I guess `chezmoi 
 ### Comparison Functions
 
 | Function | Go Template Lang       | JavaScript |
+| -------- | ---------------------- | ---------- |
 |eq        |is Equal                |==          |
 |ne        |is Not Equal            |!=          |
 |lt        |is Less Than            |<           |
@@ -98,6 +99,7 @@ IMPORTANT: 1. need to test this again but with custom location I guess `chezmoi 
 ### Boolean Functions
 
 | Function | Go Template Lang       | JavaScript |
+| -------- | ---------------------- | ---------- |
 |not       |Inverts its argument    |!           |
 |and       |A boolean and           |&&          |
 |or        |A boolean or            |\|\|        |
