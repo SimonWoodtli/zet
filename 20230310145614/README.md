@@ -38,7 +38,10 @@ What chezmoi does: It looks at what kind of file and where the file is stored an
 1. install chezmoi
 1. create new empty dotfiles repo on github: `gcr` (I don't want all the bloat
    that accumulated over time in my dotfiles-old)
-1. initialize chezmoi with ssh (prefer): `chezmoi init git@github.com:SimonWoodtli/dotfiles.git`
+1. initialize chezmoi at specific location with custom dirname and ssh (prefer): `chezmoi -S
+   /home/xnasero/Repos/github.com/SimonWoodtli/dotfiles/home init
+   git@github.com:SimonWoodtli/dotfiles.git`
+      1. initialize chezmoi at default (~/.local/share) with ssh: `chezmoi init git@github.com:SimonWoodtli/dotfiles.git`
       1. initialize chezmoi with https: `chezmoi init https://github.com/SimonWoodtli/dotfiles.git`
 
 1. configure chezmoi: ??
@@ -65,17 +68,48 @@ Not sure if `chezmoi init --apply SimonWoodtli` will use https git remote or ssh
 1. Install and init: `sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME`
 
 1. Install:
-1. Init: `chezmoi init --apply SimonWoodtli`
+1. Init: `chezmoi init --apply SimonWoodtli` 
+IMPORTANT: 1. need to test this again but with custom location I guess `chezmoi -S path init --apply SimonWoodtli` is needed. 2. I think this --apply GITUSERNAME thing is cloning repo with https, so its useless)
 
 
-`chezmoi execute-template --init --promptString email=xnasero@posteo.net < $(chezmoi source-path)/.chezmoi.yaml.tmpl`
-`chezmoi execute-template '{{ .chezmoi.sourceDir }}'`
 
+## Test output of any given template:
 
+* `chezmoi execute-template --init --promptString email=xnasero@posteo.net < $(chezmoi source-path)/.chezmoi.yaml.tmpl`
+* `chezmoi execute-template '{{ .chezmoi.sourceDir }}'`
+
+## Remove files:
+
+* use `chezmoi unmanage` to remove the target from the source, but leave it in the destination. A simple `rm foo sourcedir/foo` would be the same
+* use `chezmoi remove` (or its alias chezmoi rm) to remove the target from both.
+
+## Template Logic
+
+### Comparison Functions
+
+| Function | Go Template Lang       | JavaScript |
+|eq        |is Equal                |==          |
+|ne        |is Not Equal            |!=          |
+|lt        |is Less Than            |<           |
+|le	       |is Less Than or Equal   |<=          |
+|gt        |is Greater Than         |>           |
+|ge        |is Greater Than or Equal|>=          |
+
+### Boolean Functions
+
+| Function | Go Template Lang       | JavaScript |
+|not       |Inverts its argument    |!           |
+|and       |A boolean and           |&&          |
+|or        |A boolean or            |\|\|        |
+
+### Nested example
+
+{{ if (and (eq .chezmoi.os "darwin") (eq .chezmoi.version.builtBy "HomeBrew")) }}
+You're one of the smart Mac users, you use homebrew 🙂
+{{ end }}
 
 Related:
 
-* <https://www.jacobbolda.com/chezmoi-dotfile-management>
 * <https://pbs.bartificer.net/pbs123.html>
 * <https://pbs.bartificer.net/pbs124.html>
 * <https://pbs.bartificer.net/pbs125.html>
