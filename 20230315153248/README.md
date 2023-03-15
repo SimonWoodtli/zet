@@ -10,6 +10,7 @@
 * print calendar: `when c`
 * print calendar and month event: `when cm`
 
+
 ```
 ------February-------  --------March--------  --------April--------
  M  T  W  T  F  S  S    M  T  W  T  F  S  S    M  T  W  T  F  S  S 
@@ -20,7 +21,8 @@
 27 28                  27 28 29 30 31         24 25 26 27 28 29 30 
 ```
 
-      February                 March                  April        
+
+    February 2023            March 2023             April 2023        
  M  T  W  T  F  S  S    M  T  W  T  F  S  S    M  T  W  T  F  S  S 
        1  2  3  4  5          1  2  3  4  5                   1  2 
  6  7  8  9 10 11 12    6  7  8  9 10 11 12    3  4  5  6  7  8  9 
