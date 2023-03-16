@@ -29,9 +29,15 @@ Decrypting will be the same as shown before. Because you need your private key t
 
 ## Own Usage with public SSH key
 
+> 🧐 age does not recommend using SSH if you want to implement age into your own app/system.
+
 * encrypt file foo with public ssh key: `age -o encrypted.foo.age -R ~/.ssh/id_ed25519.pub foo`
 * decrypt file foo with private ssh key: `age -d -i ~/.ssh/id_ed25519 -o decryptedfoo encrypted.foo.age`
 
 ## Own Usage with Yubikey
 
 Gotta research
+
+Related:
+
+* <https://pkg.go.dev/filippo.io/age#hdr-Key_management>
