@@ -36,6 +36,10 @@
 * list all containers: `docker ps -a`
 * remove container: `docker rm <container-id>|<containerName>`
 
+
+* remove all containers no matter their status: `docker rm $(docker ps -aq)`
+* remove all stopped containers: `docker rm $(docker ps -aqf status=exited)`
+
 Related:
 
 * [20221025194439](/20221025194439/) Docker Templates and Images
