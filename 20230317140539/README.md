@@ -2,6 +2,41 @@
 
 TODO: Gotta rewrite this
 
+## Alpine Linux
+
+### PAM-GnuPG
+
+1. (With Distrobox this is not needed) `adduser -h /var/home/xnasero -s /bin/bash -S -D xnasero`
+1. `sudo apk add automake autoconf libtool build-base linux-pam-dev`
+1. `git clone https://github.com/cruegge/pam-gnupg.git`
+1. `sudo apk add gnupg` (you can have gpg on the host and in the container too)
+    1. I had to run `gpg --full-generate-key` on the host, in the container it throws permission error. But later you can still access the key with gpg in the container.
+
+```
+./autogen.sh
+./configure
+sudo make
+sudo make install
+```
+
+5. `pass init <gpgEmail>` or `pass init <gpgID>`
+6. `sudo vi /etc/pam.d/system-local-login` and add:
+
+```
+auth     optional  pam_gnupg.so store-only
+session  optional  pam_gnupg.so
+```
+
+7. `gpg -K --with-keygrip` copy paste the keygrip from the keypair you associated with `pass`.
+8. `echo <yourCopiedKEYGRIP> > $HOME/.config/pam-gnupg` (only the 40 digits are needed)
+
+
+### Mutt-Wizzard
+
+1. `sudo apk add notmuch abook cronie ca-certificates pass msmtp isync neomutt chezmoi`
+1. `git clone https://github.com/LukeSmithxyz/mutt-wizard.git`
+
+
 ## Instructions
 
 1. install neomutt with the `install-mutt` script
