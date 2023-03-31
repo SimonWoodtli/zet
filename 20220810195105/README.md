@@ -24,6 +24,9 @@ Open Extension Manager and Install:
 * Sound Input & Output Device Chooser
 * Show External IP
 * Vitals
+* Privacy Quick Settings Menu
+* Quick Settings Tweaker
+* Light/Dark Theme Switcher
 
 Stuff that i find just OK:
 
