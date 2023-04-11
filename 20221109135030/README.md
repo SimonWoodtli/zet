@@ -5,6 +5,7 @@ The app that actually runs inside your image can be either something simple like
 > 🧐 The dockerAppFoo is considered to be the container. Whilst the dockerImage is the image you first have to pull/build and then use it to create a container.
 
 * command: `docker run -it --name dockerAppFoo dockerImage:latest`
+* run image as root and share hostdir from host with container (mounted on /mnt/volume): `docker run -u root -v $PWD/hostdir:/mnt/volume -it dockerImage/latest`
 
 Tags:
 
