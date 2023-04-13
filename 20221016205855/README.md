@@ -37,6 +37,7 @@
 * remove container: `docker rm <container-id>|<containerName>`
 * remove all unused data, container, images, cache, volumes, networks: `docker system prune`
 * remove all unused images (not linked to a container): `docker images prune`
+* remove all containers: `docker container prune`
 * List info image,container,volumes: `docker system df`
 
 
