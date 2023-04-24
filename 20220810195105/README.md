@@ -12,27 +12,29 @@ Settings -> Appearance => Dark
 Open Extension Manager and Install:
 
 * Blur my Shell
-* Caffeine
-* Hide Panel Lite
-* Tray Icons: Reloaded
 * User Themes
 * Just Perfection
-* Allow Locked Remote Desktop
-* Desktop Cube, get background [Panorama]
-* Rounded Window Corners
 * Auto Move Windows
+
+* Hide Panel Lite
+* Tray Icons: Reloaded
+* Allow Locked Remote Desktop
+* Rounded Window Corners
 * Sound Input & Output Device Chooser
-* Show External IP
 * Vitals
 * Privacy Quick Settings Menu
 * Quick Settings Tweaker
-* Light/Dark Theme Switcher
 
 Stuff that i find just OK:
 
+* Desktop Cube, get background [Panorama], not sure if it makes
+  Shift-super J to move window to next workspace not work (gotta test)
 * Dash to Panel
+* Caffeine (doesn't always work)
 * Coverflow Alt-Tab
 * Rounded Corners
+* Show External IP
+* Light/Dark Theme Switcher
 
 Open Gnome Tweaks:
 
