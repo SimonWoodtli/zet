@@ -15,7 +15,6 @@ Open Extension Manager and Install:
 * User Themes
 * Just Perfection
 * Auto Move Windows
-
 * Hide Panel Lite
 * Tray Icons: Reloaded
 * Allow Locked Remote Desktop
@@ -23,7 +22,7 @@ Open Extension Manager and Install:
 * Sound Input & Output Device Chooser
 * Vitals
 * Privacy Quick Settings Menu
-* Quick Settings Tweaker
+* Quick Settings Tweaker (wait for gnome 44 support)
 
 Stuff that i find just OK:
 
