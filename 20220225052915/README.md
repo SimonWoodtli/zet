@@ -13,7 +13,7 @@ emojis I still like the GUI option as well.
 
 1. Install the keyboard input:
 
-On Fedora I only installed ibus, on Debian I also had to install gir1.2
+Debian:
 
 ```bash
 sudo apt install ibus gir1.2-ibus-1.0
@@ -22,6 +22,8 @@ cd ibus-uniemoji
 sudo make install
 ibus restart
 ```
+
+Fedora: `sudo dnf install ibus ibus-uniemoji`
 
 2. Now you just have to add the keyboard input (other) called uniemoji
 
