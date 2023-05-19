@@ -19,7 +19,7 @@ Currently I use a second local repo that has more sensitive information or confi
 * Mindows: `choco install chezmoi`
 * Mac: `nix-env -i chezmoi`
 * Linux: 
-    * Nix: `nix-env -i chezmoi` 
+    * Nix: `nix profile install nixpkgs#chezmoi` 
     * Alpine: `apk add chezmoi`
     * Termux: `pkg install chezmoi`
 
@@ -63,15 +63,9 @@ File in sourceDir, change regular file into template: `chezmoi chattr +template 
 
 ## Setup any New Machine
 
-Not sure if `chezmoi init --apply SimonWoodtli` will use https git remote or ssh (need to test it)
-
-1. Install and init: `sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME`
-
-1. Install:
-1. Init: `chezmoi init --apply SimonWoodtli` 
-IMPORTANT: 1. need to test this again but with custom location I guess `chezmoi -S path init --apply SimonWoodtli` is needed. 2. I think this --apply GITUSERNAME thing is cloning repo with https, so its useless)
-
-
+1. install chezmoi
+1. git clone my dotfiles into ~/Repos/github.com/SimonWoodtli
+1. `chezmoi -S ~/Repos/github.com/SimonWoodtli/dotfiles init --apply`
 
 ## Test output of any given template:
 
