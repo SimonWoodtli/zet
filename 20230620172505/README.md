@@ -35,6 +35,12 @@ and might end in a bug/crash loop
     1. Theme & Color: Disable "Auto change dark/light color scheme" to activate darkmode
     1. Hit deploy again
 
+Related:
+
+* https://forum.f-droid.org/t/typing-chinese-with-trime/5961
+* https://hkdb.medium.com/rime-chinese-input-on-android-52fe73d0b7a6
+* https://github.com/Bambooin/rimerc
 
 Tags:
+
         #android #chinese #keyboard
