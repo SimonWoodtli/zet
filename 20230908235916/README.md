@@ -8,6 +8,9 @@ this as the UUID is different for each disk on each port.
 
 ## 1. Create Partition Table
 
+> 🧐 You can also use sgdisk or sfdisk to do the partitioning (which I
+prefer over TUIs like fdisk and gdisk)
+
 1. If USB-Stick: `parted /dev/sdXX -- mklabel mbr`
 1. If SSD/HDD: `parted /dev/sdXX -- mklabel gpt`
 
@@ -15,6 +18,7 @@ this as the UUID is different for each disk on each port.
 
 > 🧐 There are two examples shown one fore single partition and one with
 multi partition setup.
+
 
 1. single partition: `parted /dev/sdXX -- mkpart nameOfPartition ext4 0% 100%`
 1. multi partition0: `parted /dev/sdXX -- mkpart nameOfPartition0 fat32 1MiB 512MiB`
