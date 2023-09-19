@@ -11,19 +11,18 @@ this as the UUID is different for each disk on each port.
 > 🧐 You can also use sgdisk or sfdisk to do the partitioning (which I
 prefer over TUIs like fdisk and gdisk)
 
-1. If USB-Stick: `parted /dev/sdXX -- mklabel mbr`
-1. If SSD/HDD: `parted /dev/sdXX -- mklabel gpt`
+1. If USB-Stick: `parted -s /dev/sdXX -- mklabel msdos` (some distros it's mbr)
+1. If SSD/HDD: `parted -s /dev/sdXX -- mklabel gpt`
 
 ## 2. Create Partitions
 
 > 🧐 There are two examples shown one fore single partition and one with
 multi partition setup.
 
-
-1. single partition: `parted /dev/sdXX -- mkpart nameOfPartition ext4 0% 100%`
-1. multi partition0: `parted /dev/sdXX -- mkpart nameOfPartition0 fat32 1MiB 512MiB`
-1. multi partition1: `parted /dev/sdXX -- mkpart nameOfPartition1 ext4 512MiB 27%`
-1. multi partition2: `parted /dev/sdXX -- mkpart nameOfPartition2 ntfs 27% 100%`
+1. single partition: `parted -s /dev/sdXX -- mkpart primary ext4 0% 100%`
+1. multi partition0: `parted -s /dev/sdXX -- mkpart primary fat32 1MiB 512MiB`
+1. multi partition1: `parted -s /dev/sdXX -- mkpart logical ext4 512MiB 27%`
+1. multi partition2: `parted -s /dev/sdXX -- mkpart extended ntfs 27% 100%`
 
 ## 3. Create Filesystem for none LUKS partitions
 
