@@ -1,41 +1,6 @@
 # JAMstack with Hugo, Tailwind and TinaCMS
 
-## Nice to have
-
-giscus:  (Via script tag not via npm) alternative: https://cactus.chat/
-* try cactus first (via script tag)
-* https://gitlab.com/gabmus/hugo-ficurinia (cactus)
-* https://github.com/zhaohuabing/hugo-theme-cleanwhite
-* https://github.com/apvarun/blist-hugo-theme
-* https://github.com/marketplace/giscus
-
-* esbuild: (via npm) add esbuild only if I decide to add AlpineJS
-* low priority: PrismJS/HighlightJS for fancy syntax highlighting (inside theme folder)
-* super low prio: https://formspree.io/ form contact (if i want to build that)
-* ecommerce atom feed and snipcart implemented: https://github.com/CloudCannon/fur-hugo-template https://gethugothemes.com/hugo-ecommerce-themes
-* bash script to create entries: https://github.com/BravishkaSkytano/bravishkaskytano.github.io/blob/master/new
-
-## Must
-
-rss atom: + next/previous post links on each article from layouts/
-* https://github.com/LukeSmithxyz/lugo/blob/master/layouts/
-
-tailwind: (via npm)
-* https://github.com/zeon-studio/hugoplate
-* https://github.com/Ice-Hazymoon/hugo-theme-luna
-* https://github.com/jpanther/lynx
-* https://github.com/apvarun/digital-garden-hugo-theme
-* https://github.com/nusserstudios/tailbliss (+alpineJS)
-* https://github.com/jacksalici/salinger-theme
-* https://github.com/tailwindlabs/prettier-plugin-tailwindcss
-
-tina: (via npm)
-* https://tina.io/docs/frameworks/hugo/
-* https://github.com/tinacms/tina-hugo-starter
-* https://community.ops.io/aowendev/setting-up-a-website-with-github-hugo-netlify-and-tinacms-2hk9k
-* netlifyCMS: https://github.com/cathelijne/hugo-theme-huguette
-
-* font awesome: https://www.npmjs.com/package/@fortawesome/fontawesome-free
+* TODO: Create new project and go over these notes, it's a bit of a mess currently :)
 
 ## Install Dependencies
 
@@ -89,7 +54,7 @@ npm install -D browser-sync
 
 * <https://gohugo.io/getting-started/quick-start/>
 
-### Setup some basic hugo layout templates
+### Setup some basic Hugo layout templates
 
 > 🧐 Skip this chapter if you are using a theme. Except if you want to
 > overwrite some of the defaults from the theme.
@@ -219,8 +184,6 @@ hugo server -D
 * some advanced features explained: https://www.stackbit.com/blog/advanced-hugo-templates
 * Hugo related blog: https://www.regisphilibert.com/blog/
 
-
-
 ### Add and setup Tailwind
 
 > 🧐 I prefer using the prettier plugin to sort the class names automatically.
@@ -246,7 +209,7 @@ module.exports = {
 
 3. add content and layout to **tailwind.config.js**
 
-TODO checkout if `content: ["./layouts/**/*.{html,js}"],` is enough
+* TODO checkout if `content: ["./layouts/**/*.{html,js}"],` is enough
 
 ```
 /** @type {import('tailwindcss').Config} */
@@ -282,8 +245,8 @@ touch assets/css/{base.css,style.css}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
 ```
 
-\#TODO  check if this snippet works too  `<link rel="stylesheet" type="text/css" href="{{ "css/style.css" | relURL }}">`
-\#TODO play around with hugo built in minifier:
+* TODO  check if this snippet works too  `<link rel="stylesheet" type="text/css" href="{{ "css/style.css" | relURL }}">`
+* TODO play around with hugo built in minifier:
 
 ```
 {{ $style := resources.Get "/stylesheet.scss" | toCSS | minify }}
@@ -306,7 +269,7 @@ touch assets/css/{base.css,style.css}
 8. run watch and server in tmux split pane or bg
 9. test site
 
-TODO nxt:
+* TODO nxt:
 * test if prettier is already shuffling the classes, or add some steps on how to fix that
 
 
@@ -351,9 +314,23 @@ https://pagefind.app/docs/metadata/
 
 ## Add Cactus Comments
 
-## Add some JS 
+See cactus docs pretty straight forward.
 
-1. ...
+## Add some Vanilla JS
+
+> 🧐 You can also add the assets files in static/ folder instead. Then you don't need to create the Hugo vars with resources.Get func and can use them directly.
+
+```
+mkdir assets/js
+touch assets/js/main.js
+```
+
+In ***layouts/_default/baseof.html*** add:
+
+```
+{{ $js := resources.Get "js/main.js" }}
+<script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+```
 
 ## Random
 
@@ -367,4 +344,5 @@ custom script in packages.json: `npm run bundle`
 `hugo server --disableFastRender`
 
 [node]: <https://github.com/SimonWoodtli/dotfiles/blob/main/install/install-node>
+
 [s-darkmode]: <https://tailwindcss.com/docs/dark-mode>
