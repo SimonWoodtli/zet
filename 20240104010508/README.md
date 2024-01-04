@@ -1,11 +1,9 @@
 # Server Security: Add fail2ban
 
-In case you don't use best practice V1 or V2 and have an open port having
-fail2ban is useful to implement. Although it's main feature is making
-brute-force attacks more difficult, and we nullified this attack vector (ssh
-key pair auth only). It still helps because you will have fewer attempts on
-your server and that results in less logs which is always good. Plus fail2ban
-can also be used for web apps with authentication or nginx.
+Although it's main feature is making brute-force attacks more difficult, and we nullified this attack vector (ssh key pair auth only). It'll still help because you will have fewer login attempts on your server. And that results in less logs which is always good. Plus fail2ban can also be used for web apps with authentication or nginx.
+
+* In case you use best practice V1 and allow only white listed IPs to connect, you'd technically not need it but I'd still use it though.
+* In case you use best practice V2 and only allow local network connection from a VPN you won't need fail2ban, but it doesn't hurt either.
 
 ## fail2ban features
 
