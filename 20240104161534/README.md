@@ -19,8 +19,17 @@ Advantages:
 Disadvantages:
 * Complexity: While Docker simplifies many aspects of deployment, it can also
   add complexity, especially when managing inter-container communication and
-  shared resources (Whatever you do don't add multiple sites into a single
-  container :o )
+  shared resources 
+
+> 🧐 If you choose to use docker just don't add multiple sites into a single
+> container
+
+Related:
+
+* [20240104194645](/20240104194645/) Grok nginx
+* [20240104154437](/20240104154437/) Server Service: Add nginx
+* [20240104162118](/20240104162118/) Add https cert for nginx
+* [20240104161046](/20240104161046/) Fresh Server: First Steps
 
 Tags:
 
