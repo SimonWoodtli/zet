@@ -19,7 +19,7 @@ reserved for programs, their services do require root to run.
 > the firewall `ufw allow xx/tcp` and deny the default 22 port `ufw deny
 > 22/tcp`
 
-***Here is why***:  
+***Here is why***:
 Let's assume we configure ssh with port 2222 and let's assume that I am an
 attacker with initial access. I am aware of an exploit that shuts down the SSH
 daemon, causing a denial-of-service (DoS) situation. Since the port is a
@@ -38,6 +38,7 @@ other security measures like SSHFP.
 Best practice is to not have any open ports on your server (unless a service
 that you run requires that ofc). Then there are two ways how to actually
 establish a ssh connection from your client.
+
 1. V1: Only allow dedicated/very specific IPs to make connections to your server.
    (Firewall way)
 1. V2: Setup a Wireguard VPN on the server, allow only LAN connections on the
@@ -46,7 +47,8 @@ establish a ssh connection from your client.
 
 Both these methods eliminate the use of fail2ban since we created an almost
 ghost server (V1) or a ghost server (V2). In other words no more port scanning,
-brute forcing are happening since the server is not targetable.
+brute forcing are happening since the server is not targetable. However as a
+backup security measurement it still doesn't hurt to use it.
 
 1. Best practice V1: Use firewall to only allow ssh connections from specific
    IPs. (good if your client has a static public IP, otherwise annoying to keep
@@ -108,7 +110,10 @@ Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.
 Related:
 
 * <https://infosec.mozilla.org/guidelines/openssh>
-* TODO: add serverinit, server-config, firewall zet
+* [20240104161046](/20240104161046/) Fresh Server: First Steps
+* [20240104134254](/20240104134254/) Server Security and Setup: Make it cosy
+* [20240104124550](/20240104124550/) Server Security: Additional SSH Hardening
+* [20240104130222](/20240104130222/) Server Security: Config ufw Firewall
 
 Tags:
 
