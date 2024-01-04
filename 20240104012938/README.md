@@ -2,8 +2,8 @@
 
 ## Install Docker
 
-1. install docker
-2. add users who neeed docker to docker group: `usermod -aG docker xnasero`
+1. Install docker
+2. Add users who neeed docker to docker group: `usermod -aG docker xnasero`
 
 ## Secure Docker
 
@@ -30,7 +30,10 @@
 
 Related:
 
-* TODO: Add serverinit, ssh hardening zet, firewall, server config/setup
+* [20240104161046](/20240104161046/) Fresh Server: First Steps
+* [20240104134254](/20240104134254/) Server Security and Setup: Make it cosy
+* [20240104124550](/20240104124550/) Server Security: Additional SSH Hardening
+* [20240104130222](/20240104130222/) Server Security: Config ufw Firewall
 
 Tags:
 
