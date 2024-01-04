@@ -97,8 +97,8 @@ Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.
 1. Create your ssh key pair with yubikey for additional security
 1. Create your ssh key pair with a passphrase for additional security
 1. If it's a homelab LAN server consider setting up a static IP for your
-   server: `vi /etc/netplan/01-netcfg.yaml` and set `dhcp no` and the `address:
-   - xxx.xxx.xx.xx/24` (choose IP outside of DHCP scope) and apply it `netplan
+   server: `vi /etc/netplan/01-netcfg.yaml` and set `dhcp no` and the
+   `address: ...` (choose IP outside of DHCP scope) and apply it `netplan
    apply`. Then on your router make sure the IP is outside of the DHCP scope.
 1. TODO: research systemd port knocking
 
