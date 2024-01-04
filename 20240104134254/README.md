@@ -1,4 +1,4 @@
-## Server Security and Setup: Make it cosy
+# Server Security and Setup: Make it cosy
 
 > 🧐 Auto security patch updates are convenient. In many cases the benefits
 > outweight the disadvantages. However it's still better to only use that on
