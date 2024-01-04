@@ -1,4 +1,4 @@
-# Additional SSH Hardening
+# Server Security: Additional SSH Hardening
 
 > 🧐 restart systemd sshd service often to apply settings and check if they
 > work or error out.
