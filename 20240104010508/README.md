@@ -31,14 +31,14 @@ cp /etc/fail2ban/fail2ban.{conf,local}
 cp /etc/fail2ban/jail.{conf,local}
 ```
 
-2. edit fail2ban.local:
+2. Edit fail2ban.local:
 
 ```
 loglevel = INFO
 logtarget = /var/log/fail2ban.log
 ```
 
-3. edit jail.local:
+3. Edit jail.local:
 TODO: research sendmail to send status mails from fail2ban
 
 ```
@@ -61,7 +61,7 @@ backend = systemd
 ##TODO in the Jail list at bottom of file activate all the services that your server is running with `enabled = true`
 ```
 
-4. enable it `systemctl enable fail2ban --now`
+4. Enable service: `systemctl enable fail2ban --now`
 
 > 🧐 To check status of fail2ban: `fail2ban-client status`, and for a specific
 > service: `fail2ban-client status sshd` > Make sure jail is setup for all the
@@ -80,7 +80,10 @@ backend = systemd
 Related:
 
 * <https://www.linode.com/docs/guides/using-fail2ban-to-secure-your-server-a-tutorial/#how-to-install-fail2ban>
-* TODO: add link to zet serverinit and zet ssh hardening
+* [20240104161046](/20240104161046/) Fresh Server: First Steps
+* [20240104134254](/20240104134254/) Server Security and Setup: Make it cosy
+* [20240104124550](/20240104124550/) Server Security: Additional SSH Hardening
+* [20240104130222](/20240104130222/) Server Security: Config ufw Firewall
 
 Tags:
 
