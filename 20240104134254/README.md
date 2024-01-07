@@ -12,22 +12,43 @@
    `timedatectl set-timezone Etc/UTC` (not always a good idea)
 1. Install auto upgrades: `sudo apt install unattended-upgrades`
     1. Enable auto upgrades for security patches: `sudo dpkg-reconfigure --priority-low unattended-upgrades`
-    1. Check if enabled: `cat /etc/apt/apt.conf.d/20auto-upgrades`
+    1. Depending on OS you need to edit `vi /etc/apt/apt.conf.d/50unattended-upgrades`
+            1. On Ubuntu you are good
+            2. On Debian you need to uncomment the update and proposed updates in `Unattended-Upgrade::Allowed-Origins { ... }`
+    1. Check if enabled: `cat /etc/apt/apt.conf.d/20auto-upgrades` and `systemctl status unattended-upgrades.service`
     1. Dry run: `sudo unattended-upgrade --dry-run --debug`
-1. Install some goodies: `apt install git curl vim fzf tmux`
-1. Get dotfiles and apply them:
+1. Install some goodies: `apt install git curl vim fzf tmux jq`
+1. Clone dotfiles, install `asdf` and apply dotfiles with `chezmoi`:
 
 ```
 mkdir -p Repos/github.com/SimonWoodtli/
 git clone -C ~/Repos/github.com/SimonWoodtli https://github.com/SimonWoodtli/dotfiles.git
+~/Repos/github.com/SimonWoodtli/dotfiles/install/install-asdf
+source "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/completions/asdf.bash"
+asdf plugin add chezmoi
+asdf install chezmoi latest
+echo "chezmoi 2.43.0" > .tool-versions
 chezmoi -S ~/Repos/github.com/SimonWoodtli/dotfiles init --apply
 ```
 
-8. TODO: research - more steps?
-9. Reboot server
+8. Install golang:
+
+```
+asdf plugin add golang
+asdf install golang latest
+```
+
+9. add cronjob to auto pull dotfiles:
+
+```
+```
+
+8. Reboot server
 
 Related:
 
+* https://www.linuxcapable.com/how-to-configure-unattended-upgrades-on-ubuntu-linux/
 * [20240104161046](/20240104161046/) Fresh Server: First Steps
 * [20240104134254](/20240104134254/) Server Security and Setup: Make it cosy
 * [20240104124550](/20240104124550/) Server Security: Additional SSH Hardening
