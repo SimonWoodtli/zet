@@ -1,6 +1,5 @@
 # Fresh Server: First Steps
 
-* TODO: configure chezmoi to have some most important dotfiles copied to server
 * TODO: create an ansible `serverinit` playbook
 
 > 🧐 Don't add the SSH public key via your VPSs website. This would add the key
@@ -27,6 +26,7 @@
     1. Configure `ufw` Firewall: [20240104130222](/20240104130222/) Server Security: Config ufw Firewall
     1. More ssh hardening: [20240104124550](/20240104124550/) Server Security: Additional SSH Hardening
     1. Add fail2ban: [20240104010508](/20240104010508/) Server Security: Add fail2ban
+1. Add domain name: [20240107205508](/20240107205508/) Server Setup: Add domain name to your Server
 1. Add data backup system: This is different on each server and depends on the services and the data that you want to backup.
 1. Add update system: TODO ADD ZEt
 1. Add services
