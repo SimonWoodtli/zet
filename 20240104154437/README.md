@@ -9,9 +9,7 @@
 1. Login to your favourite VPS provider
 1. Login to your favourite domain name provider
 1. Spin up VPS
-1. Connect VPS IP with domainname
-
-TODO: add link to zet here on how to do this in detail
+1. Setup VPS IP with domainname: TODO add zet
 
 ### General Server Setup
 
@@ -37,7 +35,7 @@ server {
    listen 80;
    listen [::]:80;
 
-   root /var/www/simonwoodtli.com;
+   root /home/xnasero/www/simonwoodtli.com;
    index index.html;
 
    server_name simonwoodtli.com;
@@ -48,8 +46,10 @@ server {
 }
 ```
 
-2. Enable site: `symlink -s /etc/nginx/sites-available/simonwoodtli.com /etc/nginx/sites-enabled/simonwoodtli.com`
-2. Copy your site to server: `scp -r webdev/simonwoodtli.com/public webserver:/var/www/simonwoodtli.com`
+2. Enable site: `ln -s /etc/nginx/sites-available/simonwoodtli.com /etc/nginx/sites-enabled/`
+2. Copy your site to server: `scp -r webdev/simonwoodtli.com/public xnasero@VPS_IP:`
+      1. create dir `mkdir ~/www`
+      2. mv website `mv ~/public www/simonwoodtli.com`
 2. Check if all good: `nginx -t`
 2. Restart service: `systemctl restart nginx`
 
@@ -59,7 +59,9 @@ server {
 ## Next Steps
 
 1. Setup https: [20240104162118](/20240104162118/) Add https cert for nginx
-1. Secure nginx: add zet here
+1. Secure nginx: TODO add zet here
+1. Add a data server: [20240107222637](/20240107222637/) Server Service: Add a data server with nginx
+      1. Add password protection: [20240108005229](/20240108005229/) Server Service: Add password authentication to nginx site
 
 Related:
 
