@@ -22,8 +22,7 @@ server {
 
 ## Next Steps
 
-Add password authentication: TODO add zet
-
+Add password authentication: [20240108005229](/20240108005229/) Server Service: Add password authentication to nginx site
 
 Related:
 
