@@ -5,7 +5,9 @@
 FIXME: The current way I configured it works. But when pressing submit it seems to change to http, if that's true it's bad. Investigate this :o
 
 1. Either run `htpasswd -c /etc/nginx/.htpasswd yourUsername` or [generate a .htpasswd file][generate] online and add it manually: `vi /etc/nginx/.htpasswd`
-1. E.g with data subdomain site: `vi /etc/nginx/sites-available/data` add auth_basic lines to it:
+1. E.g with data subdomain site: `vi /etc/nginx/sites-available/data`
+
+>  ⚠️ Omit 'autoindex on;' if you don't use it for a data site.
 
 ```
 server {
