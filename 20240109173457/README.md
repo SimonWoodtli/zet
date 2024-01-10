@@ -6,6 +6,7 @@
    automatically and works. (Although the version is a bit outdated)
 1. open port `ufw allow 64738`
 1. Connect from your client and be happy :)
+1. TODO: add password protection to connect to server
 
 ## Don't do this currently WIP, and not working :)
 
