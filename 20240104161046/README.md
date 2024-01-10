@@ -52,10 +52,17 @@ Add and config the services/apps you want to run on your server.
 > forwards any client requests to them. For self hosted hobby projects nginx
 > proxy manager is great, otherwise look into web application firewalls.
 
-1. Add wireguard VPN: TODO add zettel
-1. Add tailscale VPN: TODO add zettel
-1. Add nginx: [20240104154437](/20240104154437/) Server Service: Add nginx
-1. Add Docker|Podman: [20240104012938](/20240104012938/) Server Service: Add and Secure Docker
+* Add Wireguard VPN: TODO add zettel
+* Add Tailscale VPN: TODO add zettel
+* [20240104154437](/20240104154437/) Server Service: Add nginx
+* [20240104012938](/20240104012938/) Server Service: Add and Secure Docker
+* [20240108132658](/20240108132658/) Server Service: Add email server
+* [20240108191653](/20240108191653/) Server Service: Add yt-local YT frontend
+* [20240109173457](/20240109173457/) Server Service: Add mumble server
+
+Related:
+
+* <https://landchad.net/>
 
 Tags:
 
