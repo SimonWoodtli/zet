@@ -61,7 +61,7 @@ server {
 1. Setup https: [20240104162118](/20240104162118/) Add https cert for nginx
 1. Secure nginx: TODO add zet here
 1. Add a data server: [20240107222637](/20240107222637/) Server Service: Add a data server with nginx
-      1. Add password protection: [20240108005229](/20240108005229/) Server Service: Add password authentication to nginx site
+1. Add password protection: [20240108005229](/20240108005229/) Server Service: Add password authentication to nginx site
 
 Related:
 
