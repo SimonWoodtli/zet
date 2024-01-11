@@ -11,6 +11,7 @@
 1. Start tmux
 1. 1st window - login: Update system (keep that connection going, in case something goes wrong)
 1. 2nd window - login: Configure stuff
+1. Change root pw set by VPS: `passwd root`
 1. Add new user group: `sudo groupadd xnasero` (non existent groups can't be added with `useradd` directly)
 1. Create regular user with sudo access (Fedora uses wheel, Debian uses sudo): `useradd -m -g xnasero -G users,sudo,adm -s /bin/bash -c admin-account xnasero && passwd xnasero`
 1. Check if wheel|sudo group is activated/exists on your OS or add it manually: `vsudo` look for `%wheel  ALL=(ALL)       ALL` to double check: `sudo -l -U xnasero`
