@@ -43,7 +43,12 @@ establish a ssh connection from your client.
    (Firewall way)
 1. V2: Setup a Wireguard VPN on the server, allow only LAN connections on the
    server. Which in practice means which the client needs to be connected to
-   the VPN tunnel in order to connect to the server.
+   the VPN tunnel in order to connect to the server. Downside it gets a bit
+   complicated to actually host any publicly available services, but if you
+   don't have any that's cool. Otherwise V3 is great.
+1. V3 (V1+V2): Create a Wireguard VPN on a separate, dedicated remote VPS with
+   openBSD. And allow all your web servers or servers you manage to only accept
+   SSH connection from that VPN/IP.
 
 Both these methods eliminate the use of fail2ban since we created an almost
 ghost server (V1) or a ghost server (V2). In other words no more port scanning,
