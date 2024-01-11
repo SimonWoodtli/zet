@@ -28,7 +28,7 @@ source "$HOME/.asdf/asdf.sh"
 source "$HOME/.asdf/completions/asdf.bash"
 asdf plugin add chezmoi
 asdf install chezmoi latest
-echo "chezmoi 2.43.0" > .tool-versions
+echo "chezmoi 2.43.0" > ~/.tool-versions
 chezmoi -S ~/Repos/github.com/SimonWoodtli/dotfiles init --apply
 ```
 
