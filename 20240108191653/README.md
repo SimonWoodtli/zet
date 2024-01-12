@@ -1,4 +1,4 @@
-# Server Service: Add yt-local YT frontend
+# Server Service: Add yt-local with nginx proxy and pw auth
 
 ## Install yt-local
 
