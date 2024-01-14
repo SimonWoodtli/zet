@@ -8,10 +8,10 @@ Benefits:
       settings.
 * No fiddling with any hostfiles as we just use a domain name provider to point
   to an internal IP
-* No need to deal with certbot for every site/service you run for SSL, we just
+* No need to deal with certbot for every site/service you run to get SSL, we just
   use let's encrypt DNS challenge (DNS-01)
 * No need to remember all the IPs and ports as we got a subdomain and domain
-  name with using a reverse proxy to point to your services
+  name using a reverse proxy to point to your services
 * Works even if you do not plan to host your services public but keep them on
   your LAN.
 
@@ -27,20 +27,17 @@ Benefits:
 1. Choose between Nginx Proxy Manager, Caddy or Traefik as your reverse proxy and your auto SSL renewal
 1. On your Router you might need to add an exception to 'DNS Rebinding Attack
    Protection' with the domain name you set so you can use public domain names
-   that point to a local IP.
+   that point to a local IP. Or disable the feature altogether.
 
 ### Nginx Proxy Manager
-
-FIXME: on dietpi after i setup my dotfiles I could no longer use the dietpi acc to `dietpi-software`. So I used root to install docker, but now means only root can run docker tried to add docker group to dietpi (didn't work). Redo the whole dietpi setup without my dotfiles. Then check if I cannot install software with `dietpi-software` this would be much better. I really don't wanna run docker as root.
 
 > 🧐 Try to keep `dietpi-software` apps as minimal as possible and run
 > everything via docker (easier to upgrade and manage containers)
 
-TODO: research if they have docker img and add them too : virtualHere syncthing homer dietpi-dashboard portainer
+1. Add config to ~/docker-compose.yml:
 
-1. Add config to ~/docker-compose.yml: (example)
-
-TODO: add this config to my Private/ git repo
+TODO: add more apps via docker-compose
+TODO: add this config to my Private/ git repo when I added all apps
 
 ```
 version: '2.2'
@@ -83,7 +80,7 @@ services:
     restart: unless-stopped
 ```
 
-1. run `docker compose up -d`
+2. run `docker compose up -d`
 
 #### Nginx Proxy Manager Setup
 
@@ -136,6 +133,8 @@ Add syncthing (not in docker-compose, but same machine)
 
 ### Caddy
 
+TODO: write this setup
+
 https://caddy.community/t/how-to-guide-caddy-v2-cloudflare-dns-01-via-docker/8007
 https://samjmck.com/en/blog/using-caddy-with-cloudflare/
 https://ssine.ink/en/posts/caddy-non-443-port-https/
@@ -143,11 +142,16 @@ https://caddyserver.com/features
 
 ### Traefik
 
-TODO: write this config
-https://yewtu.be/watch?v=liV3c9m_OX8
-
+TODO: write this setup
 
 Related:
 
 * <https://notthebe.ee/blog/easy-ssl-in-homelab-dns01/>
 * <https://docs.linuxserver.io/general/docker-compose/>
+* [20240104161046](/20240104161046/) Fresh Server: First Steps
+* [20240110232911](/20240110232911/) LAN Server Install: Setup and Install dietpi
+* [20240112144725](/20240112144725/) Why would you want to run your own DNS Server?
+
+Tags:
+
+      #linux #server #homelab #DNS #SSL #https #DNS-01 #traefik #caddy #nginxProxyManager
