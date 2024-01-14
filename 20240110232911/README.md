@@ -24,7 +24,7 @@ dirty backup dietpi is still great, it's just not very reusable out of the box.
 1. Select software to be installed: None! (keep a minimal install for root user)
 1. Reboot
 
-### Asdietpi user
+### As dietpi user
 
 > ⚠️ Don't use my dotfiles repo/config, for some reason after doing that using
 > `dietpi-...` commands stop working for dietpi user (I guess cause of bashrc)
@@ -45,12 +45,14 @@ virtualHere homer dietpi-dashboard vim git docker docker-compose portainer
 
 ## Next Steps: Give Services/Apps with web interfaces SSL certs and a custom subdomain name (and pw auth)
 
-* Add auto SSL certs and reverse proxy with public domain pointing to dietpis local IP: TODO add zet here
+Add auto SSL certs and reverse proxy with public domain pointing to dietpis local IP:
+* [20240113153426](/20240113153426/) Setup Service: DuckDNS with Auto SSL certs using reverse proxy and DNS validation for certs(DNS-01) for your homelab
 
 Password Authentication:
 
-* If LAN: Add password authentication using caddy or nginx proxy manager. TODO add zet here
-* If exposed public: Only add services that have 2FA integrated or add OAuth yourself together with 2FA via Authelia. TODO add zet here
+If LAN: Add password authentication using caddy or nginx proxy manager:
+
+If exposed public: Only add services that have 2FA integrated or add OAuth yourself together with 2FA via Authelia. TODO add zet here
       1. To actually expose them use Cloudflare Tunnel or tunnel.pyjam.as: TODO add zet here
 
 > 🧐 If you don't share any services with other people it's probably safer and
@@ -114,6 +116,8 @@ Related:
 * <https://account.dyn.com/>
 * <https://dietpi.com/docs/getting_started/>
 * <https://dietpi.com/docs/software/>
+* [20240112144725](/20240112144725/) Why would you want to run your own DNS Server?
+* [20240113153426](/20240113153426/) Setup Service: DuckDNS with Auto SSL certs using reverse proxy and DNS validation for certs(DNS-01) for your homelab
 * TODO add zet how to setup cloudflare tunnel
 
 Note about cloudflare tunnel or similiar methods:
