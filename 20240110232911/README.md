@@ -2,74 +2,59 @@
 
 Currently I host some of my favourite LAN services and apps on a dietpi rpi4.
 It's simple to get it up and running in no time without a lot of manual
-intervention.
+intervention. And it is minimal so not too many resources get wasted.
 
-* TODO: On my next install check if dietpi user can be directly used after flash and use that user instead if possible.
-
-## First steps
+However normally I'd prefer Ubuntu server VMs on a proxmox host for a homelab.
+But I need some time to get that going again on my server. And for a quick and
+dirty backup dietpi is still great, it's just not very reusable out of the box.
+ 
+## First steps: Install dietpi
 
 > 🧐 Consider using remote.it as a service for SBCs of friends and family in
 > case you need to have easy remote ssh access to them without setting up a
-> VPN.
+> VPN. Another great way is to use CloudFlare Tunnel or an open source [alternative].
+
+### As root user
 
 1. Download dietpi and use rpi imager or balena etcher to flash it.
 1. Start it up and on your dev machine look for ip: `nmap -sn yourDevIP/24` or just `ping dietpi`
-1. Login with `root@dietpi` and pw `dietpi`
+1. Login with `shh root@dietpi` and pw `dietpi` (let system update)
 1. Go through installer
-      1. Set Static IP outside of DHCP scope of router. On your router reserve that IP for dietpi.
       1. Change ssh to openSSH
-      1. Change Timezone
-1. Select software to be installed:
-    1. `virtualHere syncthing homer dietpi-dashboard wireguard nginx certbot vim git`
-1. From your dev machine: `ssh-copy-id -i ~/.ssh/yourkey.pub dietpi@dietpi`
-1. Login with `ssh dietpi@dietpi`
-1. Setup my dotfiles: [20240104134254](/20240104134254/) Server Security and Setup: Make it cosy
-1. Setup sudo without pw prompt: `%sudo ALL=(ALL) NOPASSWD:ALL`
+1. Select software to be installed: None! (keep a minimal install for root user)
 1. Reboot
 
-> 📝 When I create a custom router either use `bind9` on the router.
-> Or with OpenWRT you may directly overwrite the hosts you want. And some
-> routers have an interface to write custom host entries.
+### Asdietpi user
 
+> ⚠️ Don't use my dotfiles repo/config, for some reason after doing that using
+> `dietpi-...` commands stop working for dietpi user (I guess cause of bashrc)
 
-# Why would you want to run your own DNS Server?
+1. Login with `ssh dietpi@dietpi`
+1. Install software with `sudo dietpi-software` select:
 
-Now for privacy reasons and for convenience it makes sense to run your own DNS
-server. One software that allows you to do so is `bind9`. There are different
-ways to approach this:
+```
+virtualHere homer dietpi-dashboard vim git docker docker-compose portainer
+```
 
-1. On a custom router
-    1. With OpenWRT or pdfSense you can do DNS host overwrites directly (this will give you local subdomains for your LAN server, but not more privacy)
-    1. If you run other software on top of your router. You might want to add `bind9` or another DNS server on it. This will give you privacy whilst using the internet at home or connected to it via VPN tunnel.
-1. On a local LAN sever with `bind9`: Like mentioned before you get privacy and custom domains for your LAN as long as you are connected to your network.
-1. On a VPS sever with `bind9`: Now you loose a little privacy and it might be a bit slower than a DNS on your LAN. But you can use it on any network conveniently.
+3. From your dev machine: `ssh-copy-id -i ~/.ssh/yourkey.pub dietpi@dietpi`
+3. Setup sudo without pw prompt: `%sudo ALL=(ALL) NOPASSWD:ALL`
+3. `sudo dietpi-config`
+   1. Performance Options: overclock arm high profile
+   1. Language/Regional Options: Change Timezone
+3. Reboot
 
+## Next Steps: Give Services/Apps with web interfaces SSL certs and a custom subdomain name (and pw auth)
 
-## Privacy explained - Why should I care?
+* Add auto SSL certs and reverse proxy with public domain pointing to dietpis local IP: TODO add zet here
 
-## Convenience explained - Custom domain names why do I need that?
+Password Authentication:
 
-In short if you are running a local homelab and have some webapps and services
-that have a web interface. You might want to access those sites more
-conveniently.
+* If LAN: Add password authentication using caddy or nginx proxy manager. TODO add zet here
+* If exposed public: Only add services that have 2FA integrated or add OAuth yourself together with 2FA via Authelia. TODO add zet here
+      1. To actually expose them use Cloudflare Tunnel or tunnel.pyjam.as: TODO add zet here
 
-In long:
-
-Running your own DNS server allows you to add any custom domain names and
-subdomains that you want to assign to any of your homelab servers. In other
-words your webapps/services can now be accessed with e.g `https://sync.home`
-instead of `http://192.168.0.5:8384`.  However for this to work you also need a
-proxy site since these services don't run on port 80|443.
-
-Why do we need both DNS and proxy? Because the domain name can only point to an
-IP address. Since those webapps and services run on their own port we need a
-proxy site too. That requires apache or nginx. At this point you can also
-easily add certbot and pw authentication.
-
-But not only homlab server would benefit from this also any remote server you
-want to give a domain name would at least for you personally be reachable
-without typing any pesky IPs or ports.
-
+> 🧐 If you don't share any services with other people it's probably safer and
+> more convenient to not make anything public but instead use a VPN tunnel.
 
 ## Setup Wireguard
 
@@ -78,57 +63,49 @@ without typing any pesky IPs or ports.
 > dynamic public IP it's best to have a cronjob on a machine at your LAN. Which
 > runs a script to check the if the public IP has changed and if so send a
 > notification. It'd be great to automatically update the A record of your
-> domainname to point to the new IP, need to research if that is possible.
-> An easier way would be to use no-ip or dynDNS dynamic DNS service.
+> domainname to point to the new IP. Which can be done with most domain name
+> providers like namecheap with their API. Checkout [`ddclient`][ddclient]
+> Alternatively you could use a dynamic DNS service like no-ip or dynDNS (not
+> my cup of tea).
 
-1. Check if you are stuck behind CGNAT: `tracepath $(myip)` (turn your VPN off first). More than one hop means you are.
-    1. If you are lucky and don't have CGNAT: During initial setup process enter your public IP.
-    1. Also for convenience you might want to add your public IP to your domain registrar account, or use free duckDNS.
-    1. If you have CGNAT: You need to setup A wireguard on a VPS (because of the stable IP) and use that as an entry point to than hop on to your home network.
+1. Install wireguard via `dietpi-software`
+1. Check if you are stuck behind CGNAT: `tracepath $(myip)` (turn your VPN off
+   first). More than one hop means you are.
+    1. If you are lucky and don't have CGNAT: During initial setup process
+       enter your public IP.
+    1. Also for convenience you might want to add your public IP to your domain
+       registrar account, or use free duckDNS.
+    1. If you have CGNAT: You need to setup A wireguard on a VPS (because of
+       the stable IP) and use that as an entry point to than hop on to your
+       home network.
 
-TODO: Finish this when I have time for it because I do have CGNAT :(
+TODO: Finish this when I have time for it, because I currently am stuck behind CGNAT :(
 
-## Setup syncthing
+If you are stuck behind CGNAT an easy alternative is to setup tailscale, headscale, netbird: TODO add zet here
 
+## Test Services and configure them
 
 1. Test if syncthing is up: `systemctl status syncthing`. In browser go to http://dietpi:8384
-1. Add 'sync.dietpi' as a subdomain using bind9:
-1. Add syncthing as a nginx proxy with nginx password authentication: TODO add zet-links to both zets
-1. Add SSL cert with for https: `certbot --nginx`
+1. Test if your DuckDNS with the syncthing subdomain is working 'sync.myduckdns.duckdns.org' it should also have a SSL cert so https is up.
+1. Configure syncthing and backup their config files somewhere so you don't have to keep doing this.
 
-* <https://stackoverflow.com/questions/45967872/how-to-setup-local-domain-in-local-network-that-everyone-can-see>
+Now do the same for all the other services: homer, dietpi-dashboard, virtualHere (does that even have webUI?),
 
-## Setup Homer
+* TODO add zet: config sync zet here
+* TODO add zet: config homer zet here
+* TODO add zet: config virtualHere zet here
+* TODO add zet: config dietpi-dashboard zet here
 
-TODO: finish
+```
+http://dietpi/homer/
+https://dietpi.com/docs/software/system_stats/#homer
+http://dietpi:5252/
+https://dietpi.com/docs/software/system_stats/#dietpi-dashboard
+https://dietpi.com/docs/software/remote_desktop/#virtualhere
+```
 
-1. Add SSL cert with for https: `certbot --nginx`
-* <http://dietpi/homer/>
-* <https://dietpi.com/docs/software/system_stats/#homer>
-
-## Setup Dietpi-Dashboard
-
-TODO: finish
-
-1. Add SSL cert with for https: `certbot --nginx`
-* <http://dietpi:5252/>
-* <https://dietpi.com/docs/software/system_stats/#dietpi-dashboard>
-
-## Setup virtualHere
-
-* <https://dietpi.com/docs/software/remote_desktop/#virtualhere>
-
-
-* TODO: Add wireguard VPN or tailscale VPN setup
-
-## Setup nginx
-
-I use nginx for pw authentication of web interfaces and adding SSL certs with certbot.
-TEST: Using an ngnix proxy should allow me to create a subdomain instead of using those pesky ports.
-
-
-
-
+[ddclient]:<https://github.com/ddclient/ddclient >
+[alternative]: <https://github.com/anderspitman/awesome-tunneling>
 
 Related:
 
@@ -137,3 +114,12 @@ Related:
 * <https://account.dyn.com/>
 * <https://dietpi.com/docs/getting_started/>
 * <https://dietpi.com/docs/software/>
+* TODO add zet how to setup cloudflare tunnel
+
+Note about cloudflare tunnel or similiar methods:
+```
+FYI, tunnels will not work if your power goes out or you restart your server.
+You'll need to create a proper docker yml to restart always. Also, since
+everyone has access to the domain names, you can restrict access in Cloudflare
+with application policies which is highly recommended.
+```
