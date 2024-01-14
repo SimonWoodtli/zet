@@ -54,7 +54,8 @@ services to /etc/hosts of each of your machines. I tried this, but this method
 is not working. Because you can only point the hostname of a given machine to
 an alias hostname. But you cannot set any wildcards and hence no custom
 subdomains can be used. The next best and simple solution seems to be dnsmasq.
-So it would look like this:
+
+So in /etc/hosts it would look like this:
 
 ```
 192.168.0.5 hostnameOnMyPI aliasdomain
@@ -62,21 +63,35 @@ So it would look like this:
 
 ## My personal favorite methods
 
-The question you should ask yourself do I want to expose those services to the
-public internet or keep them on my LAN?
-
 > 📝 It's complicated and all methods have their ups and downs. A public custom DNS
 has an easy DDOS attack vector and you also trust a cloud provider with your
 data.
 
-Don't run a custom DNS service like `bind9`. Instead use either:
+The question you should ask yourself do I want to expose those services to the
+public internet or keep them on my LAN? My main take away is don't run a custom
+DNS service like `bind9`. But at least learn how to do it for fun.
 
-1. If on LAN: Setup dnsmasq on your dietpi or router. It's easier than to learn bind9 and setting up a custom DNS.
-      1. Close Seconds: Use encrypted DNS with stubby or DNS crypt.
-      1. Research: is nginx proxy rly not able to deal with those subdomains
-         without any of this hazzle if just for LAN usage?
+If on LAN or later public:  
+Use a free domain name registrar like DuckDNS and point it to a local IP. This
+allows you to set a wildcard for subdomains.
+
+Another benefit of doing this, is that you can add SSL certs for all your local
+services without using certbot and having to worry that they might expire.
+Whether you choose to make them public or not using nginx proxy manager, caddy
+or your reverse proxy of choice.
+
+* [20240113153426](/20240113153426/) Setup Service: DuckDNS with Auto SSL certs using reverse proxy and DNS validation for certs(DNS-01) for your homelab
+
+Sidenote: My guess is that if I were to setup dnsmasq and have all the
+subdomains setup that way, the auto SSL cert method would also be possible.
+
+### Alternative methods I feel like are fine too
+
+1. If on LAN: Setup dnsmasq on your dietpi or router. It's easier than to learn
+   bind9 and setting up a custom DNS.
+      1. TODO research more: Using encrypted DNS with stubby or DNS crypt.
 1. If exposed public: Use tunneling methods like CloudFlare Tunnel or open
-   source alternatives. Checkout this [repo] for some projects. They work no
+   source alternatives. [Checkout this repo][repo] for some projects. They work no
    matter what your ISP situation, even if behind CGNAT and don't require port
    forwarding on your router.
 
@@ -87,8 +102,18 @@ Related:
 * <https://privacytools.io/providers/dns/>
 * <https://cloudflare.com/ssl/encrypted-sni/>
 * <https://stackoverflow.com/questions/20446930/how-to-put-wildcard-entry-into-etc-hosts>
+* <https://stackoverflow.com/questions/45967872/how-to-setup-local-domain-in-local-network-that-everyone-can-see>
 * <https://github.com/anderspitman/awesome-tunneling>
-* TODO add zet how to setup dnsmasq
-* TODO add zet how to setup CloudFlare tunnel
-   * TODO add zet with one or two open source tunneling CLIs
+* [20240113153426](/20240113153426/) Setup Service: DuckDNS with Auto SSL certs using reverse proxy and DNS validation for certs(DNS-01) for your homelab
+* TODO add zet how to setup CloudFlare tunnel to expose LAN services publicly
+* TODO add zet how to setup tunnel.pyjam.as to expose LAN services publicly
+
+* TODO add zet how to setup dnsmasq, research: if auto SSL certs would work with nginx proxy manager
 * TOdo add zet how to configure router with DNS host overwrites
+* TODO add zet how to setup bind9 on LAN and on VPS
+* [20240104161046](/20240104161046/) Fresh Server: First Steps
+* [20240110232911](/20240110232911/) LAN Server Install: Setup and Install dietpi
+
+Tags:
+
+      #linux #server #homelab #LAN #DNS #SSL #router #networking #important
