@@ -8,18 +8,15 @@
 > Better safe than sorry :O
 
 Now you can totally use rsync to sync files between computers. And I often do,
-but some files need to be synced to my phone too. And whilst you can connect to
-it with Termux. It actually requires some manual steps and I haven't found a way
-to automate that process. For use cases like that syncthing is great.
+but some files need to be synced to my phone too. But syncthing makes things
+just so much simpler.
 
+## Homelab Dietpi or Ubuntu Server:
 
-## Install and Setup LAN only sync:
+* [20240110232911](/20240110232911/) LAN Server Install: Setup and Install dietpi
+* [20240113153426](/20240113153426/) Setup Service: DuckDNS with Auto SSL certs using reverse proxy and DNS validation for certs(DNS-01) for your homelab
 
-I personally prefer to use syncthing only on my LAN.
-
-### Debian Server
-
-TODO: Test this out and adjust notes after that
+## VPS Debian Server
 
 1. Install it: `apt install syncthing`
 1. Open ports: `ufw allow 22000; ufw allow 21027/UDP; ufw allow 8384; ufw allow 22010/tcp; ufw allow 22011/tcp; ufw allow 22012/tcp`
@@ -30,26 +27,14 @@ TODO: Test this out and adjust notes after that
 1. Add nginx password protection to the site
 1. Enable certbot https for the proxy site: `certbot --nginx`
 
-Next up:
-* Configure syncthing form web interface
+## Next up: Config Syncthing from web UI
 
-### RPI4
-
-TODO: write an ansible playbook to automate all the services/apps I use on pi4.
-
-1. Install headless DietPi
-2. 
-
-
-## Install and Setup remote Server:
-
-Basically the same as with a local Debian install. But if you use docker
-remember don't use `ufw` with it.
-
-## Configure syncthing from web interface:
+TODO add zet how to config here (make it LAN only sync if you don't use syncthing on a VPS)
 
 Related:
 
 * <https://docs.syncthing.net/users/firewall.html>
 * <https://wiki.archlinux.org/title/Syncthing>
 * <https://docs.syncthing.net/users/autostart.html#linux>
+* [20240112144725](/20240112144725/) Why would you want to run your own DNS Server?
+* [20240104161046](/20240104161046/) Fresh Server: First Steps
