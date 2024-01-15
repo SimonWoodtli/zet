@@ -33,7 +33,7 @@ dirty backup dietpi is still great, it's just not very reusable out of the box.
 1. Install software with `sudo dietpi-software` select:
 
 ```
-virtualHere dietpi-dashboard vim git docker docker-compose portainer (wireguard)
+dietpi-dashboard vim git docker docker-compose portainer (wireguard)
 ```
 
 3. From your dev machine: `ssh-copy-id -i ~/.ssh/yourkey.pub dietpi@dietpi`
@@ -42,6 +42,12 @@ virtualHere dietpi-dashboard vim git docker docker-compose portainer (wireguard)
    1. Performance Options: overclock arm high profile
    1. Language/Regional Options: Change Timezone
 3. Reboot
+
+> 📝 virtualHere client CLI only works with paid version (and not sure if I
+> want that). But the whole project gives a weird outdated feeling. ./CLI -t
+> "HELP" what's this? Modern CLI: ./CLI help, or at least unix way ./CLI
+> --help|-h
+> Alternative: https://wiki.archlinux.org/title/USB/IP
 
 ## Next Steps: Give Services/Apps with web interfaces SSL certs and a custom subdomain name (and pw auth)
 
@@ -99,11 +105,10 @@ If you are stuck behind CGNAT an easy alternative is to setup tailscale, headsca
 1. Test if your DuckDNS with the syncthing subdomain is working 'sync.myduckdns.duckdns.org' it should also have a SSL cert so https is up.
 1. Configure syncthing and backup their config files somewhere so you don't have to keep doing this.
 
-Now do the same for all the other services: homer, dietpi-dashboard, virtualHere (does that even have webUI?),
+Now do the same for all the other services: homer, dietpi-dashboard,
 
 * TODO add zet: config sync zet here
 * TODO add zet: config homer zet here
-* TODO add zet: config virtualHere zet here
 * TODO add zet: config dietpi-dashboard zet here
 
 ```
@@ -111,7 +116,6 @@ http://dietpi/homer/
 https://dietpi.com/docs/software/system_stats/#homer
 http://dietpi:5252/
 https://dietpi.com/docs/software/system_stats/#dietpi-dashboard
-https://dietpi.com/docs/software/remote_desktop/#virtualhere
 ```
 
 [ddclient]:<https://github.com/ddclient/ddclient >
