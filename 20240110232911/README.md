@@ -33,7 +33,7 @@ dirty backup dietpi is still great, it's just not very reusable out of the box.
 1. Install software with `sudo dietpi-software` select:
 
 ```
-virtualHere homer dietpi-dashboard vim git docker docker-compose portainer
+virtualHere dietpi-dashboard vim git docker docker-compose portainer (wireguard)
 ```
 
 3. From your dev machine: `ssh-copy-id -i ~/.ssh/yourkey.pub dietpi@dietpi`
@@ -57,6 +57,14 @@ If exposed public: Only add services that have 2FA integrated or add OAuth yours
 
 > 🧐 If you don't share any services with other people it's probably safer and
 > more convenient to not make anything public but instead use a VPN tunnel.
+
+## Setup Portainer
+
+Not sure yet if I should install portainer within the docker-compose file or
+with `dietpi-software`. Currently runs with the latter.
+
+* <https://codeopolis.com/posts/beginners-guide-to-portainer/>
+* <https://earthly.dev/blog/portainer-for-docker-container-management/>
 
 ## Setup Wireguard
 
