@@ -60,6 +60,8 @@ Add and config the services/apps you want to run on your server.
 * [20240108132658](/20240108132658/) Server Service: Add email server
 * [20240108191653](/20240108191653/) Server Service: Add yt-local YT frontend
 * [20240109173457](/20240109173457/) Server Service: Add mumble server
+* [20240107222637](/20240107222637/) Server Service: Add a data server with nginx
+* [20240110174327](/20240110174327/) Server Service: Add syncthing
 
 Related:
 
