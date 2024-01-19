@@ -14,10 +14,14 @@ dirty backup dietpi is still great, it's just not very reusable out of the box.
 > case you need to have easy remote ssh access to them without setting up a
 > VPN. Another great way is to use CloudFlare Tunnel or an open source [alternative].
 
-### As root user
-
 1. Download dietpi and use rpi imager or balena etcher to flash it.
 1. Start it up and on your dev machine look for ip: `nmap -sn yourDevIP/24` or just `ping dietpi`
+1. On your router: Give it a static local IP outside of the DHCP scope
+      1. You could also give it a static local IP on your dietpi:
+1. Reboot your dietpi and see if the IP changed `ping dietpi`
+
+### As root user
+
 1. Login with `shh root@dietpi` and pw `dietpi` (let system update)
 1. Go through installer
       1. Change ssh to openSSH
@@ -33,7 +37,7 @@ dirty backup dietpi is still great, it's just not very reusable out of the box.
 1. Install software with `sudo dietpi-software` select:
 
 ```
-dietpi-dashboard vim git docker docker-compose portainer (wireguard)
+dietpi-dashboard docker docker-compose (wireguard)
 ```
 
 3. From your dev machine: `ssh-copy-id -i ~/.ssh/yourkey.pub dietpi@dietpi`
@@ -41,13 +45,19 @@ dietpi-dashboard vim git docker docker-compose portainer (wireguard)
 3. `sudo dietpi-config`
    1. Performance Options: overclock arm high profile
    1. Language/Regional Options: Change Timezone
+3. Install stuff: `sudo apt install vim git `
 3. Reboot
 
-> 📝 virtualHere client CLI only works with paid version (and not sure if I
-> want that). But the whole project gives a weird outdated feeling. ./CLI -t
-> "HELP" what's this? Modern CLI: ./CLI help, or at least unix way ./CLI
-> --help|-h
-> Alternative: https://wiki.archlinux.org/title/USB/IP
+## Setup USB Sharing over Network
+
+There are two ways to get this going virtualHere or usbip. I prefer usbip.
+
+Barebone usbip is a bit cumbersome. To get this going I wrote some scripts,
+setup and systemctl services.
+
+Follow instructions:
+
+* [20240115164134](/20240115164134/) LAN Server Service: Setup USB Sharing over Network
 
 ## Next Steps: Give Services/Apps with web interfaces SSL certs and a custom subdomain name (and pw auth)
 
@@ -58,23 +68,18 @@ Password Authentication:
 
 If LAN: Add password authentication using caddy or nginx proxy manager:
 
-If exposed public: Only add services that have 2FA integrated or add OAuth yourself together with 2FA via Authelia. TODO add zet here
+If exposed public: Only add services that have 2FA integrated or add implement OAuth or use Authelia for 2FA . TODO add zet here
       1. To actually expose them use Cloudflare Tunnel or tunnel.pyjam.as: TODO add zet here
 
 > 🧐 If you don't share any services with other people it's probably safer and
-> more convenient to not make anything public but instead use a VPN tunnel.
-
-## Setup Portainer
-
-Not sure yet if I should install portainer within the docker-compose file or
-with `dietpi-software`. Currently runs with the latter.
-
-* <https://codeopolis.com/posts/beginners-guide-to-portainer/>
-* <https://earthly.dev/blog/portainer-for-docker-container-management/>
+> more convenient to not make anything public but instead use a VPN tunnel. On
+> a VPS you can also run all your docker apps on 127.0.0.1:8080:8080 and whilst
+> you'd publish the port to the host it be LAN only and you'd need to have a
+> VPN tunnel to access these apps.
 
 ## Setup Wireguard
 
-> 🧐 If you don't have a static IP, which is probably the case your public IP
+> 🧐 If you don't have a static public IP, which is probably the case your public IP
 > will change every once in a while (6 months or so). And if you do have a
 > dynamic public IP it's best to have a cronjob on a machine at your LAN. Which
 > runs a script to check the if the public IP has changed and if so send a
@@ -101,15 +106,29 @@ If you are stuck behind CGNAT an easy alternative is to setup tailscale, headsca
 
 ## Test Services and configure them
 
-1. Test if syncthing is up: `systemctl status syncthing`. In browser go to http://dietpi:8384
+> 📝 Almost all the services I use start as docker apps from a docker-compose file.
+
+1. Test if syncthing is up: In browser go to http://local-IP-dietpi:8384
 1. Test if your DuckDNS with the syncthing subdomain is working 'sync.myduckdns.duckdns.org' it should also have a SSL cert so https is up.
 1. Configure syncthing and backup their config files somewhere so you don't have to keep doing this.
 
-Now do the same for all the other services: homer, dietpi-dashboard,
+Now do the same for all the other services: homer, dietpi-dashboard etc.
 
-* TODO add zet: config sync zet here
-* TODO add zet: config homer zet here
+* TODO add zet: config dashy zet here
+* TODO add zet: config nextcloud zet here
+* TODO add zet: config jellyfin zet here
+* TODO add zet: config portainer zet here
+* TODO add zet: config syncthing zet here
 * TODO add zet: config dietpi-dashboard zet here
+
+* (TODO add zet: config thelounge here, or go with Matrix as it can bridge to IRC too)
+* TODO add zet: config deluge zet here
+* TODO add zet: config radarr zet here
+* TODO add zet: config sonarr zet here
+* TODO add zet: config OpenBooks zet here
+* TODO add zet: config photoprism zet here
+* TODO add zet: config jackett zet here
+* TODO add zet: config pihole zet here
 
 ```
 http://dietpi/homer/
