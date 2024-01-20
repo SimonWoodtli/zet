@@ -114,6 +114,7 @@ If you are stuck behind CGNAT an easy alternative is to setup tailscale, headsca
 
 Now do the same for all the other services: homer, dietpi-dashboard etc.
 
+* [20240108191653](/20240108191653/) Server Service: Add yt-local with nginx proxy and pw auth
 * TODO add zet: config dashy zet here
 * TODO add zet: config nextcloud zet here
 * TODO add zet: config jellyfin zet here
