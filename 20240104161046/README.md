@@ -11,20 +11,43 @@
 1. Start tmux
 1. 1st window - login: Update system (keep that connection going, in case something goes wrong)
 1. 2nd window - login: Configure stuff
-1. Change root pw set by VPS: `passwd root`
-1. Add new user group: `sudo groupadd xnasero` (non existent groups can't be added with `useradd` directly)
-1. Create regular user with sudo access (Fedora uses wheel, Debian uses sudo): `useradd -m -g xnasero -G users,sudo,adm -s /bin/bash -c admin-account xnasero && passwd xnasero`
-1. Check if wheel|sudo group is activated/exists on your OS or add it manually: `vsudo` look for `%wheel  ALL=(ALL)       ALL` to double check: `sudo -l -U xnasero`
-1. Disable ssh root login: `vi /etc/ssh/sshd_config` look for `PermitRootLogin yes` change to `no`
-1. If you don't have an ssh key pair generate one on your local machine. Then we copy the public key to the server: `ssh-copy-id -i path/to/certificate xnasero@remote_host`
+1. Disable root bash history:
+
+```
+echo "HISTFILESIZE=0" >> ~/.bashrc
+history -c; history -w
+source ~/.bashrc
+```
+
+5. Change root pw set by VPS: `passwd root`
+    1. To get a decent safe password: `openssl rand -base64 24` or use your password managers generator.
+5. Add new user group: `sudo groupadd xnasero` (non existent groups can't be added with `useradd` directly)
+5. Create regular user with sudo access (Fedora uses wheel, Debian uses sudo): `useradd -m -g xnasero -G users,sudo,adm -s /bin/bash -c admin-account xnasero`
+    1. Change pw: `passwd xnasero`
+    1. Turn off bash history for this user too: (Check earlier step for root)
+5. Check if wheel|sudo group is activated/exists on your OS or add it manually: `vsudo` look for `%wheel  ALL=(ALL)       ALL` to double check: `sudo -l -U xnasero`
+5. Disable ssh root login: `vi /etc/ssh/sshd_config` look for `PermitRootLogin yes` change to `no`
+5. If you don't have an ssh key pair generate one on your local machine. Then we copy the public key to the server: `ssh-copy-id -i path/to/certificate xnasero@remote_host`
     1. Open new tmux window and try to connect with username and see if it works (no pw prompt, logged in as xnasero)
-1. Disable ssh password login: `vi /etc/ssh/sshd_config` add `AuthenticationMethods publickey` (Mozilla recommends this config)
-1. Disable root login altogether: `sudo passwd -l root`
+5. Disable ssh password login: `vi /etc/ssh/sshd_config` add `AuthenticationMethods publickey` (Mozilla recommends this config)
+5. Disable root login altogether: `sudo passwd -l root` (still possible via `sudo su - root`)
+5. Disable IPV6: Only do this if your VPS has IPV4 only and does not support IPV6
+
+```
+cp /etc/sysctl.conf /etc/sysctl.conf.backup
+cat << "EOF" >> /etc/sysctl.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+EOF
+sysctl -p
+```
 
 ## Next Steps
 
 1. Config server: [20240104134254](/20240104134254/) Server Security and Setup: Make it cosy
-    1. Configure `ufw` Firewall: [20240104130222](/20240104130222/) Server Security: Config ufw Firewall
+    1. (I prefer) Configure `nftables` Firewall: TODO add zet
+    1. (If not using nftables) Configure `ufw` Firewall: [20240104130222](/20240104130222/) Server Security: Config ufw Firewall
     1. More ssh hardening: [20240104124550](/20240104124550/) Server Security: Additional SSH Hardening
     1. Add fail2ban: [20240104010508](/20240104010508/) Server Security: Add fail2ban
 1. Add domain name: [20240107205508](/20240107205508/) Server Setup: Add domain name to your Server
