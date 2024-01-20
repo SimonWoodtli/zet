@@ -9,27 +9,71 @@
 1. Source env: `source env/bin/activate`
 1. Install pip dependencies: `pip install -r requirements.txt`
 1. Check if it works: `python server.py` (Ctrl-C, if all good)
+      1. If you host it on a VPS you can just proxy it to port 80/443 which
+         should already be open if you host a site. However if you host in your homelab you need
+         to open port 9010 so other machines on your LAN can access it.
 1. Exit virt env: `deactivate`
 
 ## Setup yt-local
 
 ### Create a systemd service to auto start the flask server:
 
+> 🧐 A systemd service in /etc/systemd/system/\*.service does not startup at
+> boot up. If you do want your service to always start up when you reboot use
+> /lib/systemd/system/\*.service location
+
 1. Copy any systemd service file: `cp /etc/systemd/system/smartd.service /etc/systemd/system/yt-local.service`
     1. Edit it: `vi /etc/systemd/system/yt-local.service`
-1. Load newly created service: `systemctl daemon-reload`
-1. Enable it: `systemctl enable yt-local.service --now`
-1. Check it: `sytemctl status yt-local.service`
 
-### Create nginx proxy for the app:
+FIXME: fix this service file make it work, and make it so it actually starts when booting up
 
-1. Create proxy site: `vi /etc/nginx/sites-available/tv`
+```
+[Unit]
+Description=yt-local - YouTube Frontend
+Documentation=https://git.sr.ht/~heckyel/yt-local/
+After=network.target
+
+[Service]
+ExecStart=/home/xnasero/Prod/yt-local/env/bin/python /home/xnasero/Prod/yt-local/server.py
+ExecReload=/home/xnasero/Prod/yt-local/env/bin/python /home/xnasero/Prod/yt-local/server.py
+```
+
+3. Load newly created service: `systemctl daemon-reload`
+2. Enable it: `systemctl enable yt-local.service --now`
+2. Check it: `sytemctl status yt-local.service`
+
+### If your webserver/proxy server is running inside a container
+
+Using this app with nginx proxy manager(NPM): The Problem
+
+The yt-local flask app starts by default on the 127.0.0.1:9010 loopback
+interface. And it's meant to run on the host machine directly. However NPM runs
+as a docker container and whilst it's capable to deal with virtual networks
+internally (inside docker) to separate each stack into a different network. NPM
+cannot access an app that runs on the host if it's on 127.0.0.1. That's because
+for NPM 127.0.0.1 is the loopback interface inside docker. This is also true
+for any other webserver that runs inside a container.
+
+The solution:  
+Make yt-local run on 0.0.0.0 which means any machine on LAN can access it. And
+NPM can also redirect it because NPM can redirect any app running in the LAN
+when you point it to their local IP given by the router. So you'd just use
+192.168.1.44 (or whatever your machines IP is that runs yt-local) for your
+proxy host.
+
+1. Edit the yt-local settings.txt file: `vi ~/.yt-local/settings.txt` 
+1. change to faulty booleans to true 'allow_foreign_addresses = True' and 'allow_foreign_post_request = True'
+1. Now if you start the server `python server.py` it should start it on 0.0.0.0:9010
+
+### If you run nginx directly on the host: Create nginx proxy for the app
+
+1. Create proxy site: `vi /etc/nginx/sites-available/yt`
 
 ```
 server {
         listen 80 ;
         listen [::]:80 ;
-        server_name tv.simonwoodtli.com ;
+        server_name yt.simonwoodtli.com ;
         root /var/www/mysite ;
         index index.html ;
         location / {
@@ -40,7 +84,7 @@ server {
 
 2. Enable proxy site: `ln -s /etc/nginx/sites-available/tv /etc/nginx/sites-enabled/`
 2. Restart nginx: `systemctl restart nginx`
-2. Check if it works in browser: `tv.simonwoodtli.com`
+2. Check if it works in browser: `yt.simonwoodtli.com`
 2. Add https cert: `certbot --nginx` and select tv site number
 
 ## Next Steps
