@@ -1,4 +1,4 @@
-# Server Service: Add password authentication to nginx site
+# Server Security: Add password/http authentication to nginx site
 
 > 🧐 First time using `htpasswd` you need the -c flag. If you add more users you may ommit it.
 
