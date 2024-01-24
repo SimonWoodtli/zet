@@ -35,6 +35,8 @@ machine).
 
 * change the hostname (see docker install)
 * change the volumes same (see docker install)
+* unlike docker podman doesn't ship with a daemon so you'll have to add a
+  systemd service (see Syncthing configuration and caveats)
 
 ### Install via package manager (Debian/VPS)
 
