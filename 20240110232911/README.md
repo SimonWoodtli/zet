@@ -115,11 +115,12 @@ If you are stuck behind CGNAT an easy alternative is to setup tailscale, headsca
 Now do the same for all the other services: homer, dietpi-dashboard etc.
 
 * [20240108191653](/20240108191653/) Server Service: Add yt-local with nginx proxy and pw auth
-* TODO add zet: config dashy zet here
+* [20240110174327](/20240110174327/) Server Service: Add syncthing
+
+* TODO add zet: config homepage zet here
 * TODO add zet: config nextcloud zet here
 * TODO add zet: config jellyfin zet here
 * TODO add zet: config portainer zet here
-* TODO add zet: config syncthing zet here
 * TODO add zet: config dietpi-dashboard zet here
 
 * (TODO add zet: config thelounge here, or go with Matrix as it can bridge to IRC too)
