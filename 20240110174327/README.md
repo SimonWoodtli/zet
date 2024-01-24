@@ -29,7 +29,7 @@ just so much simpler.
 
 ## Next up: Config Syncthing from web UI
 
-TODO add zet how to config here (make it LAN only sync if you don't use syncthing on a VPS)
+* [20240124232458](/20240124232458/) Syncthing configuration and caveats
 
 Related:
 
@@ -38,3 +38,7 @@ Related:
 * <https://docs.syncthing.net/users/autostart.html#linux>
 * [20240112144725](/20240112144725/) Why would you want to run your own DNS Server?
 * [20240104161046](/20240104161046/) Fresh Server: First Steps
+
+Tags:
+
+    #linux #server #syncing #files #rsync #service
