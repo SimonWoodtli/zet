@@ -17,7 +17,7 @@
 Locations:
 
 * ~/.config/systemd/YourUsername: This dir contains the user unit files (if you
-  enable the service they get symlinked to '~/.config/systemd/user'
+  enable the service they get symlinked to `~/.config/systemd/user`
 * ~/.config/systemd/user: Managed by systemd, any unit in here means they are
   already enabled (if you disable them they get deleted here)
 
