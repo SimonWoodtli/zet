@@ -157,7 +157,7 @@ pushing that corrupted data to your backup system.
 
 Related:
 
-* TODO add systemd system vs user service zet
+* [20240125154231](/20240125154231/) Linux System units/service VS. User units/service
 * [20240104161046](/20240104161046/) Fresh Server: First Steps
 * [20240110174327](/20240110174327/) Server Service: Add syncthing
 
