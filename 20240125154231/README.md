@@ -11,7 +11,11 @@
 
 ## User service
 
+> 🧐 Many services you might consider to run don't require root so run them as
+> user services.
+
 Locations:
+
 * ~/.config/systemd/YourUsername: This dir contains the user unit files (if you
   enable the service they get symlinked to '~/.config/systemd/user'
 * ~/.config/systemd/user: Managed by systemd, any unit in here means they are
@@ -26,9 +30,14 @@ privileges but a user flag e.g. `systemctl --user enable foo.service --now`
 
 ## System service
 
+> 🧐 Don't make changes to service files that are managed via package manager.
+> Because they just get overwritten on the next update. Instead add them to
+> /etc/systemd/system because this location has priority over the others.
+
 > 📝 In most cases for individually created unit files add them to /etc/systemd/system
 
 Locations:
+
 * /etc/systemd/system/: This dir contains custom/individual (user-defined) unit files (they overwrite any other unit files in the other location)
 * /usr/lib/systemd/system/: This dir contains service files installed by packages
 * /lib/systemd/system/: This dir contains vendor-supplied unit files
