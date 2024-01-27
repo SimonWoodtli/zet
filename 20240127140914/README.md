@@ -8,10 +8,12 @@ willing to give it a try. I had enough grief with this issue in the past, time
 to try something new 👍
 
 I know this is a bit of a hack, but hey you do you. Also as a compromise there
-is the `libc6-compat` package. Which I will also have a look at after this experiment.
+is the `libc6-compat` package. Which I will also have a look at after this
+experiment. Also I only really use this on my workstation container to work in.
+I would rather not use this on a production container of any sorts.
 
 1. Check ldd: `ldd --version`
-1. Install it
+1. Install it: (adjust GLIBC_VER var)
 
 ```
 GLIBC_VER="2.35-r1"
@@ -26,6 +28,12 @@ apk add glibc-bin-2.35-r1.apk glibc-i18n-2.35-r1.apk
 
 3. Update Path: `export PATH=/usr/glibc-compat/bin:$PATH`
 3. Check ldd: `ldd --version`
+
+Related:
+
+* <https://wiki.alpinelinux.org/wiki/Running_glibc_programs>
+* <https://github.com/sgerrand/alpine-pkg-glibc>
+* <https://ariadne.space/2021/08/26/there-is-no-such-thing-as-a-glibc-based-alpine-image/>
 
 Tags:
 
