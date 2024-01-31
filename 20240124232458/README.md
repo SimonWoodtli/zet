@@ -1,4 +1,4 @@
-# Syncthing configuration and caveats
+# Setup Service: Syncthing configurations and caveats
 
 > ⚠️  There is no server client model with syncthing. Each place you install
 > syncthing is both server and client.
