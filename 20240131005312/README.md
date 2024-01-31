@@ -56,7 +56,7 @@ DNS:
 * You could do that with a ping or TCP port check but just because the DNS
   server is up and running doesn't mean that it resolves the query and response
   to it. So any misconfiguration of bind9 would still mean DNS server runs but
-  resovle fails.
+  resolve fails.
 * Resolver Server: Your internal DNS server IP
 * Port: 53
 * Record Type: Use any record type usually just A record is enough. Because if
@@ -100,10 +100,10 @@ accessible.
 
 Related:
 
-TODO add 'Server service: add kuma'
+* [20240131005549](/20240131005549/) Add Service: Uptime Kuma
 * [20240104161046](/20240104161046/) Fresh Server: First Steps
 * [20240110232911](/20240110232911/) LAN Server Install: Setup and Install dietpi
 
 Tags:
 
-    #linux #server #monitoring #dashboard #uptime #networking
+    #linux #server #monitoring #dashboard #uptime #networking
