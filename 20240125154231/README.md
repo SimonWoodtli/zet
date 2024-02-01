@@ -1,4 +1,4 @@
-# Linux System units/service VS. User units/service
+# Systemd System units/service VS. User units/service
 
 > 📝 To make it easier I still refer to system units as a service. Although
 > system services and system units are not the same systemd uses units (to be
@@ -20,6 +20,9 @@ Locations:
   enable the service they get symlinked to `~/.config/systemd/user`
 * ~/.config/systemd/user: Managed by systemd, any unit in here means they are
   already enabled (if you disable them they get deleted here)
+* By default user services only run if a user session is registered that means
+  after a reboot a regular users user service won't start (If you'd like that
+  enable lingering, see ArchWiki)
 
 In order to handle `systemctl` with user services you don't need root
 privileges but a user flag e.g. `systemctl --user enable foo.service --now`
@@ -49,6 +52,7 @@ e.g. `sudo systemctl enable foo.service --now`
 Related:
 
 * <https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files>
+* <https://wiki.archlinux.org/title/systemd/User>
 
 Tags:
 
