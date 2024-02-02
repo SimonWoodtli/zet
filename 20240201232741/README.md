@@ -59,8 +59,8 @@ Related:
 * <https://github.com/anderspitman/awesome-tunneling>
 * <https://serverfault.com/questions/896784/ssh-remote-port-forwarding-gatewayports-yes-which-machine-to-specify-on>
 * <https://qbee.io/misc/reverse-ssh-tunneling-the-ultimate-guide/>
+* [20240202132409](/20240202132409/) Publish a Homelab service to the internet with SSH and reverse proxy via VPS
 * TODO add wireguard zet
 * TODO add tailscale zet
 * TODO add cloudflare tunnel zet
-* TODO add reverse SSH zet
 * TODO add port forwarding zet
