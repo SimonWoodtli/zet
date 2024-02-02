@@ -151,6 +151,7 @@ Related:
 * <https://dietpi.com/docs/software/>
 * [20240112144725](/20240112144725/) Why would you want to run your own DNS Server?
 * [20240113153426](/20240113153426/) Setup Service: DuckDNS with Auto SSL certs using reverse proxy and DNS validation for certs(DNS-01) for your homelab
+* [20240201232741](/20240201232741/) Common methods to expose local Homelab services to the public
 * TODO add zet how to setup cloudflare tunnel
 
 Note about cloudflare tunnel or similiar methods:
