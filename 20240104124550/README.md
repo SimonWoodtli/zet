@@ -119,6 +119,7 @@ Related:
 * [20240104134254](/20240104134254/) Server Security and Setup: Make it cosy
 * [20240104124550](/20240104124550/) Server Security: Additional SSH Hardening
 * [20240104130222](/20240104130222/) Server Security: Config ufw Firewall
+* [20240201232741](/20240201232741/) Common methods to expose local Homelab services to the public
 
 Tags:
 
