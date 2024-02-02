@@ -27,6 +27,7 @@ source ~/.bashrc
     1. Turn off bash history for this user too: (Check earlier step for root)
 5. Check if wheel|sudo group is activated/exists on your OS or add it manually: `vsudo` look for `%wheel  ALL=(ALL)       ALL` to double check: `sudo -l -U xnasero`
 5. Disable ssh root login: `vi /etc/ssh/sshd_config` look for `PermitRootLogin yes` change to `no`
+    1. Only allow created user to login: `AllowUsers xnasero`
 5. If you don't have an ssh key pair generate one on your local machine. Then we copy the public key to the server: `ssh-copy-id -i path/to/certificate xnasero@remote_host`
     1. Open new tmux window and try to connect with username and see if it works (no pw prompt, logged in as xnasero)
 5. Disable ssh password login: `vi /etc/ssh/sshd_config` add `AuthenticationMethods publickey` (Mozilla recommends this config)
