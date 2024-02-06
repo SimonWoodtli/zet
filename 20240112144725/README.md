@@ -90,6 +90,7 @@ subdomains setup that way, the auto SSL cert method would also be possible.
 1. If on LAN: Setup dnsmasq on your dietpi or router. It's easier than to learn
    bind9 and setting up a custom DNS.
       1. TODO research more: Using encrypted DNS with stubby or DNS crypt.
+      1. Easy-mode: Use a pihole not to adblock but just for an easy selfhosted DNS (bit bloated but it works)
 1. If exposed public: Use tunneling methods like CloudFlare Tunnel or open
    source alternatives. [Checkout this repo][repo] for some projects. They work no
    matter what your ISP situation, even if behind CGNAT and don't require port
