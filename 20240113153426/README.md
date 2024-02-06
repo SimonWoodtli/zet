@@ -29,15 +29,21 @@ Benefits:
    Protection' with the domain name you set so you can use public domain names
    that point to a local IP. Or disable the feature altogether.
 
-### Nginx Proxy Manager
+### Nginx Proxy Manager NPM
 
 > 🧐 Try to keep `dietpi-software` apps as minimal as possible and run
 > everything via docker (easier to upgrade and manage containers)
 
-1. Add config to ~/docker-compose.yml:
+If you have some permission errors, you might need to add dietpi to the docker group:
 
-TODO: add more apps via docker-compose
-TODO: add this config to my Private/ git repo when I added all apps
+```
+sudo usermod -aG docker `whoami`
+```
+
+1. `mkdir ~/docker`
+1. Add config to ~/docker/docker-compose.yml: (sample)
+
+> 📝 My whole config is in ~/Private/homelab/
 
 ```
 version: '2.2'
@@ -80,7 +86,7 @@ services:
     restart: unless-stopped
 ```
 
-2. run `docker compose up -d`
+3. run `docker compose up -d`
 
 #### Nginx Proxy Manager Setup
 
@@ -101,8 +107,11 @@ services:
 
 > 🧐 When you add a proxy site: If a service ships with https e.g. nextcloud,
 > use Scheme: https
-> 🧐 When you add a proxy site: If a service has websockets, cache assets or
-> block common exploit as a feature you can enable those settings too.
+> 🧐 When you add a proxy site: If a service has websockets as a feature you
+> can ENABLE this too.
+> 🧐 Enabling 'cache assets' doesn't really do much (IMO)
+> ⚠️ If you decide to expose a service to the public internet ENABLE 'Block
+> Common Exploits'!
 
 Add nginxproxymanager as the root domain:
 
@@ -130,6 +139,13 @@ Add syncthing (not in docker-compose, but same machine)
 1. Forward Hostname / IP: LOCAL-IP-OF-MACHINE (If syncthing was running on another device you'd use that IP)
 1. Forward Port: 8384
 1. Go to SSL tab and enable: Force SSL and HTTP/2
+
+Next up:
+
+Go through all the apps/services that you are hosting either from your
+docker-compose files but also things that run on the dietpi directly or even on
+another machine. E.g want your router to have an SSL cert? Go add it as a proxy
+too :)
 
 ### Caddy
 
