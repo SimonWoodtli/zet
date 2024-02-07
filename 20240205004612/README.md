@@ -105,10 +105,16 @@ TODO: Use that (A) subkey on your yubikey for SSH authentication: add zet
 
 Related:
 
+* [20240206175119](/20240206175119/) Sign, Encrypt and Decrypt Files with PGP/GPG
 * <https://tails.net/>
 * <https://musigma.blog/2021/05/09/gpg-ssh-ed25519.html>
 * <https://onerng.info/>
-* [20240206175119](/20240206175119/) Sign, Encrypt and Decrypt Files with PGP/GPG
+* <https://www.hacksanity.com/kb/gnupg-create-manage-keys/>
+* <https://gock.net/blog/2020/gpg-cheat-sheet>
+* <https://wiki.debian.org/Subkeys>
+* <https://wiki.debian.org/OfflineMasterKey>
+* <https://wiki.debian.org/GnuPG/AirgappedMasterKey>
+* <https://en.wikipedia.org/wiki/Web_of_trust>
 
 Tags:
 
