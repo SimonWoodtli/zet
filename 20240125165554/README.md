@@ -19,7 +19,7 @@ git commit -m "initial commit"
 2. Add a git remote: (If you don't have a domain just do 'git@ipOfYourVPS'
 
 ```
-git remote add mygit git@simonwoodtli.com:Repos/foo.git`
+git remote add mygit git@simonwoodtli.com:foo.git`
 ```
 
 3. Push it: `git push mygit main` (you need to setup git server first to actually push this)
@@ -41,12 +41,12 @@ sudo chown -R git:git .ssh
 ```
 
 1. On your local machine login as git: `ssh git@IPofVPS`
-1. Create dir: `mkdir -p ~/Repos/foo.git && cd ~/Repos/foo.git`
-1. Create a barebone repo: `git init --bare` (PROBLEM: creates 'master' as default branch how to switch to 'main' first?)-> git config i know :)
+1. Make main master branch: `git config --global init.defaultBranch main`
+1. Create a barebone repo: `git init --bare foo.git`
 
 Now you should be able to `git push` on your local machine. Congrats 🎉
 
-Check if you received the push: `cd ~/Repos/foo.git && git log`
+Check if you received the push: `cd ~/foo.git && git log`
 
 ## 3. Setup Frontend: cgit
 
@@ -68,7 +68,7 @@ root-desc=A web interface to my git repositories, powered by Cgit
 readme=main:README.md
 
 # The location where git repos are stored on the server: Has to be last
-scan-path=/home/git/Repos
+scan-path=/home/git/
 # You can also list each repo separatly and add more options for each repo
 ```
 
@@ -90,8 +90,8 @@ server {
         fastcgi_param       SCRIPT_FILENAME     /usr/lib/git-core/git-http-backend;
         fastcgi_param       PATH_INFO           $uri;
         fastcgi_param       GIT_HTTP_EXPORT_ALL 1;
-        fastcgi_param       GIT_PROJECT_ROOT    /home/git/Repos;
-        fastcgi_param       HOME                /home/git/Repos;
+        fastcgi_param       GIT_PROJECT_ROOT    /home/git/;
+        fastcgi_param       HOME                /home/git/;
         fastcgi_pass        unix:/run/fcgiwrap.socket;
     }
 

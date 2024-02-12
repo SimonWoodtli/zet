@@ -71,11 +71,11 @@ gpg --quick-add-key $KEYFP ed25519 auth 3y
       * This stays on your encrypted USB Stick never export it anywhere else!
 11. Create a revoke certificate (in case your masterkey gets compromized): `gpg --gen-revoke me@simonwoodtli.com > ~/my_keys/revoke.asc`
       * This stays on your encrypted USB Stick never export it anywhere else!
+11. Export all three subkeys(private): `gpg --armor --export-secret-subkeys me@simonwoodtli.com > ~/my_keys/sub.key`
+      * This stays on your encrypted USB Stick never export it anywhere else!
 11. Export your public key: `gpg --armor --export me@simonwoodtli.com ~/my_keys/public.key`
       * Plugin your SD Card, format it and copy the public.key to the SD Card
       * Tried to use `qr` and image to text features both can't render such a long key
-11. Export all three subkeys(private): `gpg --armor --export-secret-subkeys me@simonwoodtli.com > ~/my_keys/sub.key`
-      * This stays on your encrypted USB Stick never export it anywhere else!
 11. Copy all your fingerprints into a file: `gpg --fingerprint --fingerprint me@simonwoodtli.com > ~/my_keys/fingerprints.txt`
       * Copy the fingerprints.txt to the SD Card
 11. Move my_keys dir: `mv ~/my_keys ~/.gnupg`
@@ -83,6 +83,7 @@ gpg --quick-add-key $KEYFP ed25519 auth 3y
 11. Plugin a brand new USB stick and create a luks encrypted device. Then copy
    that tarball in there, unmount an reinsert the stick to test the passphrase
    on it.
+11. Test the tarball: `rm ~/.gnupg/` and copy the tarball from the USB stick to ~. Then extract it and see if `gpg --list-secret-keys` works and if all files are there. (my_keys/ is important)
 11. Unplug Both SD Card and USB stick
 11. Plugin your SD Card into your daily driver and save both public.key and
     fingerprints.txt in your password manager. Also copy them on your local
