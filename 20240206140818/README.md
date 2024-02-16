@@ -8,6 +8,7 @@
 ## Setup
 
 1. Import your public key into your GPG keyring on the machine you want to setup pass: `gpg --import public.key`
+1. Give your public key ultimate trust: `gpg --edit-key me@simonwoodtli.com` then `trust`
 1. Plugin your Yubikey which has the PGP private keys stored in it
 1. Check if GPG agent can talk to Yubikey: `gpg --card-status`
 1. Copy the fingerprint of you primary/masterkey into your clipboard: `gpg --list-keys`
@@ -15,7 +16,7 @@
 
 Related:
 
-* TODO add fzf script wrapper URL here, (to make a custom way to handle passwords)
+* <https://raw.githubusercontent.com/SimonWoodtli/dotfiles/main/scripts/pw>
 * <https://devhints.io/pass>
 * <https://github.com/tadfisher/pass-otp>
 
