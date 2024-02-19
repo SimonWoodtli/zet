@@ -17,25 +17,21 @@ next boot up).
 
 Anacron Systemd Timer Comparison: (5 main differences)
 
-* Anacron runs by default as root and with bourne shell (sh). It can be be setup for users but is a bit annoying.
-* Can be setup as system-wide root timer units and user time units. It can run any script you want sh,bash,python.
-
-* Easy setup: If you are fine with a sh script and a root running process it's very simple to add an anacron job (just put script it into /etc/cron.weekly)
-* Setting up systemd timers is more involved it requires three files: service unit files that defines script to be triggered, the script, timer unit file to trigger the service.
-
-* Anacron runs on any UNIX system
-* Systemd Timers run only if the systemd init system is present
-
-* Anacron is a subcmd/system of cron and runs via the crond.service daemon. So logging gets a bit messy.
+1.1 Anacron runs by default as root and with bourne shell (sh). It can be be setup for users but is a bit annoying.
+1.2 Can be setup as system-wide root timer units and user time units. It can run any script you want sh,bash,python.
+1.1 Easy setup: If you are fine with a sh script and a root running process it's very simple to add an anacron job (just put script it into /etc/cron.weekly)
+1.2 Setting up systemd timers is more involved it requires three files: service unit files that defines script to be triggered, the script, timer unit file to trigger the service.
+1.1 Anacron runs on any UNIX system
+1.2 Systemd Timers run only if the systemd init system is present
+1.1 Anacron is a subcmd/system of cron and runs via the crond.service daemon. So logging gets a bit messy.
     * `journalctl | grep CRON`
-* Systemd Timers can be monitored/logged easily:
+1.2 Systemd Timers can be monitored/logged easily:
     * Job status: `systemctl status your-timer` or all: `systemctl --type=timer status`
     * Timer status: `systemctl list-timers`
     * `journalctl | grep *.timer`
     * Can be monitored with `Icinga`
-
-* Anacron/Cron are less likely to work on multiple machines without modifying them because of paths etc.
-* Systemd Timers have a consistent run time env. in case you use it on multiple machines
+1.1 Anacron/Cron are less likely to work on multiple machines without modifying them because of paths etc.
+1.2 Systemd Timers have a consistent run time env. in case you use it on multiple machines
 
 Conclusion:
 
