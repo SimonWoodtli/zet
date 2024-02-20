@@ -67,6 +67,7 @@ Related:
 
 * <https://docs.fedoraproject.org/en-US/fedora/latest/system-administrators-guide/monitoring-and-automation/Automating_System_Tasks/>
 * <https://www.neteye-blog.com/2022/12/start-using-systemd-timers-instead-of-cron-anacron/>
+* <https://wiki.archlinux.org/title/Systemd/Timers>
 
 Tags:
 
