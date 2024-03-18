@@ -7,6 +7,8 @@ The app that actually runs inside your image can be either something simple like
 * command: `docker run -it --name dockerAppFoo dockerImage:latest`
 * run image as root and share hostdir from host with container (mounted on /mnt/volume): `docker run -u root -v $PWD/hostdir:/mnt/volume -it dockerImage/latest`
 
+> 🧐 useful flag: `--rm` removes the container once it finished running `docker run --rm ...`
+
 Tags:
 
-    #linux #docker #sysadmin #cloud #devops #cloudNative  
+    #linux #docker #sysadmin #cloud #devops #cloudNative
