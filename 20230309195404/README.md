@@ -32,3 +32,7 @@ Related:
 * <https://virt-manager.org/>
 * <https://www.spice-space.org/download.html>
 * <https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/?C=M;O=D>
+* <https://discussion.fedoraproject.org/t/virtual-machine-manager-bridged-network-why-so-complicated-to-achiev/38979>
+* <https://www.redhat.com/sysadmin/setup-network-bridge-VM>
+* <https://wiki.archlinux.org/title/Libvirt>
+* <https://www.ibm.com/docs/en/linux-on-systems?topic=choices-kvm-default-nat-based-networking>
