@@ -47,6 +47,8 @@ When you configure a client system for LDAP authentication, the following files 
 Related:
 
 * [20240321165126](/20240321165126/) 🖼️ LDAP
+* https://www.turnkeylinux.org/openldap
+* https://www.turnkeylinux.org/docs/builds
 
 Tags:
 
