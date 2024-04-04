@@ -47,6 +47,10 @@ a manner of seconds.
 Every other major Linux distribution has now adopted systemd and configured it
 as the default. Even Ubuntu phased out Upstart in its favor.
 
+Related:
+
+* [20240404180508](/20240404180508/) systemd features
+
 Tags:
 
     #linux #sysadmin #systemd #init #boot #LFS207
