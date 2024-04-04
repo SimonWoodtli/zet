@@ -16,6 +16,11 @@ when they terminate.
 
 ## History: SysVinit
 
+> 📝 Migration to systemd was non-trivial and bugs and missing features could
+> be very disabling, so essential compatibility layers were adopted and still
+> exist for legacy software. Thus, SysVinit utility compatibility wrappers
+> still persist.
+
 Traditionally, nearly all distributions based the init process on UNIX's
 venerable SysVinit' software. However, this scheme was developed decades ago
 under rather different circumstances:
@@ -32,6 +37,15 @@ processing that could be done on multiple processors or cores.
 Secondly, shutdown/reboot was seen as a relatively rare event, and exactly how
 long it took was not considered important; today Linux systems usually boot in
 a manner of seconds.
+
+## History: Upstart
+
+* Developed by Ubuntu and first included in 2006
+* Adopted in Fedora 9 (in 2008) and in RHEL 6 and its clones
+* Was also used in various embedded and mobile devices
+
+Every other major Linux distribution has now adopted systemd and configured it
+as the default. Even Ubuntu phased out Upstart in its favor.
 
 Tags:
 
