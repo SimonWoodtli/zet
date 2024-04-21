@@ -37,7 +37,7 @@ dirty backup dietpi is still great, it's just not very reusable out of the box.
 1. Install software with `sudo dietpi-software` select:
 
 ```
-dietpi-dashboard docker docker-compose (wireguard)
+docker docker-compose unbound openssh avahi-daemon git vim (wireguard)
 ```
 
 3. From your dev machine: `ssh-copy-id -i ~/.ssh/yourkey.pub dietpi@dietpi`
