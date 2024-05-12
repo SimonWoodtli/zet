@@ -64,6 +64,12 @@ backup security measurement it still doesn't hurt to use it.
 
 ## Additional /etc/ssh/sshd_config settings:
 
+Disable password authentication:
+
+```
+PasswordAuthentication no
+```
+
 These settings can be found on [Mozillas infosec site][infosec].
 
 ```
