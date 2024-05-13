@@ -17,6 +17,14 @@
     * [20240104010508](/20240104010508/) Server Security: Add fail2ban
     * [20240104130222](/20240104130222/) Server Security: Config ufw Firewall
 
+## Install fail2ban
+
+1. install: `sudo apt install fail2ban`
+1. `cd /etc/fail2ban`
+1. enable jail: `cp jail.conf jail.local`
+1. set bantime to '1000m' and max-retry to '3' `sudo vi jail.local`
+1. reload systemd fail2ban service and restart it
+
 ## Install Simple Login
 
 1. login: `ssh sl@VPS_IP`
@@ -28,8 +36,10 @@
 
 ```
 sudo ufw allow 25
+sudo ufw allow ssh
 sudo ufw allow http
 sudo ufw allow https
+sudo ufw enable
 ```
 
 4. Install pkg: `apt install dnsutils`
@@ -76,10 +86,10 @@ TXT-record:
 ```
 dig @1.1.1.1 sl.foo.dedyin.io a
 dig @1.1.1.1 foo.dedyin.io mx
-dig @1.1.1.1 foo.dedyin.io mx
 nslookup -type=TXT dkim._domainkey.foo.dedyn.io
 nslookup -type=TXT foo.dedyn.io
 nslookup -type=TXT _dmarc.foo.dedyn.io
+#dig @1.1.1.1 _dmarc.foo.dedyn.io txt
 ```
 
 10. Install rootless docker:
@@ -112,7 +122,7 @@ sudo docker run -d --name sl-db -e POSTGRES_PASSWORD=mUqIN9KveJeetgRu5USbyPAcXoh
 
 ```
 # POSTFIX config file, adapted for SimpleLogin
-smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
+smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
 biff = no
 
 # appending .domain is the MUA's job.
@@ -130,10 +140,11 @@ compatibility_level = 2
 # TLS parameters
 smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
 smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_tls_security_level = may
 smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
+
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 smtp_tls_security_level = may
-smtpd_tls_security_level = may
 
 # See /usr/share/doc/postfix/TLS_README.gz in the postfix-doc package for
 # information on enabling SSL in the smtp client.
@@ -186,7 +197,7 @@ smtpd_recipient_restrictions =
 # postgres config
 hosts = localhost
 user = admin
-password = mUqIN9KveJeetgRu5USbyPAcXoh0U35D/pdseD+leKtR
+password = /0g+iQdLoP8B9k80/Meq93UOkP5QSsOFsdQnt1LJsL7v
 dbname = simplelogin
 
 # forward to smtp:127.0.0.1:20381 for custom domain AND email domain
