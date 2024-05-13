@@ -197,7 +197,7 @@ smtpd_recipient_restrictions =
 # postgres config
 hosts = localhost
 user = admin
-password = /0g+iQdLoP8B9k80/Meq93UOkP5QSsOFsdQnt1LJsL7v
+password = mUqIN9KveJeetgRu5USbyPAcXoh0U35D/pdseD+leKtR
 dbname = simplelogin
 
 # forward to smtp:127.0.0.1:20381 for custom domain AND email domain
