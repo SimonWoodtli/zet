@@ -25,6 +25,29 @@
 1. set bantime to '1000m' and max-retry to '3' `sudo vi jail.local`
 1. reload systemd fail2ban service and restart it
 
+## If you run simple login on a 1GB VPS add a swap memory file
+
+```
+fallocate -l 2G /swapfile
+dd if=/dev/zero of=/swapfile bs=1024 count=2097152
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+```
+
+Then add it to the /etc/fstab file:
+
+```
+/swapfile swap swap defaults 0 0
+```
+
+Check:
+
+```
+swapon --show
+free -m
+```
+
 ## Install Simple Login
 
 1. login: `ssh sl@VPS_IP`
@@ -132,7 +155,6 @@ append_dot_mydomain = no
 #delay_warning_time = 4h
 
 readme_directory = no
-
 # See http://www.postfix.org/COMPATIBILITY_README.html -- default to 2 on
 # fresh installs.
 compatibility_level = 2
