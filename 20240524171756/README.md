@@ -9,7 +9,7 @@ between different locations on the same machine), as in: `rsync [options]
 sourcefile destinationfile`
 
 * dry run: `rsync -r --dry-run /usr/local /BACKUP/usr`
-* some good flags to use: `rsync -avzxiP --delete-after --exclude=.git/ "$tarball" "$usbStick"`
+* some good flags to use: `rsync -avzxiPH --delete-after --exclude=.git/ "$tarball" "$usbStick"`
 
 ## Flags explained
 
