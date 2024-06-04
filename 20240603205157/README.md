@@ -1,5 +1,7 @@
 # SELinux cheatsheet
 
+* get status: `getenforce` or `sestatus`
+
 ## Context type
 
 * list context of files: `ls -Z`
