@@ -23,7 +23,13 @@ Processes can be run in either of the two modes:
   reported. This is also called the learning mode. A profile can be set to this
   mode with aa-complain
 
-## Utilities
+## Basic commands
+
+* `aa-status`
+* `getcap file` (if return is empty no profile has been assigned to the file)
+* `setcap ... file`
+
+## More Utilities
 
 There is a bunch of them usually named /usr/sbin/aa-*  
 To get a full ist: `rpm -qil apparmor-utils | grep bin`
