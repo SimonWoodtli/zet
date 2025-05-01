@@ -1,4 +1,148 @@
-# Proxmox Notes => needs cleanup
+# Proxmox Install Guide
+
+Things you can install or have on your node:
+
+* LXCs
+* Container images/templates: You can safe your LXC container into an image then mess
+  around with your LXC container and if things break. You can delete the LXC
+  container and create a new LXC from the image. (Same concept to how docker
+  container/images work)
+* VMs
+
+## 1. Install
+
+1. DL iso onto Ventoy stick
+1. Bootup proxmox and go through initial settings
+
+```
+user: root pw: *** mail: any mail you'd like to use
+Domain: pve1.home.arpa (or anything you'd like)
+IP: 192.168.1.99 (or any IP that is free on your router, I suggest to DHCP bind that IP so it gets reserverd as a static IP for your proxmox node)
+Gateway: 192.168.1.254 (or whatever your router IP is)
+DNS: 1.1.1.1 (or whatever DNS server you'd like to use)
+```
+
+## 2. Configure/Setup
+
+1. Goto: https://community-scripts.github.io/ProxmoxVE/
+1. Run Proxmox VE POST install script
+1. Run Proxmox VE LXC Updater scripto
+1. Run Proxmox Datacenter Manager
+
+
+## Dataceneter Manager (alpha)
+
+The old way was to create a cluster all at once. Not add node by node to the cluster. So if you want to add a proxmox node to a cluster you had to reinstall it first. DCM allows you to do that on the fly.
+
+* Migrate things to and from nodes
+
+Allows you to control multiple nodes that are clustererd together.
+
+## Docker Apps
+
+Run them via LXC/ubuntu or LXC/alpine container. LXC uses a bare minimal VM
+just enough to run docker so no extra resources get used (better than running
+docker via a real VM). LXC = Full VM minus Kernel (gets shared with host)
+
+
+
+## New zettel: LXC vs VM vs Docker
+
+VM Virtualization:
+* VMs actually virtualize everything from hardware up through the operating system
+* They include a complete guest operating system with its own kernel
+* Each VM runs independently with its own dedicated resources
+
+Container Virtualization:
+* Containers share the host's kernel and don't virtualize it
+* They operate above the kernel level but don't virtualize it
+* Instead, they provide process isolation and resource management
+
+The key difference lies in the kernel layer:
+
+* VMs have their own complete kernel
+* Containers share the host's kernel
+
+LXC Container vs Docker Container:
+
+LXC:
+Linux Containers, or LXC, is an advanced virtualization technology that
+utilizes key features of the Linux kernel to create lightweight and efficient
+isolated environments for running multiple applications on a single host
+system.
+* Resource management with cgroups
+* Isolation with namespaces
+
+Benefits:
+* Lightweight nature: Unlike traditional virtual machines that require separate
+  operating system (OS) instances, LXC containers share the host system’s
+  kernel, making them more resource-efficient and faster to start.
+* Proximity to the operating system: Thanks to its integration with the Linux
+  kernel, LXC provides functionality similar to that of virtual machines but
+  with a fraction of the resource demand.
+* Efficient use of system resources: LXC maximizes resource utilization and
+  scalability by enabling multiple containers to run on a single host without
+  the overhead of multiple OS instances.k
+
+Docker:
+Docker offers a comprehensive platform and suite of tools that has
+revolutionized how applications are developed, shipped, and run.
+
+Benefits:
+* Portability: Containers can be moved effortlessly between environments, from
+  development to testing to production, without needing changes, thanks to
+  Docker’s ability to ensure consistency across platforms.
+* Ease of use: Docker simplifies container management with intuitive commands
+  like docker run, significantly lowering the learning curve for new users.
+* Vast ecosystem: Docker’s extensive library of container images available on
+  Docker Hub and a wide array of management tools support rapid application
+  development and deployme
+
+LXC use cases:
+* Efficient access to hardware resources: LXC’s close interaction with the host
+  OS allows it to achieve near-native performance, which is beneficial for
+  applications that require intensive computational power or direct hardware
+  access. This can include data-heavy applications in fields like data analysis
+  or video processing where performance is critical.
+* Virtual Desktop Infrastructure (VDI): LXC is well-suited for VDI setups
+  because it can run full operating systems with a smaller footprint than
+  traditional VMs. This makes LXC ideal for businesses deploying and managing
+  virtual desktops efficiently.
+
+LXC is not typically used for application development but for scenarios
+requiring full OS functionality or direct hardware integration. Its ability to
+provide isolated and secure environments with minimal overhead makes it
+suitable for infrastructure virtualization where traditional VMs might be too
+resource-intensive.
+
+Docker use cases:
+Docker excels in environments where deployment speed and configuration
+simplicity are paramount, making it an ideal choice for modern software
+development. Key use cases where Docker demonstrates its strengths include:
+
+* Streamlined deployment: Docker packages applications into containers along
+  with all their dependencies, ensuring consistent operation across any
+  environment, from development through to production. This eliminates common
+  deployment issues and enhances reliability.
+* Microservices architecture: Docker supports the development, deployment, and
+  scaling of microservices independently, enhancing application agility and
+  system resilience. Its integration with Kubernetes further streamlines the
+  orchestration of complex containerized applications, managing their
+  deployment and scaling efficiently.
+* CI/CD pipelines: Docker containers facilitate continuous integration and
+  deployment, allowing developers to automate the testing and deployment
+  processes. This approach reduces manual intervention and accelerates release
+  cycles.
+* Extensive image repository and configuration management: Docker Hub offers a
+  vast repository of pre-configured Docker images, simplifying application
+  setup. Docker’s configuration management capabilities ensure consistent
+  container setups, easing maintenance and updates.
+
+Docker’s utility in supporting rapid development cycles and complex
+architectures makes it a valuable tool for developers aiming to improve
+efficiency and operational consistency in their projects.
+
+## OLD Notes:
 
 # Requirements
 
@@ -8,8 +152,6 @@
 CHECK if your have it enabled/support: https://stackoverflow.com/questions/11116704/check-if-vt-x-is-activated-without-having-to-reboot-in-linux/11118147
 
 If not supported you might need to use FPTW backup and flash bios, use AMIBCP modify the bios(open vt-d).
-
-
 
 https://techgenix.com/difference-between-amd-vintel-vt-x-and-amd-viintel-vt-d-188/
 
