@@ -1,14 +1,5 @@
 # Proxmox Install Guide
 
-Things you can install or have on your node:
-
-* LXCs
-* Container images/templates: You can safe your LXC container into an image then mess
-  around with your LXC container and if things break. You can delete the LXC
-  container and create a new LXC from the image. (Same concept to how docker
-  container/images work)
-* VMs
-
 ## 1. Install
 
 1. DL iso onto Ventoy stick
@@ -22,15 +13,158 @@ Gateway: 192.168.1.254 (or whatever your router IP is)
 DNS: 1.1.1.1 (or whatever DNS server you'd like to use)
 ```
 
-## 2. Configure/Setup
+## 2. Setup: Scripts
 
 1. Goto: https://community-scripts.github.io/ProxmoxVE/
 1. Run Proxmox VE POST install script
-1. Run Proxmox VE LXC Updater scripto
+  * corrects repos sources (removes enterprise adds non subscription)
+  * adds ceph repo
+  * adds pvetest repo
+  * disable subscription reminder/notifier on website
+  * enables HA for clustered env. (high availability: https://pve.proxmox.com/wiki/High_Availability)
+    * enable Local Resource Manager service
+    * enable Cluster Resource Manager
+    * enable Corosync clustering engine
+  * disables HA for single node env.
+  * apt update system and reboots
+1. Run Proxmox VE LXC Updater script
 1. Run Proxmox Datacenter Manager
 
+TODO: check/read all those bash scripts to understand what they are changing.
 
-## Dataceneter Manager (alpha)
+### 2.1 Setup: Storage
+
+Bootdrive dependent: keep or remove local-lvm partition
+
+> For speed it is recommended to have your bootdrive as NVMe m.2 like with any other System.
+
+Decision:
+
+* If you have a big bootdrive 1TB+ you can keep the local-lvm volume.
+* If you have a small bootdrive removing local-lvm and allocate the storage to
+  local makes sense.
+* If you have multiple nvmes (2 or 4) you probably also want to keep local-lvm. You'd
+  want to create a ZFS pool during the proxmox installer so your bootdrive is
+  also saved from disk disk failure and your local-lvm too.
+* If you have 3 nvmes and one is small it might make sense to go bootdrive with
+  small without local-lvm and the other 2 nvme as ZFS Mirror pool.
+
+Proxmox default partitions:
+
+The local-lvm partition can only store VMs no files/backups or anything else.
+Where the local partition can store anything. The difference is that the local
+storage is a folder on the filesystem and the local-lvm is a volume
+
+* local (here you add boot isos, images/templates)
+* local-lvm (here you add your running vms and containers), you do need to back them up in case of disk failure.
+
+Storage:
+
+If you have a small bootdrive you probably want to create two ZFS pools. A storage pool and a Container/VM pool.
+* One for storage, 3.5hdds: depends on how many if 2 go Mirror if more RaidZ or whatever makes sense
+* One for containers/vms, nvmes: Use two nvmes and raid lvl Mirror
+  * (If your MOBO has more nvme slots just create a second storage pool or whatever you like)
+* (Second fast storage, 2.5ssd): depends on how many if 2 go Mirror if more RaidZ or whatever makes sense
+
+If you have a big bootdrive you can get away with only a storage ZFS pool.
+However you do need to backup your VMs/containers in local-lvm in that case.
+This is why I think it is cleaner to go with a 500GB bootdrive and only have a
+local partition on your bootdrive.
+
+https://www.45drives.com/community/articles/RAID-and-RAIDZ/
+
+### 2.2 Setup: Add ZFS pools
+
+This depends widely on how many drives, which drives etc. as a general idea for
+a VM Server it be nice to have at least a nvme and hdd pool.
+
+If you have 4 nvme it makes sense to have 2nmve as a ZFS pool created when
+running proxmox. And 2 nvmes as ZFS RAID1 when you install proxmox in the
+Installer. That way you can keep the local-lvm partition for containers/vms
+because disk failure is not a problem. And you could use the other ZFS pool for
+either more container/vms or fast data. (
+RESEARCH: maybe 4 at installer would make more sense?
+
+If you have 1 nvme just use it as your boot and use local-lvm for
+containers/vms but backing up your containers/vms is IMPORTANT!
+
+If you have 2 or 3 nvmes I'd setup a ZFS pool during the proxmox installer and
+use local-lvm.
+
+1. nvme pool: (if you have two = mirror, if 3 or more raidz) for running VMs, Containers
+2. hdd pool: (if you have two = mirror, if 3 or more raidz) for data storage for your NAS or VMs
+3. ssd pool: (if you have two = mirror, if 3 or more raidz) for fast data storage for your NAS or VMs or as a cache
+
+> If they already have been used and have data on it you need to 'wipe disks' first.
+
+On the webgui select the node then 'Disks' then 'ZFS' and select your drives. Make sure to have 'Add storage' selected and use the correct RAID level.
+
+1. Get total storage: `zpool list`
+1. Get actual available storage: `zfs list`
+
+On the webgui 'Datacenter' 'Storage' check the content and make sure your pools are setup for the right content: disk image, containers and your 'local' for Backup, ISO image, Container template
+
+### 2.3 Setup: remove local-lvm
+
+Only do this if you are sure you don't want a local-lvm in most cases you probably want to keep a local-lvm.
+
+```
+pvesm status
+lvremove /dev/pve/data
+lvresize -l -r +100%FREE /dev/pve/root
+resize2fs /dev/mapper/pve-root
+pvesm status
+```
+
+Research/test: can local new proxmox installs store container images, isos, vms images directly or is further editing of local required?
+4. allow local partition to store diskimages: "Datacenter" "Storage" select "local" "edit" select "diskimage" => ok
+
+### 2.4 Setup: Enable IOMMU for I/O and GPU passthrough
+
+> If you passthrough a GPU to a VM the host won't have access to it. So it can only ever be available at one machine at a time.
+
+IMPORTANT: Motherboard+CPU VM support: AMD-VI/AMD-V or Intel VT-d/VT-x
+
+1.
+
+BIOS: AMD
+* Enable AMD-VI/IOMMU and AMD-V/SVM
+
+BIOS: Intel
+* Enable VT-d and VT-x
+
+2. Check to see if IOMMU is enabled: `dmesg | grep -e DMAR -e IOMMU`
+
+3. Search IOMMU grp:
+
+```bash
+#!/bin/bash
+shopt -s nullglob
+for d in /sys/kernel/iommu_groups/*/devices/*; do
+    n=${d#*/iommu_groups/*}; n=${n%%/*}
+    printf 'IOMMU Group %s ' "$n"
+    lspci -nns "${d##*/}"
+done;
+```
+
+
+## 3 Setup: Create first LXC Container
+
+> Match the Container ID to the end number of your local IP. E.g. 192.168.1.120 would be Container ID 120
+
+
+## New Zettel Proxmox general Info:
+
+Things you can install or have on your node:
+
+* LXCs
+* Container images/templates: You can safe your LXC container into an image then mess
+  around with your LXC container and if things break. You can delete the LXC
+  container and create a new LXC from the image. (Same concept to how docker
+  container/images work)
+* VMs
+
+## Datacenter Manager (alpha)
 
 The old way was to create a cluster all at once. Not add node by node to the cluster. So if you want to add a proxmox node to a cluster you had to reinstall it first. DCM allows you to do that on the fly.
 
@@ -43,8 +177,6 @@ Allows you to control multiple nodes that are clustererd together.
 Run them via LXC/ubuntu or LXC/alpine container. LXC uses a bare minimal VM
 just enough to run docker so no extra resources get used (better than running
 docker via a real VM). LXC = Full VM minus Kernel (gets shared with host)
-
-
 
 ## New zettel: LXC vs VM vs Docker
 
@@ -141,193 +273,3 @@ development. Key use cases where Docker demonstrates its strengths include:
 Docker’s utility in supporting rapid development cycles and complex
 architectures makes it a valuable tool for developers aiming to improve
 efficiency and operational consistency in their projects.
-
-## OLD Notes:
-
-# Requirements
-
-* VT-d and VT-x support on motherboard
-* two GPUs if you still want to access Proxmox directly, if you only need ssh, and webinterface 1 GPU is enough. Problem is that GPU passthrough will only be available on guest OS the host won't have it. => Luckily I have an APU+GPU (this issue is more concerning on a type 2 hypervisor like VirtualBox if you want GPU passthrough on a win VM you really need 2 GPUs)
-* Motherboard+CPU VM support: AMD-VI/VT-d => for hardware passthrough and AMD-V/VT-x to enable VMs
-CHECK if your have it enabled/support: https://stackoverflow.com/questions/11116704/check-if-vt-x-is-activated-without-having-to-reboot-in-linux/11118147
-
-If not supported you might need to use FPTW backup and flash bios, use AMIBCP modify the bios(open vt-d).
-
-https://techgenix.com/difference-between-amd-vintel-vt-x-and-amd-viintel-vt-d-188/
-
-Important: Go into your BIOS and enable AMD-VI/IOMMU and AMD-V/SVM
-
-## 1. Install Proxmox
-https://github.com/debauchee/barrier
-
-If I had multiple SSD's I would go for a RAID array and probably with ZFS or Btrfs. Since I only have 1 single 250GB SSD I chose ext4 and keep it simple.
-
-1. Important: Go into your BIOS and enable AMD-VI/IOMMU and AMD-V/SVM
-2. Simply download the Proxmox ISO and copy it on to a Ventoy formatted USB Stick
-
-## 2. SSH: Update Proxmox Repo and upgrade system
-
-1. either ssh into your proxmox within your local network or directly enter your credentials user=root
-2. apt update
-3. apt upgrade => error cause proxmox comes with a .gpg key pair for enterprise => subscription only
-
-Fix: Get the test branch of proxmox which is free / if proxmox updates to a new debian => change bullseye keyword to the latest
-* `echo "deb http://download.proxmox.com/debian bullseye pve-no-subscription" > /etc/apt/sources.list.d/pve-test.list`
-* `curl -LJ http://download.proxmox.com/debian/proxmox-release-bullseye.gpg -o /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg`
-
-3&4. Automate step 3 with script: run dark mode and post install:
-
-https://tteck.github.io/Proxmox/
-
-4. apt update && apt -y full-upgrade
-5. reboot
-
-### Why I deleted local-lvm
-
-Currently I only got a 250GB SSD laying around. Hence local-lvm (volume) and local (storage) makes not much sense with so little space to work.
-Idea: The local-lvm partition can only store VMs no files/backups or anything else. Where the local partition can store anything. The difference is that the local storage is a folder on the filesystem and the local-lvm is a volume.
-
-```
-
-drive -> partition -> PV -> VG -> LV 'root' -> ext4 mounted on / -> directory /var/lib/vz configured as 'local' storage
-                               -> LV 'data' -> LVM thin pool configured as 'local-lvm' storage
-```
-
-
-Local LVM does not need to be removed and should be used to install VM’s and Containers. A VM in an LVM storage will perform faster and allows for features like snapshots without using qcow2, and merging physical volumes for volume groups.
-The only reason I see it should be done is if there are extreme storage limits.
-
-
-## 3. Web Interface: delete local-lvm (only with very limited hdd space, normally I would not recommend)
-
-1. Login to proxmox via IP on your browser
-2. Go to "Datacenter" "Storage" and select local-lvm then "remove"
-3. Go to "proxmox/yourHostname" "Shell"
-
-```bash
-lvremove /dev/pve/data
-lvresize -l -r +100%FREE /dev/pve/root
-#resize2fs /dev/mapper/pve-root # -r flag already does the same
-```
-
-4. allow local partition to store diskimages: "Datacenter" "Storage" select "local" "edit" select "diskimage" => ok
-
-
-## 4. Web Interface: Enable GPU Passthrough on Win11
-
-\#Try: https://github.com/HikariKnight/quickpassthrough
-
-\#TODO download YT Video and safe it on 2ndHDD + make a script out of it to easily deal with that
-
-https://yewtu.be/watch?v=S6jQx4AJlFw
-Idiot Friendly! AMD/NVIDIA GPU Passthrough in Proxmox Guide by Tech Hut
-https://gist.github.com/qubidt/64f617e959725e934992b080e677656f Guide
-
-
-Script to find out IOMMU Group:
-
-```bash
-#!/bin/bash
-shopt -s nullglob
-for d in /sys/kernel/iommu_groups/*/devices/*; do
-    n=${d#*/iommu_groups/*}; n=${n%%/*}
-    printf 'IOMMU Group %s ' "$n"
-    lspci -nns "${d##*/}"
-done;
-```
-
-Check to see if IOMMU is enabled: `dmesg | grep -e DMAR -e IOMMU`
---------------------- (not sure if needed)
-\# Fix Bar 0: cant reserver errror
-https://forum.proxmox.com/threads/explaining-snippets-feature.53553/
-https://libredd.it/r/VFIO/comments/igc5z0/bar_cant_reserve_and_no_more_images_in_pci_rom/
-https://pve.proxmox.com/pve-docs/pve-admin-guide.html#_hookscripts
-
-1. ssh into proxmox: mkdir /var/lib/vz/snippets
-2. create script: touch fixGPU
-
-and add:
-
-```bash
-#!/bin/bash
-for vtconsole in /sys/class/vtconsole/*; do echo 0 | sudo tee $vtconsole/bind ; done # Unbind all vtcon's found temporarily
-echo efi-framebuffer.0 | sudo tee /sys/bus/platform/drivers/efi-framebuffer/unbind # Unbind this temporarily
-```
----------------------
-3. chmod u+x  fixGPU
-4. cp fixGPU /var/lib/vz/snippets
-5. qm set 100 --hookscript local:snippets/fixGPU
--------------------------
-
-https://github.com/gnif/vendor-reset/issues/46
-https://forum.proxmox.com/threads/gpu-passthrough-troubleshooting-constant-bar-0-cant-reserve-mem-errors.82162/
-https://libredd.it/r/VFIO/comments/igc5z0/bar_cant_reserve_and_no_more_images_in_pci_rom/
-https://forum.proxmox.com/threads/problem-with-gpu-passthrough.55918/
-https://forum.proxmox.com/threads/problem-with-gpu-passthrough.55918/#post-361178
-https://github.com/gnif/vendor-reset/issues/46#issuecomment-992282166
-https://forum.proxmox.com/threads/proxmox-requires-full-reboot-after-shutting-down-vm-with-pci-passthrough.101552/
-
-BIG Question: How to get proxmox with grub to use APU instead of GPU? Then all this error stuff related to VM boot would not happen
-
-
-Troubleshoot
-Check logs after booting proxmox: `journalctl -b 0` also run `dmesg | grep BAR` before and after starting VM
-Check if vendor-reset is installed: `dmesg | grep vendor`
-
-echo 'device_specific' > "/sys/bus/pci/devices/0000:12:00.0/reset_method"
-
-1. ssh into proxmox: vi /etc/default/grub
-edit line: GRUB_CMDLINE_LINUX_DEFAULT="quiet" change to: GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on"
-grep/sed
-2. echo "vfio
-vfio_iommu_type1
-vfio_pci
-vfio_virqfd" >> /etc/modules
-3. echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/iommu_unsafe_interrupts.conf
-4. echo "options kvm ignore_msrs=1" > /etc/modprobe.d/kvm.conf
-5. echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
-6. echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
-7. echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
-8. lspci -v | grep VGA
-the first for numbers need to be copied in my case 12:00
-9. lspci -n -s 12:00
-copy both id's in my case: 1002:73ff 1002:ab28
-10. echo "options vfio-pci ids=1002:73ff,1002:ab28 disable_vga=1" > /etc/modprobe.d/vfio.conf
-11. update-initramfs -u
-12. reboot
-13. webinterface: upload windows11 and vsio driver image
-14. webinterface: setup Win11 with settings (don't boot it yet!)
-15. ssh into proxmox: <vmid> = id of your Windows VM
-echo "cpu: host,hidden=1,flags=+pcid
-args: -cpu 'host,+kvm_pv_unhalt,+kvm_pv_eoi,hv_vendor_id=NV43FIX,kvm=off'" >> /etc/pve/qemu-server/<vmid>.conf
-16. webinterface: add hardware pci device
-17 Boot up Win11 and install it
-First time boot into win11:
-Make sure you have remote access and know your local IP4 address as noVNC might not work once GPU is passthrough
-* settings -> enable remote desktop
-* device manager -> install only the ethernet driver
-* power shell: ipconfig (copy paste the IP4 to somewhere or memorize it)
-18. Login with remote desktop client to your windows VM:
-install 'virtio guest driver installer' to get all drivers installed
-19. webinterface: turn off VM and "Hardware" "Diplay" change from "default" to "none" (not sure if I still need to do that.
-20.
-
-
-
-## 4. Web Interface: Install Windows VM
-
-1. Download and upload Windows Iso on to the 'local' partition
-2. Download and upload Windows [VirtIO] drivers on to the 'locall partition ( I got the latest version since I plan to install win11)
-[VirtIO]<https://pve.proxmox.com/wiki/Windows_VirtIO_Drivers>
-3. right click 'pve/yourHostname' 'create VM'
-
-\#TODO download YT Video and safe it on 2ndHDD
-
-https://yewtu.be/watch?v=6c-6xBkD2J4
-Virtualize Windows 10 with Proxmox VE by techno tim
-
-
-##
-https://github.com/debauchee/barrier
-
-
