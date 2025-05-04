@@ -28,6 +28,7 @@ DNS: 1.1.1.1 (or whatever DNS server you'd like to use)
   * disables HA for single node env.
   * apt update system and reboots
 1. Run Proxmox VE LXC Updater script
+  * Runs an apt-update or whatever your container is to update all installed pkgs in container (Does not upgrade a single app version when new one is released)
 1. Run Proxmox Datacenter Manager
 
 TODO: check/read all those bash scripts to understand what they are changing.
@@ -36,7 +37,9 @@ TODO: check/read all those bash scripts to understand what they are changing.
 
 Bootdrive dependent: keep or remove local-lvm partition
 
+> ⚠️ If you decide to use ZFS make sure to have enough RAM on your system 32GB min.
 > For speed it is recommended to have your bootdrive as NVMe m.2 like with any other System.
+> IF you use ZFS it requires RAM (ARC/cache). About 1GB of RAM for every 1TB of storage.
 
 Decision:
 
@@ -148,9 +151,11 @@ done;
 ```
 
 
-## 3 Setup: Create first LXC Container
+## 3 Setup: Create your first LXC Container
 
 > Match the Container ID to the end number of your local IP. E.g. 192.168.1.120 would be Container ID 120
+
+## 4 Setup: Create your first VM
 
 
 ## New Zettel Proxmox general Info:
@@ -179,6 +184,12 @@ just enough to run docker so no extra resources get used (better than running
 docker via a real VM). LXC = Full VM minus Kernel (gets shared with host)
 
 ## New zettel: LXC vs VM vs Docker
+
+> ⚠️ If you create a VM and have a proxmox cluster you can do live migration
+> (whilst VM keeps running the VM gets copied onto new Server and never shuts
+> down, with Containers you cannot do live migration they need to be shut down)
+
+> ⚠️ Reallocating CPU/Memory/Storage resources works on the fly with Containers. However on VMs you need to stop the machine before changing any resources.
 
 VM Virtualization:
 * VMs actually virtualize everything from hardware up through the operating system
@@ -273,3 +284,7 @@ development. Key use cases where Docker demonstrates its strengths include:
 Docker’s utility in supporting rapid development cycles and complex
 architectures makes it a valuable tool for developers aiming to improve
 efficiency and operational consistency in their projects.
+
+Related:
+
+* [20250504133640](/20250504133640/) ZFS: Raids explained
