@@ -1,5 +1,8 @@
 # ZFS: Raids explained
 
+* Note that ZFS uses ARC and requires memory, generally you want 1GB of RAM for each TB of storage.
+* Have at least 32GB RAM on your system if you want to use ZFS
+
 ### Raid0 (Striping)
 
 * Writes data across multiple disks simultaneously
@@ -79,6 +82,7 @@
 Related:
 
 * [20220903203700](/20220903203700/) Proxmox Install Guide
+* <https://www.raidisnotabackup.com/>
 
 Tags:
 
