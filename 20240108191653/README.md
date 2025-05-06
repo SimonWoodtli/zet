@@ -4,9 +4,11 @@
 
 1. Install dependencies: `apt install python3-venv`
 1. Create dir: `mkdir ~/Prod`
-1. Clone project into Prod/: `git clone --depth 1 https://git.sr.ht/~heckyel/yt-local -C ~/Prod`
-1. Create virt env: `cd ~/Prod/yt-local && python3 -m venv env`
-1. Source env: `source env/bin/activate`
+1. Get tarball: `curl -LJO https://git.sr.ht/~heckyel/yt-local/archive/v0.3.2.tar.gz`
+1. Extract: `tar xvf yt-local-v0.3.2.tar.gz`
+1. Rename: `mv yt-local-v0.3.2 ~/Prod/yt-local`
+1. Create virt env: `cd ~/Prod/yt-local && python3 -m venv venv`
+1. Source venv: `source venv/bin/activate`
 1. Install pip dependencies: `pip install -r requirements.txt`
 1. Check if it works: `python server.py` (Ctrl-C, if all good)
     1. If you plan to host it without running your webserver in docker you're good to go
@@ -28,7 +30,7 @@ After=network-online.target
 [Service]
 User=xnasero
 Group=xnasero
-ExecStart=/home/xnasero/Prod/yt-local/env/bin/python /home/xnasero/Prod/yt-local/server.py
+ExecStart=/home/xnasero/Prod/yt-local/venv/bin/python /home/xnasero/Prod/yt-local/server.py
 Restart=always
 
 [Install]
@@ -56,8 +58,10 @@ when you point it to their local IP given by the router. So you'd just use
 192.168.1.44 (or whatever your machines IP is that runs yt-local) for your
 proxy host.
 
-1. Edit the yt-local settings.txt file: `vi ~/.yt-local/settings.txt` 
-1. change to faulty booleans to true 'allow_foreign_addresses = True' and 'allow_foreign_post_request = True'
+IMPORTANT: don't create the settings.txt file into the yt-local project! Use the ~/.yt-local/settings.txt file instead!
+
+1. Edit the yt-local settings.txt file: `vi ~/.yt-local/settings.txt`
+1. change to faulty booleans to true 'allow_foreign_addresses = True' and 'allow_foreign_post_requests = True'
 1. Now if you start the server `python server.py` it should start it on 0.0.0.0:9010
 
 ### If you run nginx directly on the host: Create nginx proxy for the app
