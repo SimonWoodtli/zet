@@ -41,6 +41,16 @@ WantedBy=multi-user.target
 2. Enable it: `systemctl enable yt-local.service --now`
 2. Check it: `sytemctl status yt-local.service`
 
+#### Alpine Linux: auto start yt-local via rc or cronjob
+
+If you run Alpine you won't have systemd but need to use `rc-update`, `rc-service` and `rc-status` or just use a cronjob.
+
+Cronjob: `crontab -e`
+
+```
+@reboot sleep 30 && /root/yt-local/venv/bin/python /root/yt-local/server.py
+```
+
 ### If your webserver/proxy server is running inside a container
 
 Using this app with nginx proxy manager(NPM): The Problem
@@ -82,9 +92,9 @@ server {
 ```
 
 2. Enable proxy site: `ln -s /etc/nginx/sites-available/tv /etc/nginx/sites-enabled/`
-2. Restart nginx: `systemctl restart nginx`
-2. Check if it works in browser: `yt.simonwoodtli.com`
-2. Add https cert: `certbot --nginx` and select tv site number
+3. Restart nginx: `systemctl restart nginx`
+4. Check if it works in browser: `yt.simonwoodtli.com`
+5. Add https cert: `certbot --nginx` and select tv site number
 
 ## Next Steps
 
